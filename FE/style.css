@@ -1,0 +1,396 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+.container{
+    margin: 0px auto;
+    max-width: 960px;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background-color: #fff;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #aa9dd0;
+    padding: 10px 0px;
+    transition: all 0.3s ease-in-out;
+
+   /* position: relative;*/
+
+}
+
+#wraper {
+    position: relative;
+}
+
+header.sticky{
+    background: #3b4147;
+    opacity: 0.9;
+    padding: 15px 0px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+header.sticky #logo{
+    color: #000;
+}
+
+header.sticky #main-menu a{
+    color: #fff4f4; 
+}
+
+.inner-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    display: block;
+}
+
+ul#main-menu{
+    display: flex;
+}
+ul#main-menu a{
+    text-transform: uppercase;
+    padding:10px 20px ;
+    color: rgb(255, 255, 255);
+    display: block;
+}
+
+#banner{
+    background-image: url(https://images.foody.vn/res/g115/1146978/prof/s640x400/foody-upload-api-foody-mobile-fo-6aaa5e7a-220805103122.jpeg);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    position: fixed;
+}
+.content{
+    position: relative;
+    display: flex;
+
+}
+/*
+.product{
+    position: absolute;
+    right: 8%;
+    top: 30vh;
+    height: 100vh;
+    width: 45%;
+    background-color: rgba(255, 252, 252, 0.5);
+    border-radius: 5%;
+}*/
+
+#FoodBoxContainer{
+    position: absolute;
+    right: 8%;
+    top: 30vh;
+    height: 100vh;
+    width: 45%;
+    background-color: rgba(255, 252, 252, 0.5);
+}
+/* ăn vặt*/
+ul.fastfood{
+    display: flex;  
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+ul.fastfood li{  
+    flex: 0 0 calc(50% - 5px); 
+    box-sizing: border-box;
+   /* flex: 35%;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+
+}
+/* trà sữa */
+ul.milktea{
+    display: flex;  
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+ul.milktea li{  
+    flex: 0 0 calc(50% - 5px); 
+    box-sizing: border-box;
+   /* flex: 35%;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+
+}
+
+#FoodBoxContainer li img{
+    size: 50%;
+    max-width: 100%;
+    height: auto;
+}
+
+.item{
+    background-color: #fff;
+    padding: 10px 10px;
+    border: 1px 1px solid #030109;
+    box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+}
+
+.product-top{
+    position: relative;
+}
+
+.btn{
+    width: 70%;
+    padding: 10px 12px;
+    text-align: center;
+    justify-content: center;
+    margin: 0 3px;
+}
+.cart{
+    position: absolute;
+    width: 20%;
+    font-weight: 500;
+    font-size: 100%;  
+}
+
+
+.product-info {
+    font-size: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.product-info .product-price{
+    color: #000;
+    border-top: 1px solid #3f00fb;
+}
+
+.product-info .product-name{
+    color: #236d57;
+    font-weight: 500;
+}
+
+
+.search_info{
+    position: absolute;
+    top: 35vh;
+    left: 5%;
+    width: 40%;
+    position: fixed;
+}
+
+.search_info h2{
+    padding-bottom:15px ;
+}
+
+
+.search{
+    width: 70%;
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: none;
+    padding-inline-start: 5px;
+}
+.btn_search{
+    color: #fff;
+    background-color: transparent;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: #18711b;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.btn_search:hover{
+    opacity: 0.8;
+}
+
+.address{
+    position: absolute;
+    left: 50%;
+    top: 20vh;
+    color: #47d24b;
+}
+.set-address{
+    width: 60vh;
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: none;
+}
+
+.btn_address{
+    color: #0027c4;
+    background-color: transparent;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: #00ffff;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn_address:hover{
+    opacity: 0.8;
+}
+
+.buy{
+    color: #ffffff;
+    background-color: transparent;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #369d52;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.buy:hover{
+    opacity: 0.8;
+}
+.cart{
+    color: #ffffff;
+    background-color: transparent;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #369d52;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.cart:hover{
+    opacity: 0.8;
+}
+
+
+#contact-info{
+    background-color: #000;
+    height: 300px;
+    width: 600px;
+    position: absolute;
+}
+
+  
+/* CSS cho hộp cha */
+.box-info-web {
+    display: flex;
+    position: fixed;
+    top: 55vh;
+    left: 3vh;
+    height: 250px;
+    animation: animation 3s infinite ease-in-out;
+}
+/* CSS cho các hộp con */
+.box-info-web > div {
+    width: 50%; 
+    height: 160px;
+    background-color: #ffffff; 
+    color: #000000; 
+    text-align: center;
+    justify-content: center;
+    padding: 10px; 
+    margin: 4%;
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+    
+}
+
+.box-info-web-1, .box-info-web-3, .box-info-web-2 {
+    animation: animation 3s infinite ease-in-out;
+}
+
+@keyframes animation {
+    0%{
+        transform: translatey(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+.box-info-web .box-info-web-1, .box-info-web-3
+{
+    animation-delay: 0.5s;
+}
+.box-info-web .box-info-web-2
+{
+    animation-delay: 1s;
+}
+
+.box-info-web-1 #p1{
+    font-size: 26px;
+    padding-top: 20px;
+    font-weight: 600;
+    color: #146316;
+}
+.box-info-web-1 #p2{
+    font-size: 40px;
+    padding-top: 10px;
+    color: #146316;
+}
+
+.box-info-web-3 #p1{
+    font-size: 26px;
+    padding-top: 20px;
+    font-weight: 600;
+}
+.box-info-web-3 #p2{
+    font-size: 20px;
+    padding-top: 18px;
+    font-weight: 400;
+}
+
+.box-info-web-2 >p{
+    font-size: 18px;
+    padding-top: 80px;
+    font-weight: 400;
+}
+
+.box-info-web .box-info-web-2{
+    height: 200px;
+    margin-top: 0;
+}
+
+.box-info-web .box-info-web-1, .box-info-web-3{
+    margin-top: 20px;
+}
+
+
+
+/* CSS cho các thẻ p trong mỗi hộp */
+.box-info-web > div p {
+    margin-bottom: 10px; 
+}
+
+
+@media screen and (max-width: 900px) {
+    .box-info-web {
+        display: none;
+    }
+}
+
+
