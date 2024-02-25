@@ -1,5 +1,6 @@
 <?
-require_once('../database/database.php');
+
+//class chua cac method CRUD lien quan den user
 class UserService{
     private $conn;
 
@@ -7,6 +8,10 @@ class UserService{
     {
         $this->conn=new Database();
     }
+
+
+
+    //xac minh user bang username va password
     public function authUser(string $username,string $password) {
         $sql="SELECT * FROM `user` WHERE name=:username ";
         $result= $this->conn->prepare($sql);
@@ -29,6 +34,11 @@ class UserService{
            
         }
     }
+
+
+
+
+    //tra ve doi tuong user theo username
     public function getUserByName(string $username){
         $sql="SELECT * FROM `user` WHERE name=:username ";
         $result= $this->conn->prepare($sql);
