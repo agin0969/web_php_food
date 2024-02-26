@@ -1,4 +1,6 @@
 <?
+require_once '../database/database.php';
+require_once '../models/pruduct.php';
 class ProductService{
     private $conn;
     public function __construct()

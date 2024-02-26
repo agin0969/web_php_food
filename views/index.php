@@ -1,5 +1,5 @@
 
-
+<?require_once'../services/productService.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,27 +80,36 @@
  <div id="FoodBoxContainer">
 
     <!-- traf sua -->
-    <div class="product" id="milk_tea">                 
-        <ul class="milktea">
-            <li>
-                <div class="item">
+    <div class="product" id="milk_tea">  
+    <ul class="milktea">          
+        <?
+        $productService = new ProductService();
+        $products= $productService->getAllProduct();
+        foreach ($products as $product) { 
+            echo " <li>
+            <div class='item'>
 
-                   <div class="product-top">
-                       <a href="" class="thump">
-                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
-                       </a>
-                       <button class="btn buy">Mua ngay</button>
-                       <button class="btn cart">+</button>
-                   </div>
-                   
-                   <div class="product-info">
-                        <a href="" class="product-name">Trà Sửa</a>
-                        <div class="product-price">17 k</div>
-                   </div>
+               <div class='product-top'>
+                   <a href='' class='thump'>
+                    <img src='https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png' alt='san pham'>
+                   </a>
+                   <button class='btn buy'>Mua ngay</button>
+                   <button class='btn cart'>+</button>
                </div>
-            </li>
+               
+               <div class='product-info'>
+                    <a href='' class='product-name'>{$product['name']}</a>
+                    <div class='product-price'>{$product['price']}</div>
+               </div>
+           </div>
+        </li>";
+        }
 
-            <li>
+        ?>     
+        
+            
+        </ul>
+            <!-- <li>
                 <div class="item">
 
                    <div class="product-top">
@@ -152,10 +161,10 @@
                     <div class="product-price">16 k</div>
                    </div>
                </div>
-            </li>
+            </li> -->
     
      
-        </ul>
+        
     </div>
 
     <div class="product" id="fast_food">                 
