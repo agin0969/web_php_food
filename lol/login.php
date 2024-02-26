@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập và Đăng ký</title>
+    <title>Login/Register Form</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Đăng nhập</h2>
-    <form action="authenticate.php" method="post">
-        <label for="username">Tên đăng nhập:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Mật khẩu:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Đăng nhập">
-    </form>
-
-    <h2>Đăng ký</h2>
-    <form action="register.php" method="post">
-        <label for="new_username">Tên đăng nhập mới:</label><br>
-        <input type="text" id="new_username" name="new_username" required><br>
-        <label for="new_password">Mật khẩu mới:</label><br>
-        <input type="password" id="new_password" name="new_password" required><br><br>
-        <input type="submit" value="Đăng ký">
-    </form>
+    <div class="form-container">
+        <form class="login-form">
+            <h2>Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <form class="register-form">
+            <h2>Register</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 </body>
 </html>
