@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,26 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/style.css">
     <title>WEFOOD</title>
+    <script src="../resource/static/js/index.js"></script>
 </head>
 
 <body>
+
     <div id="wraper">
 <!--background-->
         <div id="banner"></div>
-        <header>
-            <div class="inner-header container">
-                <a href="" class="logo">WEFOOD</a>
-                <nav>
-                    <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('milk_tea')">trà sữa</a></li>
-                        <li><a href="#" onclick="showFoodbox('fast_food')">ăn vặt</a></li>
-                        <li><a href="#" onclick="showFoodbox('drink')">đồ uống</a></li>
-                        <li><a href="#" onclick="showFoodbox('lunch')">combo trưa</a></li>
-                        <li><a href="#" onclick="showFoodbox('breakfast')">combo sáng</a></li> 
-                    </ul>
-                </nav>
-            </div>
-        </header>
+<!-- thanh header -->
+        <?php include 'header.php'; ?>
+       
         <div class="content">
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng  </h2>
@@ -253,9 +243,8 @@
 
 
 
-<!-- js tính năng hướng vào trang con menu khi load lại trang hoặc về trang chủ-->
 
-<!-- js tính năng cuộn background theo danh mục sanr phẩm-->
+<!-- js tính năng cuộn background theo danh mục sanr phẩm--> <!--
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const menu = document.getElementById('FoodBoxContainer');
@@ -284,50 +273,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-</script>
+</script> -->
 
-
- <!-- js hiển thị phần con của menu -->
-            <script>
-                function showFoodbox(foodType) {
-                var foodBoxes = document.getElementsByClassName('product');
-                
-                // Ẩn tất cả các box trước khi hiển thị box mới
-                for (var i = 0; i < foodBoxes.length; i++) {
-                    foodBoxes[i].style.display = 'none';
-                }
-
-                
-                // Hiển thị box tương ứng với loại thức ăn
-                var selectedFoodBox = document.getElementById(foodType);
-                if (selectedFoodBox) {
-                    selectedFoodBox.style.display = 'block';
-                } else {
-                    console.log("Không tìm thấy box với id: " + foodType);
-                }
-                }
-                window.onload = function() {
-                    showFoodbox('milk_tea'); 
-                };
-            </script>
-
-
-
-            
-<!-- js hiển thị phần chức nang cuộn cho header -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if( $(this).scrollTop()) {
-                    $('header').addClass('sticky');
-                }else{
-                    $('header').removeClass('sticky');
-                }
-            });
-        });
-    </script>
-
+<!-- thanh footer -->
+<?php include 'footer.php'; ?>
 
 </body>
 </html>
