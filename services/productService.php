@@ -6,5 +6,54 @@ class ProductService{
         $this->conn=new Database();
     }
 
+    public function getAllProduct(){
+        try {
+            $sql = "SELECT * FROM `product`";
+            $result = $this->conn->prepare($sql);
+            $result->execute();
+
+            if ($result) {
+                $products = $result->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $products = array();
+            }
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        } finally {
+            $this->conn->closeConn();
+        }
+        return $products;
+    }
+    public function getProductById(int $id){
+        try{
+        $sql="SELECT * FROM `user` WHERE id=:id ";
+        $result= $this->conn->prepare($sql);
+        $result->bindParam(':id',$id);
+        $result->execute();
+        if ($result) {
+            $productInfo = $result->fetch(PDO::FETCH_ASSOC); 
+            if ($productInfo) {
+               
+                $product = new Product(
+                    $productInfo['id'],
+                    $productInfo['name'],
+                    $productInfo['category_id'],
+                    $productInfo['price'],
+                    $productInfo['image'],
+
+                );
+                $this->conn->closeConn();
+
+                return $product;
+            }
+        } else {
+             return null;
+        }
+        }catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        } finally {
+            $this->conn->closeConn();
+        }
+    }
 
 }

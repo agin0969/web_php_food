@@ -13,25 +13,33 @@ class UserService{
 
     //xac minh user bang username va password
     public function authUser(string $username,string $password) {
+        try {
+
+        
         $sql="SELECT * FROM `user` WHERE name=:username ";
         $result= $this->conn->prepare($sql);
         $result->bindParam(':username',$username);
         $result->execute();
         if ($result){
             $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
-            if(password_hash($userInfo['password'],PASSWORD_DEFAULT)==$password) {
+            if(password_verify($password, $userInfo['password'])) {
                 $this->conn->closeConn();
                 return true;
             } else {
                 $this->conn->closeConn();
             return false;
             }
-           
-            
         } else {
             $this->conn->closeConn();
             return false;
            
+        }
+        }
+        catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        } 
+        finally {
+            $this->conn->closeConn();
         }
     }
 
@@ -40,6 +48,7 @@ class UserService{
 
     //tra ve doi tuong user theo username
     public function getUserByName(string $username){
+        try{
         $sql="SELECT * FROM `user` WHERE name=:username ";
         $result= $this->conn->prepare($sql);
         $result->bindParam(':username',$username);
@@ -59,8 +68,14 @@ class UserService{
 
                 return $user;
             }
+        } else {
+             return null;
         }
-        return null;
+        }catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        } finally {
+            $this->conn->closeConn();
+        }
     }
 
    
