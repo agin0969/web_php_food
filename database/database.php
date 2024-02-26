@@ -19,11 +19,14 @@ Class Database{
             die("Connection failed: " . $e->getMessage());
         }
     }
-    private function query($sql) {
+    public function query($sql) {
         return $this->conn->query($sql);
     }
+    public function prepare($sql) {
+        return $this->conn->prepare($sql);
+    }    
 
-    private function closeConn(){
+    public function closeConn(){
         $this->conn = null;
     }
 }
