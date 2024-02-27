@@ -1,5 +1,5 @@
 <?
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
     <div class="login-container">
         <img src="../resource/static/img/wefood.png" alt="Wefood logo">
         <h2>Đăng nhập vào tài khoản của bạn</h2>
-        <form action="#" method="post">
+        <form action="../controllers/loginController.php" method="post">
             <div class="input-field">
                 <input type="text" name="username" placeholder="Tài khoản" required>
             </div>

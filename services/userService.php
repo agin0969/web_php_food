@@ -1,5 +1,5 @@
 <?
-
+require_once'../database/database.php';
 //class chua cac method CRUD lien quan den user
 class UserService{
     private $conn;
@@ -22,12 +22,14 @@ class UserService{
         $result->execute();
         if ($result){
             $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
-            if(password_verify($password, $userInfo['password'])) {
-                $this->conn->closeConn();
-                return true;
-            } else {
-                $this->conn->closeConn();
-            return false;
+            if($userInfo){
+                if(password_verify($password, $userInfo['password'])) {
+                    $this->conn->closeConn();
+                    return true;
+                } else {
+                    $this->conn->closeConn();
+                    return false;
+                }
             }
         } else {
             $this->conn->closeConn();
@@ -132,15 +134,14 @@ class UserService{
         return session_start();
     }
 
-    public function setSession($username , $password) {
+    public function setSession($username) {
         $_SESSION['$username']=$username;
-        $_SESSION['$password']=$password;
         $_SESSION['$id']=$this->getIdByUsername($username);
         $_SESSION['$role']=$this->getRoleByUsername($username);
     }
     public function getSession() {
         session_start();
-        $desiredVariables = ['username', 'password', 'id', 'role'];
+        $desiredVariables = ['username','id', 'role'];
         $sessionData = [];
         foreach ($desiredVariables as $variable) {
             if (isset($_SESSION[$variable])) {
