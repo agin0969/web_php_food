@@ -1,15 +1,19 @@
+<?
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WeFood Login</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../resource/static/css/login.css">
 </head>
 <body>
 <div class="container">
     <div class="login-container">
-        <img src="wefood.png" alt="Wefood logo">
+        <img src="../resource/static/img/wefood.png" alt="Wefood logo">
         <h2>Đăng nhập vào tài khoản của bạn</h2>
         <form action="#" method="post">
             <div class="input-field">
@@ -24,6 +28,6 @@
     </div>
 </div>
 
-<script src="app.js"></script>
+<script src="../resource/static/js/login.js"></script>
 </body>
 </html>

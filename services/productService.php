@@ -8,6 +8,10 @@ class ProductService{
         $this->conn=new Database();
     }
 
+
+
+
+//lay toan bo products
     public function getAllProduct(){
         try {
             $sql = "SELECT * FROM `product`";
@@ -26,6 +30,10 @@ class ProductService{
         }
         return $products;
     }
+
+
+
+    //lay product theo id
     public function getProductById(int $id){
         try{
         $sql="SELECT * FROM `user` WHERE id=:id ";
@@ -42,7 +50,6 @@ class ProductService{
                     $productInfo['category_id'],
                     $productInfo['price'],
                     $productInfo['image'],
-
                 );
                 $this->conn->closeConn();
 
