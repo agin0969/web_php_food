@@ -154,6 +154,7 @@ class UserService{
     }
 
     public function setSession($username) {
+        $this->startSession();
         $user=$this->getUserByName($username);
         $_SESSION['username']=$user->getUsername();
         $_SESSION['id']=$user->getId();
