@@ -9,9 +9,9 @@
 <body>
 <div class="container">
     <div class="login-container">
-        <img src="wefood.png" alt="Wefood logo">
+        <img src="../resource/static/img/wefood.png" alt="Wefood logo">
         <h2>Tạo tài khoản của bạn</h2>
-        <form action="#" method="post">
+        <form action="../controllers/registerController.php" method="post">
             <div class="input-field">
                 <input type="text" name="username" placeholder="Tài khoản" required>
             </div>

@@ -1,8 +1,11 @@
 <?
 require_once'../database/database.php';
+require_once'../models/user.php';
+require_once'../services/roleService.php';
 //class chua cac method CRUD lien quan den user
 class UserService{
     private $conn;
+    
 
     public function __construct()
     {
@@ -24,24 +27,22 @@ class UserService{
             $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
             if($userInfo){
                 if(password_verify($password, $userInfo['password'])) {
-                    $this->conn->closeConn();
+                   
                     return true;
                 } else {
-                    $this->conn->closeConn();
+                   
                     return false;
                 }
             }
         } else {
-            $this->conn->closeConn();
+           
             return false;
         }
         }
         catch (PDOException $e) {
             die("Error: " . $e->getMessage());
         } 
-        finally {
-            $this->conn->closeConn();
-        }
+        
     }
 
 
@@ -65,7 +66,7 @@ class UserService{
                     $userInfo['email'],
                     $userInfo['role_id']
                 );
-                $this->conn->closeConn();
+               
 
                 return $user;
             }
@@ -74,9 +75,7 @@ class UserService{
         }
         }catch (PDOException $e) {
             die("Error: " . $e->getMessage());
-        } finally {
-            $this->conn->closeConn();
-        }
+        } 
     }
     public function getIdByUsername($username){
         try{
@@ -89,18 +88,17 @@ class UserService{
                 if ($userInfo) {
                    
                    $userId=$userInfo['id'];
-                    $this->conn->closeConn();
+                   
     
                     return $userId;
                 }
             } else {
-                return null;
+                return false;
             }
             }catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
-            } finally {
-                $this->conn->closeConn();
-            }
+            } 
+                
 
     }
 
@@ -115,7 +113,7 @@ class UserService{
                 if ($userInfo) {
                    
                    $userRole=$userInfo['role'];
-                    $this->conn->closeConn();
+                    
     
                     return $userRole;
                 }
@@ -124,10 +122,30 @@ class UserService{
             }
             }catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
-            } finally {
-                $this->conn->closeConn();
-            }
+            } 
 
+    }
+
+    public function addUserToDataBase($username,$password,$email){
+        try{
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $roleService = new RoleService();
+            $roleId=$roleService->getRoleIdByName('user');
+            $sql="INSERT INTO `user` (name, password, email, role_id) VALUES (:username, :password, :email, :role_id)";
+            $result= $this->conn->prepare($sql);
+            $result->bindParam(':username',$username);
+            $result->bindParam(':password',$hashedPassword);
+            $result->bindParam(':email',$email);
+            $result->bindParam(':role_id',$roleId);
+            $result->execute();
+            if($result){
+                return true;
+            } else {
+                return false;
+            }
+            }catch (PDOException $e) {
+                die("Error: " . $e->getMessage());
+            }
     }
 
     public function startSession(){

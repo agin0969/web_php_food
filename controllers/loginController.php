@@ -6,7 +6,7 @@ class LoginController{
         $this->userService=new UserService();
     }
     public function login($username,$password){
-        
+        $this->userService->clearSession();
         $this->userService->startSession();
         if ($this->userService->authUser($username,$password))
         {
