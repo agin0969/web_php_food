@@ -1,7 +1,7 @@
 <?
 require_once'../database/database.php';
 require_once'../models/user.php';
-require_once'../services/roleService.php';
+
 //class chua cac method CRUD lien quan den user
 class UserService{
     private $conn;
@@ -9,6 +9,7 @@ class UserService{
 
     public function __construct()
     {
+       
         $this->conn=new Database();
     }
 
@@ -153,22 +154,28 @@ class UserService{
     }
 
     public function setSession($username) {
-        $_SESSION['$username']=$username;
-        $_SESSION['$id']=$this->getIdByUsername($username);
-        $_SESSION['$role']=$this->getRoleByUsername($username);
+        $user=$this->getUserByName($username);
+        $_SESSION['username']=$user->getUsername();
+        $_SESSION['id']=$user->getId();
+
+        $_SESSION['role_id']=$user->getRoleId();
+
+        
     }
     public function getSession() {
-        session_start();
-        $desiredVariables = ['username','id', 'role'];
+        $this->startSession();
+        $desiredVariables = ['username', 'id', 'role_id'];
         $sessionData = [];
+    
         foreach ($desiredVariables as $variable) {
             if (isset($_SESSION[$variable])) {
                 $sessionData[$variable] = $_SESSION[$variable];
             }
         }
+    
         return $sessionData;
     }
-
+    
     public function clearSession(){
         return session_destroy();
     }

@@ -25,8 +25,6 @@ class ProductService{
             }
         } catch (PDOException $e) {
             die("Error: " . $e->getMessage());
-        } finally {
-            $this->conn->closeConn();
         }
         return $products;
     }
@@ -51,7 +49,7 @@ class ProductService{
                     $productInfo['price'],
                     $productInfo['image'],
                 );
-                $this->conn->closeConn();
+               
 
                 return $product;
             }
@@ -60,9 +58,7 @@ class ProductService{
         }
         }catch (PDOException $e) {
             die("Error: " . $e->getMessage());
-        } finally {
-            $this->conn->closeConn();
-        }
+        } 
     }
 
 }
