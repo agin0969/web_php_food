@@ -38,7 +38,7 @@
         <div class="content">
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng </h2>
-                <input class="set-address" type="text" name="set-address" placeholder="   Nhập địa chỉ giao hàng,..." />
+                <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
                 <button class="btn_address">ĐỔI</button>
                 <button class="btn_address">Mặc định</button>
 
@@ -46,7 +46,7 @@
             <!--muc tim kiem cac san pham-->
             <div class="search_info">
                 <h2>Đặt đồ ăn nhanh chóng ... </h2>
-                <input class="search" type="text" name="search" placeholder="  Tìm địa điểm, món ăn, đồ uống,..." />
+                <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
                 <button class="btn_search">Tìm</button>
             </div>
 
@@ -90,7 +90,7 @@
                 <div class="product" id="milk_tea">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product['category_id'] == 1): ?>
+                            <?php if ($product['category_id'] == 4): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -113,7 +113,7 @@
 
                     </ul>         
               </div>
-
+        <!-- anư vặt -->
                 <div class="product" id="fast_food">
 
                      <ul class="milktea">
@@ -139,7 +139,7 @@
                         <?php endforeach; ?>
                     </ul>                    
                 </div>
-
+        <!-- đô uống -->
                 <div class="product" id="drink">
 
                      <ul class="milktea">
@@ -165,12 +165,12 @@
                         <?php endforeach; ?>
                     </ul>                    
                 </div>
-
+    <!-- ăn trưa -->
                 <div class="product" id="lunch">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product['category_id'] == 4): ?>
+                            <?php if ($product['category_id'] == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -191,6 +191,33 @@
                         <?php endforeach; ?>
                     </ul>                    
                 </div>
+
+        <!-- ăn sáng -->
+        <div class="product" id="breakfast">
+
+            <ul class="milktea">
+                <?php foreach ($products as $product): ?>
+                    <?php if ($product['category_id'] == 1): ?>
+                <li>
+                    <div class="item">
+                        <div class="product-top">
+                            <a href="" class="thump">
+                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                    alt="san pham">
+                            </a>
+                            <button class="btn buy">Mua ngay</button>
+                            <button class="btn cart">+</button>
+                        </div>
+                        <div class="product-info">
+                            <a href="" class="product-name"><?= $product["name"] ?></a>
+                            <div class="product-price"><?= $product["price"] ?></div>
+                        </div>
+                    </div>
+                </li>
+                <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>                    
+            </div>    
 
 
             </div>
