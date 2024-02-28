@@ -15,9 +15,4 @@ class ProductController {
         return
          $this->productService->getProductById($id);
     }
-
-    public function getProductByCategoryId(int $category_id){
-        return
-         $this->productService->getProductByCategoryId($category_id);
-    }
 }

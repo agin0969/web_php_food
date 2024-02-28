@@ -1,6 +1,6 @@
 <?require_once'../controllers/productController.php';
     $productController=new ProductController();
-    $products=$productController->getProductByCategoryId($category_id);
+    $products=$productController->getAllProduct();
 ?>
 
 
@@ -90,6 +90,7 @@
                 <div class="product" id="milk_tea">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
+                            <?php if ($product['category_id'] == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -106,149 +107,94 @@
                                 </div>
                             </div>
                         </li>
+                        <?php endif; ?>
                         <?php endforeach; ?>
 
 
-                    </ul>
-                    <!-- <li>
-                <div class="item">
-
-                   <div class="product-top">
-                       <a href="" class="thump">
-                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
-                       </a>
-                       <button class="btn buy">Mua ngay</button>
-                       <button class="btn cart">+</button>
-                   </div>
-                   
-                   <div class="product-info">
-                        <a href="" class="product-name">Trà Chanh</a>
-                        <div class="product-price">19 k</div>
-                   </div>
-               </div>
-            </li>
-
-            <li>
-                <div class="item">
-
-                   <div class="product-top">
-                       <a href="" class="thump">
-                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
-                       </a>
-                       <button class="btn buy">Mua ngay</button>
-                       <button class="btn cart">+</button>
-                   </div>
-                   
-                   <div class="product-info">
-                        <a href="" class="product-name">Nuoc Ngot</a>
-                        <div class="product-price">12 k</div>
-                   </div>
-               </div>
-            </li>
-
-            <li>
-                <div class="item">
-
-                   <div class="product-top">
-                       <a href="" class="thump">
-                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
-                       </a>
-                       <button class="btn buy">Mua ngay</button>
-                       <button class="btn cart">+</button>
-                   </div>
-                   
-                   <div class="product-info">
-                    <a href="" class="product-name">Nuoc mía</a>
-                    <div class="product-price">16 k</div>
-                   </div>
-               </div>
-            </li> -->
-
-
-
-                </div>
+                    </ul>         
+              </div>
 
                 <div class="product" id="fast_food">
-                    <ul class="fastfood">
+
+                     <ul class="milktea">
+                        <?php foreach ($products as $product): ?>
+                            <?php if ($product['category_id'] == 2): ?>
                         <li>
                             <div class="item">
-
                                 <div class="product-top">
                                     <a href="" class="thump">
-                                        <img src="https://cdn.tgdd.vn/2020/10/CookProduct/0.-1200x674.jpg"
+                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
                                     <button class="btn buy">Mua ngay</button>
                                     <button class="btn cart">+</button>
                                 </div>
-
                                 <div class="product-info">
-                                    <a href="" class="product-name">Banh mi</a>
-                                    <div class="product-price">69 k</div>
+                                    <a href="" class="product-name"><?= $product["name"] ?></a>
+                                    <div class="product-price"><?= $product["price"] ?></div>
                                 </div>
                             </div>
                         </li>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>                    
+                </div>
 
+                <div class="product" id="drink">
+
+                     <ul class="milktea">
+                        <?php foreach ($products as $product): ?>
+                            <?php if ($product['category_id'] == 3): ?>
                         <li>
                             <div class="item">
-
                                 <div class="product-top">
                                     <a href="" class="thump">
-                                        <img src="https://cdn.tgdd.vn/2020/10/CookProduct/0.-1200x674.jpg"
+                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
                                     <button class="btn buy">Mua ngay</button>
                                     <button class="btn cart">+</button>
                                 </div>
-
                                 <div class="product-info">
-                                    <a href="" class="product-name">Phở Hà Nội</a>
-                                    <div class="product-price">31 k</div>
+                                    <a href="" class="product-name"><?= $product["name"] ?></a>
+                                    <div class="product-price"><?= $product["price"] ?></div>
                                 </div>
                             </div>
                         </li>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>                    
+                </div>
 
+                <div class="product" id="lunch">
+
+                     <ul class="milktea">
+                        <?php foreach ($products as $product): ?>
+                            <?php if ($product['category_id'] == 4): ?>
                         <li>
                             <div class="item">
-
                                 <div class="product-top">
                                     <a href="" class="thump">
-                                        <img src="https://cdn.tgdd.vn/2020/10/CookProduct/0.-1200x674.jpg"
+                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
                                     <button class="btn buy">Mua ngay</button>
                                     <button class="btn cart">+</button>
                                 </div>
-
                                 <div class="product-info">
-                                    <a href="" class="product-name">Banh Lọc ọc ọc</a>
-                                    <div class="product-price">16 k</div>
+                                    <a href="" class="product-name"><?= $product["name"] ?></a>
+                                    <div class="product-price"><?= $product["price"] ?></div>
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>                    
                 </div>
 
 
             </div>
         </div>
-        <!-- 
-<div id="contact-info">
-    <ul class="my-info">
-        <ul>
-            <div>Thông tin liên hệ </div>
-            <li>
-                <p>.09xxxxxxx01</p>
-            </li>
-            <li>
-                <p>fanbage: Wefood cân tất</p>
-            </li>
-            <li>
-                <p>blog</p>
-            </li>
-        </ul>
-    </ul>
-</div>     -->
     </div>
 
 
