@@ -1,6 +1,7 @@
 <?
 require_once'../database/database.php';
 require_once'../models/user.php';
+require_once'../services/roleService.php';
 
 //class chua cac method CRUD lien quan den user
 class UserService{
