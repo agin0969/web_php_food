@@ -54,7 +54,7 @@ function validateForm() {
 
   
     alert("Đăng ký thành công!");
-    window.location.href = "login.html";
+    window.location.href = "login.php";
     return false; 
 }
 </script>
