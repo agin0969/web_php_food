@@ -26,38 +26,38 @@
         <p class="signin-link">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
     </div>
 </div>
-<script>
-function validateForm() {
-    var username = document.forms["signupForm"]["username"].value;
-    var email = document.forms["signupForm"]["email"].value;
-    var password = document.forms["signupForm"]["password"].value;
-    
-   
-    var usernameRegex = /^[a-zA-Z0-9]+$/;
-    if (!usernameRegex.test(username)) {
-        alert("Tên tài khoản chỉ được chứa các ký tự chữ và số.");
-        return false;
-    }
-
-   
-    var emailRegex = /\S+@\S+\.\S+/;
-    if (!emailRegex.test(email)) {
-        alert("Email không hợp lệ.");
-        return false;
-    }
-
-    
-    if (password.length < 12) {
-        alert("Mật khẩu phải có ít nhất 12 ký tự.");
-        return false;
-    }
-
-  
-    alert("Đăng ký thành công!");
-    window.location.href = "login.php";
-    return false; 
-}
-</script>
 
 </body>
 </html>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Lấy dữ liệu từ form
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    
+    if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
+        echo "Tên tài khoản chỉ được chứa các ký tự chữ và số.";
+        exit;
+    }
+
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Email không hợp lệ.";
+        exit; 
+    }
+
+    
+    if (strlen($password) < 8) {
+        echo "Mật khẩu phải có ít nhất 8 ký tự.";
+        exit; 
+    }
+
+  
+    echo "Đăng ký thành công!";
+    
+    header("Location: login.php");
+    exit; 
+}
+?>
