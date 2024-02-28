@@ -11,22 +11,22 @@
     <div class="login-container">
         <img src="../resource/static/img/wefood.png" alt="Wefood logo">
         <h2>Tạo tài khoản của bạn</h2>
-        <form action="../controllers/registerController.php" method="post">
+        <form id="signupForm" action="../resource/static/js/login.js" method="post" onsubmit="return validateForm()">
             
             <div class="input-field">
-                <input type="text" name="username" placeholder="Tài khoản" required>
+                <input type="text" id="username" name="username" placeholder="Tài khoản" required>
             </div>
             <div class="input-field">
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
             <div class="input-field">
-                <input type="password" name="password" placeholder="Mật khẩu" required>
+                <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
             </div>
             <button type="submit" class="btn">Đăng Ký</button>
         </form>
         <p class="signin-link">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
     </div>
 </div>
-<script src="login.js"></script>
+<script src="../resource/static/js/login.js"></script>
 </body>
 </html>
