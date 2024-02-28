@@ -178,7 +178,9 @@ class UserService{
     }
     
     public function clearSession(){
-        return session_destroy();
+        if (isset($_SESSION)){
+            session_destroy();
+        }
     }
 
    
