@@ -21,7 +21,7 @@
             </div>
             <button type="submit" class="btn">Đăng Nhập</button>
         </form>
-        <p class="signup-link">Bạn chưa có tài khoản?<a href="signup.html"> Đăng kí</a></p>
+        <p class="signup-link">Bạn chưa có tài khoản?<a href="signup.php"> Đăng kí</a></p>
     </div>
 </div>
 

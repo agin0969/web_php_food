@@ -23,8 +23,41 @@
             </div>
             <button type="submit" class="btn">Đăng Ký</button>
         </form>
-        <p class="signin-link">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+        <p class="signin-link">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
     </div>
 </div>
+<script>
+function validateForm() {
+    var username = document.forms["signupForm"]["username"].value;
+    var email = document.forms["signupForm"]["email"].value;
+    var password = document.forms["signupForm"]["password"].value;
+    
+   
+    var usernameRegex = /^[a-zA-Z0-9]+$/;
+    if (!usernameRegex.test(username)) {
+        alert("Tên tài khoản chỉ được chứa các ký tự chữ và số.");
+        return false;
+    }
+
+   
+    var emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+        alert("Email không hợp lệ.");
+        return false;
+    }
+
+    
+    if (password.length < 12) {
+        alert("Mật khẩu phải có ít nhất 12 ký tự.");
+        return false;
+    }
+
+  
+    alert("Đăng ký thành công!");
+    window.location.href = "login.html";
+    return false; 
+}
+</script>
+
 </body>
 </html>
