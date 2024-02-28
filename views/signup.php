@@ -12,6 +12,7 @@
         <img src="../resource/static/img/wefood.png" alt="Wefood logo">
         <h2>Tạo tài khoản của bạn</h2>
         <form action="../controllers/registerController.php" method="post">
+            
             <div class="input-field">
                 <input type="text" name="username" placeholder="Tài khoản" required>
             </div>
@@ -23,8 +24,9 @@
             </div>
             <button type="submit" class="btn">Đăng Ký</button>
         </form>
-        <p class="signin-link">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+        <p class="signin-link">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
     </div>
 </div>
+<script src="login.js"></script>
 </body>
 </html>

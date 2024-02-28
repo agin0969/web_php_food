@@ -83,3 +83,12 @@ body {
 .signin-link a:hover {
     text-decoration: underline;
 }
+
+.input-field input:invalid {
+    border: 1px solid red;
+}
+
+.input-field input:valid {
+    border: 1px solid green;
+}
+
