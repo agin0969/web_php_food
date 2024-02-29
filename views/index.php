@@ -90,7 +90,7 @@
                 <div class="product" id="milk_tea">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product['category_id'] == 4): ?>
+                            <?php if ($product->getCategoryId() == 4): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -102,8 +102,8 @@
                                     <button class="btn cart">+</button>
                                 </div>
                                 <div class="product-info">
-                                    <a href="" class="product-name"><?= $product["name"] ?></a>
-                                    <div class="product-price"><?= $product["price"] ?></div>
+                                    <a href="" class="product-name"><?= $product->getName() ?></a>
+                                    <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
                             </div>
                         </li>
@@ -118,7 +118,7 @@
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product['category_id'] == 2): ?>
+                            <?php if ($product->getCategoryId() == 2): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -130,8 +130,8 @@
                                     <button class="btn cart">+</button>
                                 </div>
                                 <div class="product-info">
-                                    <a href="" class="product-name"><?= $product["name"] ?></a>
-                                    <div class="product-price"><?= $product["price"] ?></div>
+                                    <a href="" class="product-name"><?= $product->getName()?></a>
+                                    <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
                             </div>
                         </li>
@@ -144,7 +144,7 @@
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product['category_id'] == 3): ?>
+                            <?php if ($product->getCategoryId() == 3): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -156,8 +156,8 @@
                                     <button class="btn cart">+</button>
                                 </div>
                                 <div class="product-info">
-                                    <a href="" class="product-name"><?= $product["name"] ?></a>
-                                    <div class="product-price"><?= $product["price"] ?></div>
+                                    <a href="" class="product-name"><?= $product->getName() ?></a>
+                                    <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
                             </div>
                         </li>
@@ -170,7 +170,7 @@
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product['category_id'] == 1): ?>
+                            <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -182,8 +182,8 @@
                                     <button class="btn cart">+</button>
                                 </div>
                                 <div class="product-info">
-                                    <a href="" class="product-name"><?= $product["name"] ?></a>
-                                    <div class="product-price"><?= $product["price"] ?></div>
+                                    <a href="" class="product-name"><?= $product->getName() ?></a>
+                                    <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
                             </div>
                         </li>
@@ -197,7 +197,7 @@
 
             <ul class="milktea">
                 <?php foreach ($products as $product): ?>
-                    <?php if ($product['category_id'] == 1): ?>
+                    <?php if ($product->getCategoryId() == 1): ?>
                 <li>
                     <div class="item">
                         <div class="product-top">
@@ -209,8 +209,8 @@
                             <button class="btn cart">+</button>
                         </div>
                         <div class="product-info">
-                            <a href="" class="product-name"><?= $product["name"] ?></a>
-                            <div class="product-price"><?= $product["price"] ?></div>
+                            <a href="" class="product-name"><?= $product->getName() ?></a>
+                            <div class="product-price"><?= $product->getPrice() ?></div>
                         </div>
                     </div>
                 </li>

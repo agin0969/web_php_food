@@ -120,7 +120,7 @@ class UserService{
                     return $userRole;
                 }
             } else {
-                return "user";
+                return false;
             }
             }catch (PDOException $e) {
                 die("Error: " . $e->getMessage());

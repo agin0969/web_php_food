@@ -19,7 +19,19 @@ class ProductService{
             $result->execute();
 
             if ($result) {
-                $products = $result->fetchAll(PDO::FETCH_ASSOC);
+                $productdata = $result->fetchAll(PDO::FETCH_ASSOC);
+                $products = array();
+            foreach ($productdata as $data) {
+                $product = new Product(
+                    $data['id'],
+                    $data['name'],
+                    $data['category_id'],
+                    $data['price'],
+                    $data['image']
+                );
+                $products[] = $product;
+            }
+                
             } else {
                 $products = array();
             }
