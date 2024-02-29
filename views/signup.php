@@ -27,6 +27,6 @@
         <p class="signin-link">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
     </div>
 </div>
-<script src="login.js"></script>
+<script src="../resource/static/js/login.js"></script>
 </body>
 </html>
