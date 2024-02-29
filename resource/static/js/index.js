@@ -2,6 +2,14 @@
 
 
 
+// chuyển trang đến mục milk tea khi load lại trang
+window.onload = function () {
+    showFoodbox('milk_tea');
+};
+
+
+
+// chức năng hiển thị danh sách sản phẩm tuong ứng với mục đã chọn trên menu
 function showFoodbox(foodType) {
     var foodBoxes = document.getElementsByClassName('product');
 
@@ -9,7 +17,6 @@ function showFoodbox(foodType) {
     for (var i = 0; i < foodBoxes.length; i++) {
         foodBoxes[i].style.display = 'none';
     }
-
 
     // Hiển thị box tương ứng với loại thức ăn
     var selectedFoodBox = document.getElementById(foodType);
@@ -19,19 +26,14 @@ function showFoodbox(foodType) {
         console.log("Không tìm thấy box với id: " + foodType);
     }
 }
-window.onload = function () {
-    showFoodbox('milk_tea');
-};
 
 
 
-$(document).ready(function () {
-    $(window).scroll(function () {
-        if ($(this).scrollTop()) {
-            $('header').addClass('sticky');
-        } else {
-            $('header').removeClass('sticky');
-        }
-    });
-});
+
+
+
+
+
+
+
 
