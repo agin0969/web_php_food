@@ -1,3 +1,17 @@
+<? 
+require_once'../services/productService.php';
+$productService = new ProductService();
+if (isset($_GET['numbers'])) {
+    $numbers = $_GET['numbers'];
+    $products = $productService->getProductByListId($numbers);
+} else {
+    $products = $productService->getAllProduct();
+}
+$count = 1;
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -14,83 +28,73 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
     <link href="../resource/static/css/adminView.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="bg-dark text-white sidebar-container" id="sidebar-wrapper">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
-            <svg class="bi pe-none me-2" width="30" height="24">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-            <span class="fs-5 fw-semibold">WEFOOD</span>
-        </a>
-        <div class="sidebar-body">
-            <ul class="sidebar-ul">
-                <li>
-                    <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse"
-                        href="#collapseProduct" role="button" aria-expanded="false" aria-controls="collapseProduct">
-                        Quản lí sản phẩm
-                    </button>
-                    <div class="collapse collapse-product" id="collapseProduct">
-                        <ul>
-                            <li><a href="">Thêm sản phẩm</a></li>
-                            <li><a href="">Xóa sản phẩm</a></li>
-                            <li><a href="">Cập nhật sản phẩm</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse" href="#collapseUser"
-                        role="button" aria-expanded="false" aria-controls="collapseUser">
-                        Quản lí người dùng
-                    </button>
-                    <div class="collapse collapse-user" id="collapseUser">
-                        <ul>
-                            <li><a href="">Thêm sản phẩm</a></li>
-                            <li><a href="">Xóa sản phẩm</a></li>
-                            <li><a href="">Cập nhật sản phẩm</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse" href="#collapseBill"
-                        role="button" aria-expanded="false" aria-controls="collapseBill">
-                        Quản lí hóa đơn
-                    </button>
-                    <div class="collapse collapse-bill" id="collapseBill">
-                        <ul>
-                            <li><a href="">Thêm sản phẩm</a></li>
-                            <li><a href="">Xóa sản phẩm</a></li>
-                            <li><a href="">Cập nhật sản phẩm</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="border-top my-3"></li>
-                <li class="mb-1">
-                    <button type="button" class="btn btn-sm product-mn mt-3" data-bs-toggle="collapse"
-                        href="#account-collapse" role="button" aria-expanded="false" aria-controls="collapseAccount">
-                        Account
-                    </button>
-                    <div class="collapse account-collapse" id="account-collapse">
-                        <ul>
-                            <li><a href="#">New...</a>
-                            </li>
-                            <li><a href="#">Profile</a>
-                            </li>
-                            <li><a href="#">Settings</a>
-                            </li>
-                            <li><a href="#">Sign
-                                    out</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+    <div class="bodyy">
+        <? include "../resource/frame/sidebarAdmin.php" ?>
+        <div class="body-content container-fluid">
+            <div class="container-fluid content-header">
+                <span>Danh sách sản phẩm</span>
+                <form class="d-flex search-box" role="search" action="../controllers/proSeaAdCon.php" method="get">
+                    <input class="form-control me-2" type="search" id="search" name="search" placeholder="Search product name" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="container-fluid aa" style="">
+
+                <table class="table table-striped table-container" style="border-radius: 20px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">CategoryId</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Img</th>
+                            <th scope="col">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($products as $product): ?>
+
+                        <tr>
+                            <th scope="row">
+                                <? echo $count?>
+                            </th>
+                            <td>
+                                <? echo $product->getId()?>
+                            </td>
+                            <td>
+                                <? echo $product->getName()?>
+                            </td>
+                            <td>
+                                <? echo $product->getCategoryId()?>
+                            </td>
+                            <td>
+                                <? echo $product->getPrice()?>
+                            </td>
+                            <td>
+                                <? echo $product->getImage()?>
+                            </td>
+                            <td><a href="/">Xóa</a> <span>, </span> <a href="/">Sửa</a></td>
+
+                        </tr>
+                        <?$count=$count +1?>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+
+
+
+            </div>
         </div>
 
-
-
-
     </div>
+
+
 
 </body>
 
