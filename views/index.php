@@ -1,7 +1,11 @@
 <?require_once'../controllers/productController.php';
     $productController=new ProductController();
     $products=$productController->getAllProduct();
+
+    require '../services/userService.php';
+    $userService = new UserService();
 ?>
+
 
 
 
@@ -12,8 +16,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
+    
     <title>WEFOOD</title>
     <script src="../resource/static/js/index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -33,7 +41,49 @@
                         <li><a href="#" onclick="showFoodbox('breakfast')">combo sáng</a></li> 
                     </ul>
                 </nav>
-            </div>
+                <?
+                    $sessionData = $userService->getSession();
+                    if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
+                        // Người dùng đã đăng nhập
+                        echo '
+                            <button id="avt_users">logo</button>
+                            <div class="user_info">
+                                <div class="mid_user_info">
+                                    <ul class="users_info">
+                                        <li>
+                                            <ul class="logo_name">
+                                                <li id="logo_info"><a href="">logo</a></li>
+                                                
+                                                <li id="name_info"><a href="">'.  $sessionData['username'] .'</a></li>
+                                            </ul>
+                                        </li>
+                                        
+                                        <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
+                                        <li><a href="">Profile</a></li>
+                                        <li><a href="?logout=true">Đăng xuất</a></li>
+                                    </ul>
+                                </div>   
+                            </div>
+                        ';
+                    } else {
+                        // Người dùng chưa đăng nhập
+                        echo '
+                            <a href="../views/login.php" id="lg_lo">
+                                <button class="login_signup">Đăng nhập/Đăng ký</button>
+                            </a>'
+                        ;
+
+
+                    }
+                    // Kiểm tra nếu người dùng chọn đăng xuất
+if (isset($_GET['logout'])) {
+    $userService->clearSession();
+    header('Location: ../views/index.php');
+    exit();
+}
+
+                ?>
+
         </header>
         <div class="content">
             <div class="address">
@@ -60,20 +110,21 @@
 
                 <div class="box-info-web-2">
                     <span>
-                        <img src="../icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
+                    
                     <p>Hơn 500 luọt đánh giá 5 sao</p>
                 </div>
 
@@ -221,6 +272,7 @@
 
 
             </div>
+
         </div>
     </div>
 
@@ -237,39 +289,51 @@
 
 
 
+    <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
+<script>    
+    document.addEventListener("DOMContentLoaded", function() {
+        var avt_users = document.getElementById("avt_users");
+        var mid_user_info = document.querySelector(".mid_user_info");
+
+        avt_users.addEventListener("click", function() {
+            if (mid_user_info.style.display == "none") {
+                mid_user_info.style.display = "block";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            } else {
+                mid_user_info.style.display = "none";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            }
+        });
+    });
+</script>
 
 
 
-<!-- js tính năng hướng vào trang con menu khi load lại trang hoặc về trang chủ-->
 
 <!-- js tính năng cuộn background theo danh mục sanr phẩm-->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const menu = document.getElementById('FoodBoxContainer');
-    const background = document.getElementById('banner');
+window.addEventListener('scroll', function() {
+    var foodBoxContainer = document.getElementById('FoodBoxContainer');
+    var banner = document.getElementById("banner");
 
-        menu.addEventListener('scroll', function() {
-            // Get the scroll position of the menu
-            const scrollPosition = menu.scrollTop;
 
-            // Get the maximum scroll height of the menu
-            const maxScrollHeight = menu.scrollHeight - menu.clientHeight;
+    var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+    var windowHeight = window.innerHeight;
 
-            console.log('Scroll Position:', scrollPosition);
-            console.log('Max Scroll Height:', maxScrollHeight);
-
-        // Check if the menu is scrolled to the bottom
-        if (scrollPosition === maxScrollHeight) {
-            // If at the bottom, allow the background to scroll
-            background.style.backgroundPositionY = -scrollPosition + 'px';
-            console.log('Background Scrolling Enabled');
-        } else {
-            // If not at the bottom, keep the background fixed
-            background.style.backgroundPositionY = '0';
-            console.log('Background Fixed');
-        }
-    });
+    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
+    if (foodBoxContainerRect.bottom <= windowHeight) {
+        banner.style.position = 'absolute';
+    } else {
+        banner.style.position = ''; // Trả về giá trị mặc định của position
+    }
 });
+
 
 </script>
 
