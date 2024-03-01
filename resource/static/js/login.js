@@ -3,19 +3,17 @@ function validateForm() {
     var password = document.getElementById('password').value;
     var email = document.getElementById('email').value;
     
-    var usernamePattern = /^[a-zA-Z0-9]*$/;
+    var usernamePattern = /^[a-zA-Z0-9]{6,}$/;
     if (!username.match(usernamePattern)) {
-        alert('Mật khẩu phải có ít nhất 6 ký tự.');
+        alert('Tên đăng nhập phải có ít nhất 6 ký tự.');
         return false;
     }
     
-   
     if (password.length < 6) {
-        alert('Password must be at least 6 characters long. Please try again.');
+        alert('Mật khẩu phải có ít nhất 6 ký tự. Vui lòng thử lại.');
         return false;
     }
 
-   
     if (!validateEmail(email)) {
         alert('Email không hợp lệ.');
         return false;
@@ -25,6 +23,6 @@ function validateForm() {
 }
 
 function validateEmail(email) {
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailPattern = /^[^\s@]{1,}@[^\s@]+\.[^\s@]+$/;
     return email.match(emailPattern);
 }

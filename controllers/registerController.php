@@ -14,6 +14,8 @@ require_once '../services/userService.php';
                 $this->userService->startSession();
                 $this->userService->setSession($username);
                 header("Location: ../views/index.php");
+                exit;
+                
             }
             else{
                 echo('something wrong');
