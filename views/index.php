@@ -1,4 +1,6 @@
 <?require_once'../controllers/productController.php';
+require_once '../config/init.php';
+
     $productController=new ProductController();
     $products=$productController->getAllProduct();
 ?>
