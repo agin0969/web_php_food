@@ -1,27 +1,27 @@
 <link href="../resource/static/css/sidebarAdmin.css" rel="stylesheet"type="text/css">
 <div class="bg-dark text-white sidebar-container" id="sidebar-wrapper">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+    <a href="/web_php_food/views/index.php" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
         <svg class="bi pe-none me-2" width="30" height="24">
-            <use xlink:href="#bootstrap"></use>
+            
         </svg>
         <span class="fs-5 fw-semibold">WEFOOD</span>
     </a>
     <div class="sidebar-body">
         <ul class="sidebar-ul">
             <li>
-                <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse"
+                <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse" 
                     href="#collapseProduct" role="button" aria-expanded="false" aria-controls="collapseProduct">
                     Quản lí sản phẩm
                 </button>
                 <div class="collapse collapse-product" id="collapseProduct">
                     <ul>
-                        <li><a href="">Danh sách sản phẩm</a></li>
+                        <li><a href="/web_php_food//views/adminView.php">Danh sách sản phẩm</a></li>
 
                     </ul>
                 </div>
             </li>
             <li>
-                <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse" href="#collapseUser"
+                <button type="button" class="btn btn-sm product-mn active" data-bs-toggle="collapse" href="#collapseUser"
                     role="button" aria-expanded="false" aria-controls="collapseUser">
                     Quản lí người dùng
                 </button>

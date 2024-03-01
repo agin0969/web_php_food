@@ -111,7 +111,8 @@ $count = 1;
                                     <div class="col ml-1">
 
 
-                                        <button class="btn btn-outline-success" type="button">Sửa</button>
+                                        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#product-re" onclick="<?$id=$product->getId() ?>">Sửa</button>
 
 
                                     </div>
@@ -137,7 +138,8 @@ $count = 1;
                 </div>
             </div>
             <div class="container ">
-                <form class="input-from" action="../controllers/proAddAdCon.php" method="post" enctype="multipart/form-data">
+                <form class="input-from" action="../controllers/proAddAdCon.php" method="post"
+                    enctype="multipart/form-data">
                     <div class="mb-3 row">
                         <label for="name" class="col-sm-2 col-form-label">Name</label>
                         <input type="text" id="name" name="name" class="form-control col" placeholder="product name">
@@ -169,8 +171,71 @@ $count = 1;
                         <input class="form-control form-control-sm" id="file" type="file" name="file">
                     </div>
                     <input class="btn submit-add btn-secondary" type="submit" value="Thêm sản phẩm" name="submit">
-                    
+
                 </form>
+
+
+                <div class="modal fade" id="product-re" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form class="input-from" action="../controllers/proChgAdCon.php" method="post"
+                                enctype="multipart/form-data">
+                                <div class="modal-body">
+
+                                    <div class="mb-3 row">
+                                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                        <input type="text" id="name" name="name" class="form-control col"
+                                            placeholder="product name">
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="price" class="col-sm-2 col-form-label">Price</label>
+                                        <input type="text" id="price" name="price" class="form-control col"
+                                            placeholder="price">
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="descrip" class="col-sm-2 col-form-label">descrip</label>
+                                        <input type="text" id="descrip" name="descrip" class="form-control col"
+                                            placeholder="descrip">
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="category" class="col-sm-2 col-form-label ">cate_id</label>
+                                        <div class="col">
+                                            <select class="form-select" aria-label="category" name="category">
+                                                <option selected>category</option>
+                                                <option value="1">Món nước</option>
+                                                <option value="2">Món khô</option>
+                                                <option value="3">Thức uống</option>
+                                                <option value="4">Tráng miệng</option>
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+                                    <div class="mb-3 row">
+                                        <input class="form-control form-control-sm" id="file" type="file" name="file">
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" type="submit" value="changes"
+                                        name="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

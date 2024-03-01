@@ -8,8 +8,8 @@ class UploadService{
   }
   public function upload()  {
       try {
-          if (empty($_FILES)) {
-              throw new Exception('Không thể upload tập tin.');
+          if (empty($_FILES)|| empty($_FILES['file']['name'])) {
+              return null;
           }
 
           $errorCode = $_FILES['file']['error'];
