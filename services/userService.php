@@ -168,13 +168,11 @@ class UserService{
         $this->startSession();
         $desiredVariables = ['username', 'id', 'role_id'];
         $sessionData = [];
-    
         foreach ($desiredVariables as $variable) {
             if (isset($_SESSION[$variable])) {
                 $sessionData[$variable] = $_SESSION[$variable];
             }
         }
-    
         return $sessionData;
     }
     

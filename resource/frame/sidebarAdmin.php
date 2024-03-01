@@ -1,4 +1,4 @@
-<link href="../resource/static/css/sidebarAdmin.css" rel="stylesheet">
+<link href="../resource/static/css/sidebarAdmin.css" rel="stylesheet"type="text/css">
 <div class="bg-dark text-white sidebar-container" id="sidebar-wrapper">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
         <svg class="bi pe-none me-2" width="30" height="24">

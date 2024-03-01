@@ -1,5 +1,13 @@
 <? 
+require_once '../config/init.php';
 require_once'../services/productService.php';
+require_once'../models/checkuser.php';
+// $checkSession= new Checkuser();
+// if (!$checkSession->checkSession()){
+//     header("Location: ../views/login.php");
+//     exit;
+// }
+
 $productService = new ProductService();
 if (isset($_GET['numbers'])) {
     $numbers = $_GET['numbers'];
@@ -7,6 +15,7 @@ if (isset($_GET['numbers'])) {
 } else {
     $products = $productService->getAllProduct();
 }
+
 $count = 1;
 
 ?>
@@ -27,7 +36,8 @@ $count = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
-    <link href="../resource/static/css/adminView.css" rel="stylesheet">
+    <link href="../resource/static/css/adminView.css " rel="stylesheet" type="text/css">
+    <script src="../resource/static/js/hideAndShow.js" type="text/javascript"> </script>
 
 </head>
 
@@ -38,11 +48,12 @@ $count = 1;
             <div class="container-fluid content-header">
                 <span>Danh sách sản phẩm</span>
                 <form class="d-flex search-box" role="search" action="../controllers/proSeaAdCon.php" method="get">
-                    <input class="form-control me-2" type="search" id="search" name="search" placeholder="Search product name" aria-label="Search">
+                    <input class="form-control me-2" type="search" id="search" name="search"
+                        placeholder="Search product name" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-            <div class="container-fluid aa" style="">
+            <div class="container-fluid aa">
 
                 <table class="table table-striped table-container" style="border-radius: 20px;">
                     <thead>
@@ -61,13 +72,19 @@ $count = 1;
 
                         <tr>
                             <th scope="row">
+
                                 <? echo $count?>
+
                             </th>
                             <td>
+
                                 <? echo $product->getId()?>
+
                             </td>
                             <td>
+
                                 <? echo $product->getName()?>
+
                             </td>
                             <td>
                                 <? echo $product->getCategoryId()?>
@@ -78,7 +95,31 @@ $count = 1;
                             <td>
                                 <? echo $product->getImage()?>
                             </td>
-                            <td><a href="/">Xóa</a> <span>, </span> <a href="/">Sửa</a></td>
+                            <td>
+                                <div class=row>
+
+                                    <div class="col ml-1">
+                                        <form id="form-detele" action="../controllers/proDelAdCon.php" method="get">
+                                            <input type="hidden" name="id" id="id"
+                                                value="<?php echo $product->getId(); ?>">
+                                            <button class="btn btn-outline-success" type="button"
+                                                onclick="confirmDelete('form-detele')">Xóa</button>
+
+                                        </form>
+
+                                    </div>
+                                    <div class="col ml-1">
+
+
+                                        <button class="btn btn-outline-success" type="button">Sửa</button>
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </td>
 
                         </tr>
                         <?$count=$count +1?>
@@ -90,9 +131,54 @@ $count = 1;
 
 
             </div>
+            <div class="container-fluid ">
+                <div class="add-name">
+                    <span>Thêm sản phẩm</span>
+                </div>
+            </div>
+            <div class="container ">
+                <form class="input-from" action="../controllers/proAddAdCon.php" method="post" enctype="multipart/form-data">
+                    <div class="mb-3 row">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-control col" placeholder="product name">
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="price" class="col-sm-2 col-form-label">Price</label>
+                        <input type="text" id="price" name="price" class="form-control col" placeholder="price">
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="descrip" class="col-sm-2 col-form-label">descrip</label>
+                        <input type="text" id="descrip" name="descrip" class="form-control col" placeholder="descrip">
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="category" class="col-sm-2 col-form-label ">cate_id</label>
+                        <div class="col">
+                            <select class="form-select" aria-label="category" name="category">
+                                <option selected>category</option>
+                                <option value="1">Món nước</option>
+                                <option value="2">Món khô</option>
+                                <option value="3">Thức uống</option>
+                                <option value="4">Tráng miệng</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3 row">
+                        <input class="form-control form-control-sm" id="file" type="file" name="file">
+                    </div>
+                    <input class="btn submit-add btn-secondary" type="submit" value="Thêm sản phẩm" name="submit">
+                    
+                </form>
+            </div>
+
         </div>
 
+
+
     </div>
+
 
 
 

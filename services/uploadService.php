@@ -5,10 +5,8 @@ require_once '../services/dialog.php';
 
 class UploadService{
   public function __construct(){
-      $this->upload();
   }
   public function upload()  {
-      $flag=false;
       try {
           if (empty($_FILES)) {
               throw new Exception('Không thể upload tập tin.');
@@ -19,7 +17,6 @@ class UploadService{
 
           if ($rs !== 'OK') {
               Dialog::show($rs);
-              $flag=true;
           }
 
           $fileMaxSize = FILE_MAX_SIZE;
@@ -52,14 +49,13 @@ class UploadService{
           
           $fullname = pathinfo($fileToHost, PATHINFO_BASENAME);
           
-
           $fileTmp = $_FILES['file']['tmp_name'];
 
           if (move_uploaded_file($fileTmp, $fileToHost)) {
-              $flag = true;
-          } else {
-              $flag=false;
-          }
+            
+              return $fileToHost;
+          } 
+          
       } catch (Exception $e) {
           Dialog::show($e->getMessage());
       }

@@ -40,6 +40,38 @@ class ProductService{
         }
         return $products;
     }
+    public function deleteProductById($id) {
+        try{
+            $sql="DELETE FROM `product` WHERE id=:id ";
+            $result= $this->conn->prepare($sql);
+            $result->bindParam(':id',$id);
+            $result->execute();
+            }
+        catch (PDOException $e) {
+                die("Error: " . $e->getMessage());
+            } 
+        
+    }
+    public function addProductToDb($name, $category_id, $price, $image, $description){
+        try{
+            
+            $sql="INSERT INTO `product` (name, category_id, price, image, description) VALUES (:name, :category_id, :price, :image, :description)";
+            $result= $this->conn->prepare($sql);
+            $result->bindParam(':name',$name);
+            $result->bindParam(':category_id',$category_id);
+            $result->bindParam(':price',$price);
+            $result->bindParam(':image',$image);
+            $result->bindParam(':description',$description);
+            $result->execute();
+            if($result){
+                return true;
+            } else {
+                return false;
+            }
+            }catch (PDOException $e) {
+                die("Error: " . $e->getMessage());
+            }
+    }
 
 
 

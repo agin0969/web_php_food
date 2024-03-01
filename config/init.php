@@ -24,6 +24,5 @@ function exceptionHandler($ex) {
 
     exit;
 }
-
 set_error_handler("errorHandler");
 set_exception_handler("exceptionHandler");

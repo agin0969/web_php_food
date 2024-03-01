@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $url = "../views/adminView.php?" . http_build_query(['numbers' => $ids]);
         header("Location: $url");
         exit();
-    } 
+    } else {
+        header("Location: ../views/adminView.php");
+    }
 }
 ?>
