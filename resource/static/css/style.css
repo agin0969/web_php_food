@@ -84,6 +84,10 @@ ul#main-menu a{
     color: rgb(255, 255, 255);
     display: block;
 }
+ul#main-menu >li:hover{
+    border-bottom: 2px solid #a7c1c4db;
+}
+
 
 #lg_lo{
     margin-right: 20px;
@@ -234,21 +238,7 @@ ul.users_info >li{
     padding-bottom: 20px;
     z-index: 1;
 }
-/* ăn vặt*/
-ul.fastfood{
-    display: flex;  
-    flex-wrap: wrap; 
-    justify-content: space-between; 
-}
-ul.fastfood li{  
-    flex: 0 0 calc(50% - 5px); 
-    box-sizing: border-box;
-   /* flex: 35%;*/
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
 
-}
 /* trà sữa */
 ul.milktea{
     display: flex;  

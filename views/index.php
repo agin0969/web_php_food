@@ -1,5 +1,5 @@
 <?require_once'../controllers/productController.php';
-require_once '../config/init.php';
+/*require_once '../config/init.php';*/
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
@@ -36,11 +36,10 @@ require_once '../config/init.php';
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('milk_tea')">trà sữa</a></li>
-                        <li><a href="#" onclick="showFoodbox('fast_food')">ăn vặt</a></li>
-                        <li><a href="#" onclick="showFoodbox('drink')">đồ uống</a></li>
-                        <li><a href="#" onclick="showFoodbox('lunch')">combo trưa</a></li>
-                        <li><a href="#" onclick="showFoodbox('breakfast')">combo sáng</a></li> 
+                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
+                        <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
+                        <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
                 <?
@@ -127,7 +126,7 @@ if (isset($_GET['logout'])) {
                         <img src="../resource/static/img/star.png" alt="">
                     </span>
                     
-                    <p>Hơn 500 luọt đánh giá 5 sao</p>
+                    <p>Hơn 500 luợt đánh giá 5 sao</p>
                 </div>
 
                 <div class="box-info-web-3">
@@ -140,10 +139,10 @@ if (isset($_GET['logout'])) {
             <div id="FoodBoxContainer">
 
                 <!-- traf sua -->
-                <div class="product" id="milk_tea">
+                <div class="product" id="mon_nuoc">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 4): ?>
+                            <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -167,7 +166,7 @@ if (isset($_GET['logout'])) {
                     </ul>         
               </div>
         <!-- anư vặt -->
-                <div class="product" id="fast_food">
+                <div class="product" id="mon_kho">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
@@ -193,7 +192,7 @@ if (isset($_GET['logout'])) {
                     </ul>                    
                 </div>
         <!-- đô uống -->
-                <div class="product" id="drink">
+                <div class="product" id="thuc_uong">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
@@ -219,7 +218,7 @@ if (isset($_GET['logout'])) {
                     </ul>                    
                 </div>
     <!-- ăn trưa -->
-                <div class="product" id="lunch">
+                <div class="product" id="trang_mieng">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
@@ -245,32 +244,7 @@ if (isset($_GET['logout'])) {
                     </ul>                    
                 </div>
 
-        <!-- ăn sáng -->
-        <div class="product" id="breakfast">
-
-            <ul class="milktea">
-                <?php foreach ($products as $product): ?>
-                    <?php if ($product->getCategoryId() == 1): ?>
-                <li>
-                    <div class="item">
-                        <div class="product-top">
-                            <a href="" class="thump">
-                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
-                                    alt="san pham">
-                            </a>
-                            <button class="btn buy">Mua ngay</button>
-                            <button class="btn cart">+</button>
-                        </div>
-                        <div class="product-info">
-                            <a href="" class="product-name"><?= $product->getName() ?></a>
-                            <div class="product-price"><?= $product->getPrice() ?></div>
-                        </div>
-                    </div>
-                </li>
-                <?php endif; ?>
-                <?php endforeach; ?>
-            </ul>                    
-            </div>    
+        
 
 
             </div>
@@ -355,12 +329,13 @@ window.addEventListener('scroll', function() {
                 var selectedFoodBox = document.getElementById(foodType);
                 if (selectedFoodBox) {
                     selectedFoodBox.style.display = 'block';
+                    
                 } else {
                     console.log("Không tìm thấy box với id: " + foodType);
                 }
                 }
                 window.onload = function() {
-                    showFoodbox('milk_tea'); 
+                    showFoodbox('mon_nuoc'); 
                 };
             </script>
 
