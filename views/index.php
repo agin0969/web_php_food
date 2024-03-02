@@ -1,9 +1,13 @@
 <?require_once'../controllers/productController.php';
-require_once '../config/init.php';
+/*require_once '../config/init.php';*/
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
+
+    require '../services/userService.php';
+    $userService = new UserService();
 ?>
+
 
 
 
@@ -14,8 +18,12 @@ require_once '../config/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
+    
     <title>WEFOOD</title>
     <script src="../resource/static/js/index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -28,14 +36,55 @@ require_once '../config/init.php';
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('milk_tea')">trà sữa</a></li>
-                        <li><a href="#" onclick="showFoodbox('fast_food')">ăn vặt</a></li>
-                        <li><a href="#" onclick="showFoodbox('drink')">đồ uống</a></li>
-                        <li><a href="#" onclick="showFoodbox('lunch')">combo trưa</a></li>
-                        <li><a href="#" onclick="showFoodbox('breakfast')">combo sáng</a></li> 
+                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
+                        <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
+                        <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
-            </div>
+                <?
+                    $sessionData = $userService->getSession();
+                    if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
+                        // Người dùng đã đăng nhập
+                        echo '
+                            <button id="avt_users">logo</button>
+                            <div class="user_info">
+                                <div class="mid_user_info">
+                                    <ul class="users_info">
+                                        <li>
+                                            <ul class="logo_name">
+                                                <li id="logo_info"><a href="">logo</a></li>
+                                                
+                                                <li id="name_info"><a href="">'.  $sessionData['username'] .'</a></li>
+                                            </ul>
+                                        </li>
+                                        
+                                        <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
+                                        <li><a href="">Profile</a></li>
+                                        <li><a href="?logout=true">Đăng xuất</a></li>
+                                    </ul>
+                                </div>   
+                            </div>
+                        ';
+                    } else {
+                        // Người dùng chưa đăng nhập
+                        echo '
+                            <a href="../views/login.php" id="lg_lo">
+                                <button class="login_signup">Đăng nhập/Đăng ký</button>
+                            </a>'
+                        ;
+
+
+                    }
+                    // Kiểm tra nếu người dùng chọn đăng xuất
+if (isset($_GET['logout'])) {
+    $userService->clearSession();
+    header('Location: ../views/index.php');
+    exit();
+}
+
+                ?>
+
         </header>
         <div class="content">
             <div class="address">
@@ -62,21 +111,22 @@ require_once '../config/init.php';
 
                 <div class="box-info-web-2">
                     <span>
-                        <img src="../icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
                     <span>
-                        <img src="icon/star.png" alt="">
+                        <img src="../resource/static/img/star.png" alt="">
                     </span>
-                    <p>Hơn 500 luọt đánh giá 5 sao</p>
+                    
+                    <p>Hơn 500 luợt đánh giá 5 sao</p>
                 </div>
 
                 <div class="box-info-web-3">
@@ -89,10 +139,10 @@ require_once '../config/init.php';
             <div id="FoodBoxContainer">
 
                 <!-- traf sua -->
-                <div class="product" id="milk_tea">
+                <div class="product" id="mon_nuoc">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 4): ?>
+                            <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -116,7 +166,7 @@ require_once '../config/init.php';
                     </ul>         
               </div>
         <!-- anư vặt -->
-                <div class="product" id="fast_food">
+                <div class="product" id="mon_kho">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
@@ -142,7 +192,7 @@ require_once '../config/init.php';
                     </ul>                    
                 </div>
         <!-- đô uống -->
-                <div class="product" id="drink">
+                <div class="product" id="thuc_uong">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
@@ -168,7 +218,7 @@ require_once '../config/init.php';
                     </ul>                    
                 </div>
     <!-- ăn trưa -->
-                <div class="product" id="lunch">
+                <div class="product" id="trang_mieng">
 
                      <ul class="milktea">
                         <?php foreach ($products as $product): ?>
@@ -194,35 +244,11 @@ require_once '../config/init.php';
                     </ul>                    
                 </div>
 
-        <!-- ăn sáng -->
-        <div class="product" id="breakfast">
-
-            <ul class="milktea">
-                <?php foreach ($products as $product): ?>
-                    <?php if ($product->getCategoryId() == 1): ?>
-                <li>
-                    <div class="item">
-                        <div class="product-top">
-                            <a href="" class="thump">
-                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
-                                    alt="san pham">
-                            </a>
-                            <button class="btn buy">Mua ngay</button>
-                            <button class="btn cart">+</button>
-                        </div>
-                        <div class="product-info">
-                            <a href="" class="product-name"><?= $product->getName() ?></a>
-                            <div class="product-price"><?= $product->getPrice() ?></div>
-                        </div>
-                    </div>
-                </li>
-                <?php endif; ?>
-                <?php endforeach; ?>
-            </ul>                    
-            </div>    
+        
 
 
             </div>
+
         </div>
     </div>
 
@@ -239,39 +265,51 @@ require_once '../config/init.php';
 
 
 
+    <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
+<script>    
+    document.addEventListener("DOMContentLoaded", function() {
+        var avt_users = document.getElementById("avt_users");
+        var mid_user_info = document.querySelector(".mid_user_info");
+
+        avt_users.addEventListener("click", function() {
+            if (mid_user_info.style.display == "none") {
+                mid_user_info.style.display = "block";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            } else {
+                mid_user_info.style.display = "none";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            }
+        });
+    });
+</script>
 
 
 
-<!-- js tính năng hướng vào trang con menu khi load lại trang hoặc về trang chủ-->
 
 <!-- js tính năng cuộn background theo danh mục sanr phẩm-->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const menu = document.getElementById('FoodBoxContainer');
-    const background = document.getElementById('banner');
+window.addEventListener('scroll', function() {
+    var foodBoxContainer = document.getElementById('FoodBoxContainer');
+    var banner = document.getElementById("banner");
 
-        menu.addEventListener('scroll', function() {
-            // Get the scroll position of the menu
-            const scrollPosition = menu.scrollTop;
 
-            // Get the maximum scroll height of the menu
-            const maxScrollHeight = menu.scrollHeight - menu.clientHeight;
+    var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+    var windowHeight = window.innerHeight;
 
-            console.log('Scroll Position:', scrollPosition);
-            console.log('Max Scroll Height:', maxScrollHeight);
-
-        // Check if the menu is scrolled to the bottom
-        if (scrollPosition === maxScrollHeight) {
-            // If at the bottom, allow the background to scroll
-            background.style.backgroundPositionY = -scrollPosition + 'px';
-            console.log('Background Scrolling Enabled');
-        } else {
-            // If not at the bottom, keep the background fixed
-            background.style.backgroundPositionY = '0';
-            console.log('Background Fixed');
-        }
-    });
+    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
+    if (foodBoxContainerRect.bottom <= windowHeight) {
+        banner.style.position = 'absolute';
+    } else {
+        banner.style.position = ''; // Trả về giá trị mặc định của position
+    }
 });
+
 
 </script>
 
@@ -291,12 +329,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 var selectedFoodBox = document.getElementById(foodType);
                 if (selectedFoodBox) {
                     selectedFoodBox.style.display = 'block';
+                    
                 } else {
                     console.log("Không tìm thấy box với id: " + foodType);
                 }
                 }
                 window.onload = function() {
-                    showFoodbox('milk_tea'); 
+                    showFoodbox('mon_nuoc'); 
                 };
             </script>
 
