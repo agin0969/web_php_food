@@ -9,7 +9,7 @@ class UploadService{
   public function upload()  {
       try {
           if (empty($_FILES)|| empty($_FILES['file']['name'])) {
-              return null;
+            return null;
           }
 
           $errorCode = $_FILES['file']['error'];

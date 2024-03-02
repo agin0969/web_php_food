@@ -81,7 +81,7 @@ class ProductService{
         } else {
             $strname=" ";
         }
-        if(!empty($category_id)){
+        if(!empty($category_id) && is_numeric($category_id)){
             if(!empty($name)){
             $strcate=", category_id=:category_id";
             } else {
@@ -130,7 +130,7 @@ class ProductService{
         if (!empty($name)) {
             $result->bindParam(':name', $name);
         }
-        if (!empty($category_id)) {
+        if (!empty($category_id) && is_numeric($category_id)) {
             $result->bindParam(':category_id', $category_id);
         }
         if (!empty($price)) {
