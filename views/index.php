@@ -18,12 +18,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
-    
+
     <title>WEFOOD</title>
     <script src="../resource/static/js/index.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -36,7 +38,7 @@
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
                         <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
                         <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
                         <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
@@ -77,15 +79,16 @@
 
                     }
                     // Kiểm tra nếu người dùng chọn đăng xuất
-if (isset($_GET['logout'])) {
-    $userService->clearSession();
-    header('Location: ../views/index.php');
-    exit();
-}
+                    if (isset($_GET['logout'])) {
+                    $userService->clearSession();
+                    header('Location: ../views/index.php');
+                    exit();
+                    }
 
                 ?>
 
         </header>
+        
         <div class="content">
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng </h2>
@@ -125,7 +128,7 @@ if (isset($_GET['logout'])) {
                     <span>
                         <img src="../resource/static/img/star.png" alt="">
                     </span>
-                    
+
                     <p>Hơn 500 luợt đánh giá 5 sao</p>
                 </div>
 
@@ -142,7 +145,7 @@ if (isset($_GET['logout'])) {
                 <div class="product" id="mon_nuoc">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 1): ?>
+                        <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -163,14 +166,14 @@ if (isset($_GET['logout'])) {
                         <?php endforeach; ?>
 
 
-                    </ul>         
-              </div>
-        <!-- anư vặt -->
+                    </ul>
+                </div>
+                <!-- anư vặt -->
                 <div class="product" id="mon_kho">
 
-                     <ul class="milktea">
+                    <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 2): ?>
+                        <?php if ($product->getCategoryId() == 2): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -189,14 +192,14 @@ if (isset($_GET['logout'])) {
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </ul>                    
+                    </ul>
                 </div>
-        <!-- đô uống -->
+                <!-- đô uống -->
                 <div class="product" id="thuc_uong">
 
-                     <ul class="milktea">
+                    <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 3): ?>
+                        <?php if ($product->getCategoryId() == 3): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -215,14 +218,14 @@ if (isset($_GET['logout'])) {
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </ul>                    
+                    </ul>
                 </div>
-    <!-- ăn trưa -->
+                <!-- ăn trưa -->
                 <div class="product" id="trang_mieng">
 
-                     <ul class="milktea">
+                    <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 1): ?>
+                        <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -241,10 +244,10 @@ if (isset($_GET['logout'])) {
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </ul>                    
+                    </ul>
                 </div>
 
-        
+
 
 
             </div>
@@ -266,7 +269,7 @@ if (isset($_GET['logout'])) {
 
 
     <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
-<script>    
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
         var mid_user_info = document.querySelector(".mid_user_info");
@@ -287,73 +290,71 @@ if (isset($_GET['logout'])) {
             }
         });
     });
-</script>
+    </script>
 
 
 
 
-<!-- js tính năng cuộn background theo danh mục sanr phẩm-->
-<script>
-window.addEventListener('scroll', function() {
-    var foodBoxContainer = document.getElementById('FoodBoxContainer');
-    var banner = document.getElementById("banner");
+    <!-- js tính năng cuộn background theo danh mục sanr phẩm-->
+    <script>
+    window.addEventListener('scroll', function() {
+        var foodBoxContainer = document.getElementById('FoodBoxContainer');
+        var banner = document.getElementById("banner");
 
 
-    var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
-    var windowHeight = window.innerHeight;
+        var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
 
-    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
-    if (foodBoxContainerRect.bottom <= windowHeight) {
-        banner.style.position = 'absolute';
-    } else {
-        banner.style.position = ''; // Trả về giá trị mặc định của position
+        // Khi phần tử FoodBoxContainer được kéo đến cuối trang
+        if (foodBoxContainerRect.bottom <= windowHeight) {
+            banner.style.position = 'absolute';
+        } else {
+            banner.style.position = ''; // Trả về giá trị mặc định của position
+        }
+    });
+    </script>
+
+
+    <!-- js hiển thị phần con của menu -->
+    <script>
+    function showFoodbox(foodType) {
+        var foodBoxes = document.getElementsByClassName('product');
+
+        // Ẩn tất cả các box trước khi hiển thị box mới
+        for (var i = 0; i < foodBoxes.length; i++) {
+            foodBoxes[i].style.display = 'none';
+        }
+
+
+        // Hiển thị box tương ứng với loại thức ăn
+        var selectedFoodBox = document.getElementById(foodType);
+        if (selectedFoodBox) {
+            selectedFoodBox.style.display = 'block';
+
+        } else {
+            console.log("Không tìm thấy box với id: " + foodType);
+        }
     }
-});
-
-
-</script>
-
-
- <!-- js hiển thị phần con của menu -->
-            <script>
-                function showFoodbox(foodType) {
-                var foodBoxes = document.getElementsByClassName('product');
-                
-                // Ẩn tất cả các box trước khi hiển thị box mới
-                for (var i = 0; i < foodBoxes.length; i++) {
-                    foodBoxes[i].style.display = 'none';
-                }
-
-                
-                // Hiển thị box tương ứng với loại thức ăn
-                var selectedFoodBox = document.getElementById(foodType);
-                if (selectedFoodBox) {
-                    selectedFoodBox.style.display = 'block';
-                    
-                } else {
-                    console.log("Không tìm thấy box với id: " + foodType);
-                }
-                }
-                window.onload = function() {
-                    showFoodbox('mon_nuoc'); 
-                };
-            </script>
+    window.onload = function() {
+        showFoodbox('mon_nuoc');
+    };
+    </script>
 
 
 
-            
-<!-- js hiển thị phần chức nang cuộn cho header -->
+
+    <!-- js hiển thị phần chức nang cuộn cho header -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if( $(this).scrollTop()) {
-                    $('header').addClass('sticky');
-                }else{
-                    $('header').removeClass('sticky');
-                }
-            });
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop()) {
+                $('header').addClass('sticky');
+            } else {
+                $('header').removeClass('sticky');
+            }
         });
+    });
     </script>
 
 

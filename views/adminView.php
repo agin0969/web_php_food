@@ -69,65 +69,47 @@ $count = 1;
                     </thead>
                     <tbody>
                         <?php foreach ($products as $product): ?>
-
                         <tr>
                             <th scope="row">
-
-                                <? echo $count?>
-
+                                <?php echo $count ?>
                             </th>
                             <td>
-
-                                <? echo $product->getId()?>
-
+                                <?php echo $product->getId() ?>
                             </td>
                             <td>
-
-                                <? echo $product->getName()?>
-
+                                <?php echo $product->getName() ?>
                             </td>
                             <td>
-                                <? echo $product->getCategoryId()?>
+                                <?php echo $product->getCategoryId() ?>
                             </td>
                             <td>
-                                <? echo $product->getPrice()?>
+                                <?php echo $product->getPrice() ?>
                             </td>
                             <td>
-                                <? echo $product->getImage()?>
+                                <?php echo $product->getImage() ?>
                             </td>
                             <td>
-                                <div class=row>
-
+                                <div class="row">
                                     <div class="col ml-1">
-                                        <form id="form-detele" action="../controllers/proDelAdCon.php" method="get">
-                                            <input type="hidden" name="id" id="id"
-                                                value="<?php echo $product->getId(); ?>">
-                                            <button class="btn btn-outline-success" type="button"
-                                                onclick="confirmDelete('form-detele')">Xóa</button>
-
-                                        </form>
-
+                                        <button class="btn btn-outline-success" type="button"
+                                            onclick="confirmDelete('form-delete'), <? echo $id2 = $product->getId()?>">Xóa</button>
                                     </div>
                                     <div class="col ml-1">
-
-
                                         <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#product-re" onclick="<?$id=$product->getId() ?>">Sửa</button>
-
-
+                                            data-bs-target="#product-re"
+                                            onclick="<?php $id = $product->getId() ?>">Sửa</button>
                                     </div>
-
-
                                 </div>
-
                             </td>
-
                         </tr>
-                        <?$count=$count +1?>
+                        <?php $count = $count + 1 ?>
                         <?php endforeach; ?>
-
                     </tbody>
                 </table>
+
+                <form id="form-delete" action="../controllers/proDelAdCon.php" method="POST">
+                    <input type="hidden" id="id" name="id" value="<?echo $id2?>">
+                </form>
 
 
 

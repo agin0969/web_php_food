@@ -11,7 +11,7 @@ class LoginController{
         {
             ini_set('session.gc_maxlifetime', 6000);
             $this->userService->setSession($username);
-            header("Location: ../views/check.php");
+            header("Location: ../views/index.php");
         }
         else {
             echo "dang nhap that bai";

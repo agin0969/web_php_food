@@ -7,8 +7,8 @@ if (!$checkSession->checkSessionAdmin()){
     exit;
 }
     $productService = new ProductService();
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-         $id = $_GET['id'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+         $id = $_POST['id'];
          $productService->deleteProductById($id);
          header("Location: ../views/adminView.php");
          exit;
