@@ -2,11 +2,11 @@
 require_once '../config/init.php';
 require_once'../services/productService.php';
 require_once'../models/checkuser.php';
-// $checkSession= new Checkuser();
-// if (!$checkSession->checkSession()){
-//     header("Location: ../views/login.php");
-//     exit;
-// }
+$checkSession= new Checkuser();
+if (!$checkSession->checkSessionAdmin()){
+    header("Location: ../views/login.php");
+    exit;
+}
 
 $productService = new ProductService();
 if (isset($_GET['numbers'])) {
