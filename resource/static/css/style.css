@@ -84,9 +84,6 @@ ul#main-menu a{
     color: rgb(255, 255, 255);
     display: block;
 }
-ul#main-menu >li:hover{
-    border-bottom: 2px solid #a7c1c4db;
-}
 
 
 #lg_lo{
@@ -198,6 +195,23 @@ ul.users_info >li{
     font-weight: 500;
     font-style: normal;
 }
+
+ul.users_info > li:hover{
+    background-color: #3a3543ad;
+}
+
+header.sticky ul.users_info > li a{
+    color: #ffffff;
+}
+
+header.sticky .mid_user_info{
+    background-color: #1110138d;
+}
+header.sticky ul.users_info > li:hover{
+    background-color: #14121cad;
+}
+
+
  
 
 
@@ -210,6 +224,7 @@ ul.users_info >li{
     width: 100%;
     background-size: cover;
     position: fixed;
+    opacity: 0.9;
 }
 .content{
     position: relative;
@@ -522,3 +537,11 @@ ul.milktea li{
     margin-top: 15px;
 }
 
+
+#footer{
+    background-color: #367f49;
+    height: 300px;
+    width: 100%;
+    position: fixed;
+    top: 100vh;
+}

@@ -3,10 +3,10 @@ require_once'config.php';
 
 // File: init.php
 
-
+/*
 if (session_id() === '') {
     session_start();
-}
+}*/
 
 function errorHandler($level, $message, $file, $line) {
     throw new ErrorException($message, 0, $level, $file, $line);

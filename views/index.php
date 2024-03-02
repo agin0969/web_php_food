@@ -1,5 +1,5 @@
 <?require_once'../controllers/productController.php';
-/*require_once '../config/init.php';*/
+require_once '../config/init.php';
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
@@ -36,10 +36,10 @@
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
-                        <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
-                        <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
-                        <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
+                        <li id = "milktea"><a href="#mon_nuoc" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li><a href="#mon_kho" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
+                        <li><a href="#thuc_uong" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
+                        <li><a href="#trang_mieng" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
                 <?
@@ -250,6 +250,28 @@ if (isset($_GET['logout'])) {
             </div>
 
         </div>
+        <!-- link file footer-->
+        <link rel="stylesheet" href="../views/footer.php">
+        <div id="footer">
+            <div class="my-info">
+                <ul>
+                    <div>Thông tin liên hệ </div>
+                    <li>
+                        <p>.09xxxxxxx01</p>
+                    </li>
+                    <li>
+                        <p>fanbage: Wefood cân tất</p>
+                    </li>
+                    <li>
+                        <p>blog</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
     </div>
 
 
@@ -324,16 +346,26 @@ window.addEventListener('scroll', function() {
                     foodBoxes[i].style.display = 'none';
                 }
 
+                // Xóa border dưới của tất cả các thẻ li
+                var menuItems = document.querySelectorAll('#main-menu li');
+                for (var i = 0; i < menuItems.length; i++) {
+                    menuItems[i].style.borderBottom = 'none';
+                }
+
                 
                 // Hiển thị box tương ứng với loại thức ăn
                 var selectedFoodBox = document.getElementById(foodType);
                 if (selectedFoodBox) {
                     selectedFoodBox.style.display = 'block';
                     
+                    var menuItem = document.querySelector('#main-menu li a[href="#' + foodType + '"]');
+                    menuItem.parentElement.style.borderBottom = '2px solid #a7c1c4db';
+                    console.log(menuItem);
                 } else {
                     console.log("Không tìm thấy box với id: " + foodType);
                 }
                 }
+
                 window.onload = function() {
                     showFoodbox('mon_nuoc'); 
                 };
