@@ -1,7 +1,12 @@
 <?php
 require_once '../services/productService.php';
 $productService = new ProductService();
-
+require_once '../models/checkuser.php';
+$checkSession= new Checkuser();
+if (!$checkSession->checkSessionAdmin()){
+    header("Location: ../views/login.php");
+    exit;
+}
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $name = $_GET['search'];
     if ($name === '') {

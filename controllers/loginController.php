@@ -9,7 +9,7 @@ class LoginController{
         $this->userService->clearSession();
         if ($this->userService->authUser($username,$password))
         {
-            ini_set('session.gc_maxlifetime', 20);
+            ini_set('session.gc_maxlifetime', 6000);
             $this->userService->setSession($username);
             header("Location: ../views/index.php");
         }

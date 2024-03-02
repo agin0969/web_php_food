@@ -2,11 +2,11 @@
 require_once '../services/productService.php';
 require_once '../models/checkuser.php';
 require_once '../services/uploadService.php';
-// $checkSession= new Checkuser();
-// if (!$checkSession->checkSession()){
-//     header("Location: ../views/login.php");
-//     exit;
-// }
+$checkSession= new Checkuser();
+if (!$checkSession->checkSessionAdmin()){
+    header("Location: ../views/login.php");
+    exit;
+}
     $upload = new UploadService();
     $img=$upload->upload();
     $productService = new ProductService();
@@ -17,9 +17,5 @@ require_once '../services/uploadService.php';
         $category_id =$_POST['category'];
         $price=$_POST['price'];
         $description=$_POST['descrip'];
-        $productService->addProductToDb($name, $category_id, $price, $img, $description);
-
-        
-        
-        
+        $productService->addProductToDb($name, $category_id, $price, $img, $description);     
     }
