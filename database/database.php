@@ -1,10 +1,10 @@
 <?php
 include_once('../config/config.php');
 Class Database{
-    private $host= "localhost";
-    private $name= "db_ct07";
-    private $user="root";
-    private $pass= "mysql";
+    private $host= DB_Host;
+    private $name= DB_Name;
+    private $user=DB_User;
+    private $pass= DB_PassWord;
     private $conn;
 
 
