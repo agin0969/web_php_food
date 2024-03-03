@@ -38,6 +38,20 @@ $count = 1;
     </script>
     <link href="../resource/static/css/adminView.css " rel="stylesheet" type="text/css">
     <script src="../resource/static/js/hideAndShow.js" type="text/javascript"> </script>
+    <script>
+    function ddelete(productId) {
+        var confirmation = confirm("Bạn có chắc muốn xóa sản phẩm có ID " + productId + " không?");
+        if (confirmation) {
+            // Thực hiện logic xóa sản phẩm với productId
+            document.getElementById('id').value = productId;
+            document.getElementById('form-delete').submit();
+        }
+    }
+    function getid(productid){
+        document.getElementById('id1').value=productid;
+    }
+   
+    </script>
 
 </head>
 
@@ -92,12 +106,12 @@ $count = 1;
                                 <div class="row">
                                     <div class="col ml-1">
                                         <button class="btn btn-outline-success" type="button"
-                                            onclick="confirmDelete('form-delete'), <? echo $id2 = $product->getId()?>">Xóa</button>
+                                            onclick="ddelete(<?php echo $product->getId(); ?>)">Xóa</button>
                                     </div>
                                     <div class="col ml-1">
                                         <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
                                             data-bs-target="#product-re"
-                                            onclick="<?php $id = $product->getId() ?>">Sửa</button>
+                                            onclick="getid(<?echo $product->getId()?>)">Sửa</button>
                                     </div>
                                 </div>
                             </td>
@@ -108,7 +122,7 @@ $count = 1;
                 </table>
 
                 <form id="form-delete" action="../controllers/proDelAdCon.php" method="POST">
-                    <input type="hidden" id="id" name="id" value="<?echo $id2?>">
+                    <input type="hidden" id="id" name="id" value="">
                 </form>
 
 
@@ -199,7 +213,7 @@ $count = 1;
                                         </div>
 
                                     </div>
-                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                    <input type="hidden" id="id1" name="id1">
 
                                     <div class="mb-3 row">
                                         <input class="form-control form-control-sm" id="file" type="file" name="file">
