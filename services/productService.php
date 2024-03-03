@@ -42,10 +42,18 @@ class ProductService{
     }
     public function deleteProductById($id) {
         try{
+            $product=$this->getProductById($id);
+            $img=$product->getImage();
             $sql="DELETE FROM `product` WHERE id=:id ";
             $result= $this->conn->prepare($sql);
             $result->bindParam(':id',$id);
             $result->execute();
+            if (file_exists($img)){
+                unlink($img);
+                return true;
+            }
+            else 
+                return false;
             }
         catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
