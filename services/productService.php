@@ -27,7 +27,8 @@ class ProductService{
                     $data['name'],
                     $data['category_id'],
                     $data['price'],
-                    $data['image']
+                    $data['image'],
+                    $data['description']
                 );
                 $products[] = $product;
             }
@@ -150,6 +151,7 @@ class ProductService{
                     $productInfo['category_id'],
                     $productInfo['price'],
                     $productInfo['image'],
+                    $productInfo['description']
                 );
                
 
@@ -203,7 +205,8 @@ class ProductService{
                     $data['name'],
                     $data['category_id'],
                     $data['price'],
-                    $data['image']
+                    $data['image'],
+                    $data['description']
                 );
                 $products[]=$product;
             }
