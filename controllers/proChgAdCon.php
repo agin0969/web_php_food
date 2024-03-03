@@ -18,5 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category_id =$_POST['category'];
     $price=$_POST['price'];
     $description=$_POST['descrip'];
-    $productService->changeProduct($id,$name, $category_id, $price, $img, $description);
+    if($productService->changeProduct($id,$name, $category_id, $price, $img, $description)){
+        header("Location: ../views/adminView.php");
+        exit;
+    }  else {
+        header("Location: ../views/404.php");
+        exit;
+    }
+
 }

@@ -51,11 +51,10 @@ class ProductService{
             $result->execute();
             if (file_exists($img)){
                 unlink($img);
-                return true;
+               
             }
-            else 
-                return false;
-            }
+            return true;
+        }
         catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
             } 
@@ -103,7 +102,7 @@ class ProductService{
                 $updateFields[] = "description = :description";
             }
     
-            // Check if there are fields to update
+           
             if (empty($updateFields)) {
                 return false;
             }

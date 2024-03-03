@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header("Location: $url");
         exit();
     } else {
-        header("Location: ../views/adminView.php");
+        header("Location: ../views/404.php");
     }
 }
 ?>
