@@ -25,7 +25,7 @@
                         <input type="text" id ="username" name ="username" class="auth-form-input" placeholder="Tài khoản" required>
                         <input type="email" id="email" name ="email" class="auth-form-input" placeholder="Email" require>
                         <input type="password" id="password" name="password" class="auth-form-input" placeholder="Mật khẩu" required>
-                        <input type="password" id="password" name="password" class="auth-form-input" placeholder="Xác nhận mật khẩu" required>
+                        <input type="password" id="confirm_password" name="confirm_password" class="auth-form-input" placeholder="Xác nhận mật khẩu" required>
                         <label class="btn active">
                             <input type="checkbox" name='email' checked>
                             <i class="fa fa-square-o"></i><i class="fa fa-check-square-o"></i> 
