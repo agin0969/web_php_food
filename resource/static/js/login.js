@@ -26,3 +26,4 @@ function validateEmail(email) {
     var emailPattern = /^[^\s@]{1,}@[^\s@]+\.[^\s@]+$/;
     return email.match(emailPattern);
 }
+
