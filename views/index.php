@@ -18,9 +18,8 @@ require_once '../config/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <title>WEFOOD</title>
-    <script src="../resource/static/js/index.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -42,11 +41,17 @@ require_once '../config/init.php';
                         <li><a href="#trang_mieng" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
+                
                 <?
                     $sessionData = $userService->getSession();
                     if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
-                        // Người dùng đã đăng nhập
-                        echo '
+                        // Người dùng đã đăng nhập                      
+                        echo '                    
+                        <button class="btn btn-primary" type="button" onclick="toggleOffcanvas()">
+                            Open Offcanvas
+                        </button>
+
+        
                             <button id="avt_users">logo</button>
                             <div class="user_info">
                                 <div class="mid_user_info">
@@ -73,68 +78,70 @@ require_once '../config/init.php';
                                 <button class="login_signup">Đăng nhập/Đăng ký</button>
                             </a>'
                         ;
-
-
                     }
+
                     // Kiểm tra nếu người dùng chọn đăng xuất
-if (isset($_GET['logout'])) {
-    $userService->clearSession();
-    header('Location: ../views/index.php');
-    exit();
-}
+                    if (isset($_GET['logout'])) {
+                        $userService->clearSession();
+                        header('Location: ../views/index.php');
+                        exit();
+                    }
 
                 ?>
 
         </header>
+        
         <div class="content">
+            
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng </h2>
                 <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
                 <button class="btn_address">ĐỔI</button>
-                <button class="btn_address">Mặc định</button>
-
+                <button class="btn_address">Mặc định</button>               
             </div>
-            <!--muc tim kiem cac san pham-->
-            <div class="search_info">
-                <h2>Đặt đồ ăn nhanh chóng ... </h2>
-                <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
-                <button class="btn_search">Tìm</button>
-            </div>
-
-            <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
-            <div class="box-info-web">
-                <div class="box-info-web-1">
-                    <p id="p1">Siêu Ưu Đãi</p>
-                    <p id="p2"> 50 %</p>
-                    <link rel="stylesheet" href="xem thêm" class="">
+            .
+                <div id="banner"></div>
+                <!--muc tim kiem cac san pham-->
+                <div class="search_info">
+                    <h2>Đặt đồ ăn nhanh chóng ... </h2>
+                    <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
+                    <button class="btn_search">Tìm</button>
                 </div>
-
-                <div class="box-info-web-2">
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
+                
+                <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
+                <div class="box-info-web">
+                    <div class="box-info-web-1">
+                        <p id="p1">Siêu Ưu Đãi</p>
+                        <p id="p2"> 50 %</p>
+                        <link rel="stylesheet" href="xem thêm" class="">
+                    </div>
                     
-                    <p>Hơn 500 luợt đánh giá 5 sao</p>
+                    <div class="box-info-web-2">
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        
+                        <p>Hơn 500 luợt đánh giá 5 sao</p>
+                    </div>
+                    
+                    <div class="box-info-web-3">
+                        <p id="p1">Phản Hồi</p>
+                        <p id="p2">Hơn 600 phản hồi tích cực!</p>
+                    </div>
                 </div>
-
-                <div class="box-info-web-3">
-                    <p id="p1">Phản Hồi</p>
-                    <p id="p2">Hơn 600 phản hồi tích cực!</p>
-                </div>
-            </div>
-
+                
             <!--cac san pham cua mot menu-->
             <div id="FoodBoxContainer">
 
@@ -250,22 +257,27 @@ if (isset($_GET['logout'])) {
             </div>
 
         </div>
+
+
         <!-- link file footer-->
-        <link rel="stylesheet" href="../views/footer.php">
-        <div id="footer">
-            <div class="my-info">
-                <ul>
-                    <div>Thông tin liên hệ </div>
-                    <li>
-                        <p>.09xxxxxxx01</p>
-                    </li>
-                    <li>
-                        <p>fanbage: Wefood cân tất</p>
-                    </li>
-                    <li>
-                        <p>blog</p>
-                    </li>
-                </ul>
+   <!--     <link rel="stylesheet" href="../views/footer.php">    -->
+        <div id="container_content">
+            
+            <div id="footer">
+                <div class="my-info">
+                    <ul>
+                        <div>Thông tin liên hệ </div>
+                        <li>
+                            <p>.09xxxxxxx01</p>
+                        </li>
+                        <li>
+                            <p>fanbage: Wefood cân tất</p>
+                        </li>
+                        <li>
+                            <p>blog</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -277,6 +289,7 @@ if (isset($_GET['logout'])) {
 
 
 
+<div class="test"></div>
 
 
 
@@ -285,10 +298,10 @@ if (isset($_GET['logout'])) {
 
 
 
-
+<script src="../resource/static/js/index.js"></script>
 
     <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
-<script>    
+    <script>    
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
         var mid_user_info = document.querySelector(".mid_user_info");
@@ -319,16 +332,34 @@ if (isset($_GET['logout'])) {
 window.addEventListener('scroll', function() {
     var foodBoxContainer = document.getElementById('FoodBoxContainer');
     var banner = document.getElementById("banner");
-
+    var containerContent = document.getElementById("container_content");
 
     var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+    var bannerRect = banner.getBoundingClientRect();
+    var containerContentRect = containerContent.getBoundingClientRect();
     var windowHeight = window.innerHeight;
 
-    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
-    if (foodBoxContainerRect.bottom <= windowHeight) {
-        banner.style.position = 'absolute';
+    var foodBoxContainerHeight = foodBoxContainer.offsetHeight;
+    var scrollPosition = window.scrollY || window.pageYOffset;
+
+    // Tính toán vị trí xuất hiện của container_content
+    var containerContentThreshold = foodBoxContainerHeight / 2;
+
+    // Khi cuộn trang đã đạt đến ngưỡng xuất hiện của container_content
+    if (scrollPosition + windowHeight >= containerContentThreshold) {
+        containerContent.style.display = 'block'; // Hiển thị container_content
+        containerContent.style.top = bannerRect.bottom + '400px';
     } else {
-        banner.style.position = ''; // Trả về giá trị mặc định của position
+        containerContent.style.display = 'none'; // Ẩn container_content
+    }
+
+    // Khi cuộn trang đã đạt đến cuối của foodBoxContainer
+    if (scrollPosition + windowHeight >= foodBoxContainerHeight) {
+        banner.style.position = 'absolute';
+        banner.style.top = windowHeight - bannerRect.height + '0px';
+    } else if (banner.style.position === 'absolute') {
+        banner.style.position = '';
+        banner.style.top = '';
     }
 });
 
@@ -386,7 +417,7 @@ window.addEventListener('scroll', function() {
                 }
             });
         });
-    </script>
+    </script>  
 
 
 </body>

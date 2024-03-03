@@ -224,7 +224,6 @@ header.sticky ul.users_info > li:hover{
     width: 100%;
     background-size: cover;
     position: fixed;
-    opacity: 0.9;
 }
 .content{
     position: relative;
@@ -364,6 +363,7 @@ ul.milktea li{
     left: 50%;
     top: 20vh;
     color: #47d24b;
+    z-index: 2;
 }
 .set-address{
     width: 60vh;
@@ -537,11 +537,26 @@ ul.milktea li{
     margin-top: 15px;
 }
 
-
-#footer{
-    background-color: #367f49;
-    height: 300px;
+#container_content{
+    display: none; /* Mặc định ẩn phần container_nav */
+    background-color: #0a2210;
+    height: 400px;
     width: 100%;
-    position: fixed;
-    top: 100vh;
+    position: absolute;
+    z-index: 100;
+}
+/*
+#footer{
+    background-color: #0a2210;
+    height: 400px;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+}*/
+
+.test{
+    background-color: #000000;
+    height: 400px;
+    width: 100%;
+    z-index: 2;
 }
