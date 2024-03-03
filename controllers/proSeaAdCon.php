@@ -22,4 +22,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header("Location: ../views/404.php");
     }
 }
-?>
