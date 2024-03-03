@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" />
 </head>
 <body>
-<<<<<<< HEAD
     <!-- Form without bootstrap -->
     <div class="auth-wrapper">
         <div class="auth-container">
@@ -38,33 +37,14 @@
                         </div>
                     </form>
                 </div>
-=======
-<div class="container">
-    <div class="login-container">
-        <img src="../resource/static/img/wefood.png" alt="Wefood logo">
-        <h2>Tạo tài khoản của bạn</h2>
-        <form id="signupForm" action="../controllers/registerController.php" method="post" onsubmit=" return validateForm()" >
-            
-            <div class="input-field">
-                <input type="text" id="username" name="username" placeholder="Tài khoản" required>
->>>>>>> 9ae8832949e349cb3e797c67a5e3232fc921498e
             </div>
             <div class="auth-action-right">
                 <div class="auth-image">
                     <img src="../resource/static/img/12.jpg" alt="login">
                 </div>
             </div>
-<<<<<<< HEAD
         </div>
-=======
-            <div class="input-field">
-                <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
-            </div>
-            <button type="submit" class="btn" >Đăng Ký</button>
-        </form>
-        <p class="signin-link">Đã có tài khoản? <a href="login.php">Đăng nhập</a></p>
->>>>>>> 9ae8832949e349cb3e797c67a5e3232fc921498e
     </div>
-    <script src="../resource/static/js/common.js"></script>
+    <script src="../resource/static/js/login.js"></script>
 </body>
 </html>

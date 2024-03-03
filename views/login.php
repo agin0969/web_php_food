@@ -44,6 +44,6 @@
             </div>
         </div>
     </div>
-    <script src="../resource/static/js/common.js"></script>
+    <script src="../resource/static/js/login.js"></script>
 </body>
 </html>
