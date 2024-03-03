@@ -21,17 +21,17 @@
                 </div>
             </li>
             <li>
-                <button type="button" class="btn btn-sm product-mn active" data-bs-toggle="collapse" href="#collapseUser"
-                    role="button" aria-expanded="false" aria-controls="collapseUser">
-                    Quản lí người dùng
-                </button>
-                <div class="collapse collapse-user" id="collapseUser">
-                    <ul>
-                        <li><a href="">Danh sách người dùng</a></li>
+    <button type="button" class="btn btn-sm product-mn active" data-bs-toggle="collapse" href="#collapseUser"
+        role="button" aria-expanded="false" aria-controls="collapseUser">
+        Quản lí người dùng
+    </button>
+    <div class="collapse collapse-user" id="collapseUser">
+        <ul>
+             <li><a href="adminWithUser.php">Danh sách người dùng</a></li>
+        </ul>
+    </div>
+</li>
 
-                    </ul>
-                </div>
-            </li>
             <li>
                 <button type="button" class="btn btn-sm product-mn" data-bs-toggle="collapse" href="#collapseBill"
                     role="button" aria-expanded="false" aria-controls="collapseBill">
