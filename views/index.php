@@ -46,7 +46,7 @@
                 </nav>
                 <?
                     $sessionData = $userService->getSession();
-                    if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
+                    if (!empty($sessionData['name']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
                         // Người dùng đã đăng nhập
                         echo '
                             <button id="avt_users">logo</button>
@@ -57,7 +57,7 @@
                                             <ul class="logo_name">
                                                 <li id="logo_info"><a href="">logo</a></li>
                                                 
-                                                <li id="name_info"><a href="">'.  $sessionData['username'] .'</a></li>
+                                                <li id="name_info"><a href="">'.  $sessionData['name'] .'</a></li>
                                             </ul>
                                         </li>
                                         
