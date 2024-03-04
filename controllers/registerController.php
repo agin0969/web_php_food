@@ -36,15 +36,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-require_once '../database/database.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-
-    if ($username === "hehehe") {
-        echo "Tài khoản đã tồn tại";
-    } else {
-
-        echo "Tài khoản có sẵn";
-    }
-}

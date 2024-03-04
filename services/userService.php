@@ -47,42 +47,35 @@ class UserService{
         
     }
    
-    public function changeUserInfor($id, $name, $password, $email, $role_id) {
+    public function changeUserInfor($id, $name, $password, $email, $role_id)
+    {
         try {
-            // Construct the dynamic SET clause based on provided parameters
-            $setClauses = [];
-            
-            if (!empty($id)) {
-                $setClauses[] = "id = :id";
-            }
+            $updateFields = [];
+    
             if (!empty($name)) {
-                $setClauses[] = "name = :name";
+                $updateFields[] = "name = :name";
             }
             if (!empty($password)) {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                $setClauses[] = "password = :password";
+                $updateFields[] = "password = :password";
             }
             if (!empty($email)) {
-                $setClauses[] = "email = :email";
+                $updateFields[] = "email = :email";
             }
             if (!empty($role_id)) {
-                $setClauses[] = "role_id = :role_id";
+                $updateFields[] = "role_id = :role_id";
             }
     
-            // If there are no fields to update, return false
-            if (empty($setClauses)) {
+            if (empty($updateFields)) {
                 return false;
             }
     
-            $setClause = implode(', ', $setClauses);
-            $sql = "UPDATE `user` SET " . $setClause . " WHERE id = :id";
+            $updateString = implode(', ', $updateFields);
+    
+            $sql = "UPDATE `user` SET $updateString WHERE id = :id";
     
             $result = $this->conn->prepare($sql);
     
-            // Bind parameters based on provided fields
-            if (!empty($id)) {
-                $result->bindParam(':id', $id);
-            }
             if (!empty($name)) {
                 $result->bindParam(':name', $name);
             }
@@ -96,6 +89,8 @@ class UserService{
                 $result->bindParam(':role_id', $role_id);
             }
     
+            $result->bindParam(':id', $id);
+    
             $result->execute();
     
             return true;
@@ -103,6 +98,7 @@ class UserService{
             die("Error: " . $e->getMessage());
         }
     }
+    
     
 
     public function getAllUsers() {
