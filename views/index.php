@@ -18,11 +18,13 @@ require_once '../config/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    
     <title>WEFOOD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -35,10 +37,10 @@ require_once '../config/init.php';
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#mon_nuoc" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
-                        <li><a href="#mon_kho" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
-                        <li><a href="#thuc_uong" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
-                        <li><a href="#trang_mieng" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
+                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
+                        <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
+                        <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
                 
@@ -81,11 +83,11 @@ require_once '../config/init.php';
                     }
 
                     // Kiểm tra nếu người dùng chọn đăng xuất
-                    if (isset($_GET['logout'])) {
-                        $userService->clearSession();
-                        header('Location: ../views/index.php');
-                        exit();
-                    }
+if (isset($_GET['logout'])) {
+    $userService->clearSession();
+    header('Location: ../views/index.php');
+    exit();
+}
 
                 ?>
 
@@ -99,49 +101,47 @@ require_once '../config/init.php';
                 <button class="btn_address">ĐỔI</button>
                 <button class="btn_address">Mặc định</button>               
             </div>
-            .
-                <div id="banner"></div>
-                <!--muc tim kiem cac san pham-->
-                <div class="search_info">
-                    <h2>Đặt đồ ăn nhanh chóng ... </h2>
-                    <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
-                    <button class="btn_search">Tìm</button>
+            <!--muc tim kiem cac san pham-->
+            <div class="search_info">
+                <h2>Đặt đồ ăn nhanh chóng ... </h2>
+                <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
+                <button class="btn_search">Tìm</button>
+            </div>
+
+            <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
+            <div class="box-info-web">
+                <div class="box-info-web-1">
+                    <p id="p1">Siêu Ưu Đãi</p>
+                    <p id="p2"> 50 %</p>
+                    <link rel="stylesheet" href="xem thêm" class="">
                 </div>
-                
-                <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
-                <div class="box-info-web">
-                    <div class="box-info-web-1">
-                        <p id="p1">Siêu Ưu Đãi</p>
-                        <p id="p2"> 50 %</p>
-                        <link rel="stylesheet" href="xem thêm" class="">
-                    </div>
+
+                <div class="box-info-web-2">
+                    <span>
+                        <img src="../resource/static/img/star.png" alt="">
+                    </span>
+                    <span>
+                        <img src="../resource/static/img/star.png" alt="">
+                    </span>
+                    <span>
+                        <img src="../resource/static/img/star.png" alt="">
+                    </span>
+                    <span>
+                        <img src="../resource/static/img/star.png" alt="">
+                    </span>
+                    <span>
+                        <img src="../resource/static/img/star.png" alt="">
+                    </span>
                     
-                    <div class="box-info-web-2">
-                        <span>
-                            <img src="../resource/static/img/star.png" alt="">
-                        </span>
-                        <span>
-                            <img src="../resource/static/img/star.png" alt="">
-                        </span>
-                        <span>
-                            <img src="../resource/static/img/star.png" alt="">
-                        </span>
-                        <span>
-                            <img src="../resource/static/img/star.png" alt="">
-                        </span>
-                        <span>
-                            <img src="../resource/static/img/star.png" alt="">
-                        </span>
-                        
-                        <p>Hơn 500 luợt đánh giá 5 sao</p>
-                    </div>
-                    
-                    <div class="box-info-web-3">
-                        <p id="p1">Phản Hồi</p>
-                        <p id="p2">Hơn 600 phản hồi tích cực!</p>
-                    </div>
+                    <p>Hơn 500 luợt đánh giá 5 sao</p>
                 </div>
-                
+
+                <div class="box-info-web-3">
+                    <p id="p1">Phản Hồi</p>
+                    <p id="p2">Hơn 600 phản hồi tích cực!</p>
+                </div>
+            </div>
+
             <!--cac san pham cua mot menu-->
             <div id="FoodBoxContainer">
 
@@ -149,7 +149,7 @@ require_once '../config/init.php';
                 <div class="product" id="mon_nuoc">
                     <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 1): ?>
+                        <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -170,14 +170,14 @@ require_once '../config/init.php';
                         <?php endforeach; ?>
 
 
-                    </ul>         
-              </div>
-        <!-- anư vặt -->
+                    </ul>
+                </div>
+                <!-- anư vặt -->
                 <div class="product" id="mon_kho">
 
-                     <ul class="milktea">
+                    <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 2): ?>
+                        <?php if ($product->getCategoryId() == 2): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -196,14 +196,14 @@ require_once '../config/init.php';
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </ul>                    
+                    </ul>
                 </div>
-        <!-- đô uống -->
+                <!-- đô uống -->
                 <div class="product" id="thuc_uong">
 
-                     <ul class="milktea">
+                    <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 3): ?>
+                        <?php if ($product->getCategoryId() == 3): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -222,14 +222,14 @@ require_once '../config/init.php';
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </ul>                    
+                    </ul>
                 </div>
-    <!-- ăn trưa -->
+                <!-- ăn trưa -->
                 <div class="product" id="trang_mieng">
 
-                     <ul class="milktea">
+                    <ul class="milktea">
                         <?php foreach ($products as $product): ?>
-                            <?php if ($product->getCategoryId() == 1): ?>
+                        <?php if ($product->getCategoryId() == 1): ?>
                         <li>
                             <div class="item">
                                 <div class="product-top">
@@ -248,10 +248,10 @@ require_once '../config/init.php';
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                    </ul>                    
+                    </ul>
                 </div>
 
-        
+
 
 
             </div>
@@ -301,7 +301,7 @@ require_once '../config/init.php';
 <script src="../resource/static/js/index.js"></script>
 
     <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
-    <script>    
+<script>    
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
         var mid_user_info = document.querySelector(".mid_user_info");
@@ -322,7 +322,7 @@ require_once '../config/init.php';
             }
         });
     });
-</script>
+    </script>
 
 
 
@@ -332,34 +332,16 @@ require_once '../config/init.php';
 window.addEventListener('scroll', function() {
     var foodBoxContainer = document.getElementById('FoodBoxContainer');
     var banner = document.getElementById("banner");
-    var containerContent = document.getElementById("container_content");
+
 
     var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
-    var bannerRect = banner.getBoundingClientRect();
-    var containerContentRect = containerContent.getBoundingClientRect();
     var windowHeight = window.innerHeight;
 
-    var foodBoxContainerHeight = foodBoxContainer.offsetHeight;
-    var scrollPosition = window.scrollY || window.pageYOffset;
-
-    // Tính toán vị trí xuất hiện của container_content
-    var containerContentThreshold = foodBoxContainerHeight / 2;
-
-    // Khi cuộn trang đã đạt đến ngưỡng xuất hiện của container_content
-    if (scrollPosition + windowHeight >= containerContentThreshold) {
-        containerContent.style.display = 'block'; // Hiển thị container_content
-        containerContent.style.top = bannerRect.bottom + '400px';
-    } else {
-        containerContent.style.display = 'none'; // Ẩn container_content
-    }
-
-    // Khi cuộn trang đã đạt đến cuối của foodBoxContainer
-    if (scrollPosition + windowHeight >= foodBoxContainerHeight) {
+    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
+    if (foodBoxContainerRect.bottom <= windowHeight) {
         banner.style.position = 'absolute';
-        banner.style.top = windowHeight - bannerRect.height + '0px';
-    } else if (banner.style.position === 'absolute') {
-        banner.style.position = '';
-        banner.style.top = '';
+    } else {
+        banner.style.position = ''; // Trả về giá trị mặc định của position
     }
 });
 
@@ -377,26 +359,16 @@ window.addEventListener('scroll', function() {
                     foodBoxes[i].style.display = 'none';
                 }
 
-                // Xóa border dưới của tất cả các thẻ li
-                var menuItems = document.querySelectorAll('#main-menu li');
-                for (var i = 0; i < menuItems.length; i++) {
-                    menuItems[i].style.borderBottom = 'none';
-                }
-
                 
                 // Hiển thị box tương ứng với loại thức ăn
                 var selectedFoodBox = document.getElementById(foodType);
                 if (selectedFoodBox) {
                     selectedFoodBox.style.display = 'block';
                     
-                    var menuItem = document.querySelector('#main-menu li a[href="#' + foodType + '"]');
-                    menuItem.parentElement.style.borderBottom = '2px solid #a7c1c4db';
-                    console.log(menuItem);
                 } else {
                     console.log("Không tìm thấy box với id: " + foodType);
                 }
                 }
-
                 window.onload = function() {
                     showFoodbox('mon_nuoc'); 
                 };
@@ -404,8 +376,8 @@ window.addEventListener('scroll', function() {
 
 
 
-            
-<!-- js hiển thị phần chức nang cuộn cho header -->
+
+    <!-- js hiển thị phần chức nang cuộn cho header -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(document).ready(function(){
@@ -417,7 +389,7 @@ window.addEventListener('scroll', function() {
                 }
             });
         });
-    </script>  
+    </script>
 
 
 </body>

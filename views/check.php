@@ -15,6 +15,6 @@ echo '</pre>';
     <title>Document</title>
 </head>
 <body>
-    <button type="button" onclick="<? $userService->clearSession()?>"></button>
+   
 </body>
 </html>

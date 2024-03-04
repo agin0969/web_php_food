@@ -8,7 +8,7 @@ class Checkuser{
             return false;
         }
         else {
-            if ($_SESSION['role_id']===2){
+            if ($_SESSION['role_id']===1){
                 return true;
             }
             else {
@@ -24,7 +24,7 @@ class Checkuser{
             return false;
         }
         else {
-            if ($_SESSION['role_id']===1){
+            if ($_SESSION['role_id']===2){
                 return true;
             }
             else {

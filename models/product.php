@@ -6,12 +6,15 @@ class Product {
     private float $price;
     private string $image;
 
-    public function __construct(int $id, string $name, int $category_id, float $price, string $image) {
+    private string  $description;
+
+    public function __construct(int $id, string $name, int $category_id, float $price, string $image,  string $description) {
         $this->id = $id;
         $this->name = $name;
         $this->category_id = $category_id;
         $this->price = $price;
         $this->image = $image;
+        $this->description=$description;
     }
 
     public function getId(): int {
@@ -53,4 +56,12 @@ class Product {
     public function setImage(?string $image): void {
         $this->image = $image;
     }
+
+    public function getDescription(): string {
+    return $this->name;
+}
+
+    public function setDescription(string $name): void {
+    $this->name = $name;
+}
 }

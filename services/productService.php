@@ -27,7 +27,8 @@ class ProductService{
                     $data['name'],
                     $data['category_id'],
                     $data['price'],
-                    $data['image']
+                    $data['image'],
+                    $data['description']
                 );
                 $products[] = $product;
             }
@@ -42,11 +43,18 @@ class ProductService{
     }
     public function deleteProductById($id) {
         try{
+            $product=$this->getProductById($id);
+            $img=$product->getImage();
             $sql="DELETE FROM `product` WHERE id=:id ";
             $result= $this->conn->prepare($sql);
             $result->bindParam(':id',$id);
             $result->execute();
+            if (file_exists($img)){
+                unlink($img);
+               
             }
+            return true;
+        }
         catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
             } 
@@ -74,86 +82,63 @@ class ProductService{
     }
 
     public function changeProduct($id, $name, $category_id, $price, $image, $description)
-{
-    try {
-        if(!empty($name)){
-            $strname="name=:name";
-        } else {
-            $strname=" ";
-        }
-        if(!empty($category_id)){
-            if(!empty($name)){
-            $strcate=", category_id=:category_id";
-            } else {
-                $strcate="category_id=:category_id";
+    {
+        try {
+            $updateFields = [];
+    
+            if (!empty($name)) {
+                $updateFields[] = "name = :name";
             }
-        } else {
-            $strcate=" ";
-        }
-        if(!empty($price)){
-            if(!empty($category_id)){
-                $strpri=", price=:price";
-            } else {
-                $strpri="price=:price";
+            if (!empty($category_id) && is_numeric($category_id)) {
+                $updateFields[] = "category_id = :category_id";
             }
-            
-        } else {
-            $strpri=" ";
-        }
-        if(!empty($image)){
-            if(!empty($price)){
-            $strimg=", image= :image";
-            } else {
-                $strimg="image= :image";
+            if (!empty($price)) {
+                $updateFields[] = "price = :price";
             }
-        } else {
-            $strimg=" ";
-        }
-        
-        if(!empty($description)){
-            if(!empty($image)){
-            $strdes=", description=:description";
-            } else {
-                $strdes="description=:description";
+            if (!empty($image)) {
+                $updateFields[] = "image = :image";
             }
-        } else {
-            $strdes=" ";
+            if (!empty($description)) {
+                $updateFields[] = "description = :description";
+            }
+    
+           
+            if (empty($updateFields)) {
+                return false;
+            }
+    
+            $updateString = implode(', ', $updateFields);
+    
+            $sql = "UPDATE `product` SET $updateString WHERE id = :id";
+    
+            $result = $this->conn->prepare($sql);
+    
+            if (!empty($name)) {
+                $result->bindParam(':name', $name);
+            }
+            if (!empty($category_id) && is_numeric($category_id)) {
+                $result->bindParam(':category_id', $category_id);
+            }
+            if (!empty($price)) {
+                $result->bindParam(':price', $price);
+            }
+            if (!empty($image)) {
+                $result->bindParam(':image', $image);
+            }
+            if (!empty($description)) {
+                $result->bindParam(':description', $description);
+            }
+    
+            $result->bindParam(':id', $id);
+    
+            $result->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
         }
-        $str=$strname.$strcate.$strpri.$strimg.$strdes;
-        if($str===""){
-            return false;
-        }
-        $sql = "UPDATE `product` SET " . $str . " WHERE id=:id";
-
-        $result = $this->conn->prepare($sql);
-
-        if (!empty($name)) {
-            $result->bindParam(':name', $name);
-        }
-        if (!empty($category_id)) {
-            $result->bindParam(':category_id', $category_id);
-        }
-        if (!empty($price)) {
-            $result->bindParam(':price', $price);
-        }
-        if (!empty($image)) {
-            $result->bindParam(':image', $image);
-        }
-        if (!empty($description)) {
-            $result->bindParam(':description', $description);
-        }
-
-        $result->bindParam(':id', $id);
-
-        $result->execute();
-
-        return true;
-    } catch (PDOException $e) {
-        die("Error: " . $e->getMessage());
     }
-}
-
-
+    
 
 
     //lay product theo id
@@ -173,6 +158,7 @@ class ProductService{
                     $productInfo['category_id'],
                     $productInfo['price'],
                     $productInfo['image'],
+                    $productInfo['description']
                 );
                
 
@@ -226,7 +212,8 @@ class ProductService{
                     $data['name'],
                     $data['category_id'],
                     $data['price'],
-                    $data['image']
+                    $data['image'],
+                    $data['description']
                 );
                 $products[]=$product;
             }
