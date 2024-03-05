@@ -16,14 +16,14 @@ class UserService{
 
 
 
-    //xac minh user bang username va password
-    public function authUser(string $username,string $password) {
+    //xac minh user bang name va password
+    public function authUser(string $name,string $password) {
         try {
 
         
-        $sql="SELECT * FROM `user` WHERE name=:username ";
+        $sql="SELECT * FROM `user` WHERE name =:name ";
         $result= $this->conn->prepare($sql);
-        $result->bindParam(':username',$username);
+        $result->bindParam(':name',$name);
         $result->execute();
         if ($result){
             $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
@@ -46,16 +46,134 @@ class UserService{
         } 
         
     }
+   
+    public function changeUserInfor($id, $name, $password, $email, $role_id)
+    {
+        try {
+            $updateFields = [];
+    
+            if (!empty($name)) {
+                $updateFields[] = "name = :name";
+            }
+            if (!empty($password)) {
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $updateFields[] = "password = :password";
+            }
+            if (!empty($email)) {
+                $updateFields[] = "email = :email";
+            }
+            if (!empty($role_id)) {
+                $updateFields[] = "role_id = :role_id";
+            }
+    
+            if (empty($updateFields)) {
+                return false;
+            }
+    
+            $updateString = implode(', ', $updateFields);
+    
+            $sql = "UPDATE `user` SET $updateString WHERE id = :id";
+    
+            $result = $this->conn->prepare($sql);
+    
+            if (!empty($name)) {
+                $result->bindParam(':name', $name);
+            }
+            if (!empty($password)) {
+                $result->bindParam(':password', $hashedPassword);
+            }
+            if (!empty($email)) {
+                $result->bindParam(':email', $email);
+            }
+            if (!empty($role_id)) {
+                $result->bindParam(':role_id', $role_id);
+            }
+    
+            $result->bindParam(':id', $id);
+    
+            $result->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+    
+    
 
+    public function getAllUsers() {
+        try {
+            $sql = "SELECT * FROM `user`";
+            $result = $this->conn->prepare($sql);
+            $result->execute();
 
+            $users = [];
 
+            while ($userInfo = $result->fetch(PDO::FETCH_ASSOC)) {
+                $user = new User(
+                    $userInfo['id'],
+                    $userInfo['name'],
+                    $userInfo['password'],
+                    $userInfo['email'],
+                    $userInfo['role_id']
+                );
+                $users[] = $user;
+            }
 
-    //tra ve doi tuong user theo username
-    public function getUserByName(string $username){
+            return $users;
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+
+    public function getUserById($userId) {
+        try {
+            $sql = "SELECT * FROM `user` WHERE id = :userId";
+            $result = $this->conn->prepare($sql);
+            $result->bindParam(':userId', $userId);
+            $result->execute();
+
+            $userInfo = $result->fetch(PDO::FETCH_ASSOC);
+
+            if ($userInfo) {
+                $user = new User(
+                    $userInfo['id'],
+                    $userInfo['name'],
+                    $userInfo['password'],
+                    $userInfo['email'],
+                    $userInfo['role_id']
+                );
+
+                return $user;
+            } else {
+                return null; // Return null if user with the given ID is not found
+            }
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+    public function deleteUserById($userId) {
+        try {
+            $sql = "DELETE FROM `user` WHERE id = :userId";
+            $result = $this->conn->prepare($sql);
+            $result->bindParam(':userId', $userId);
+            $result->execute();
+
+            if ($result) {
+                return true; // User deleted successfully
+            } else {
+                return false; // Unable to delete user
+            }
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+    //tra ve doi tuong user theo name
+    public function getUserByName(string $name){
         try{
-        $sql="SELECT * FROM `user` WHERE name=:username ";
+        $sql="SELECT * FROM `user` WHERE name=:name ";
         $result= $this->conn->prepare($sql);
-        $result->bindParam(':username',$username);
+        $result->bindParam(':name',$name);
         $result->execute();
         if ($result) {
             $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
@@ -79,11 +197,11 @@ class UserService{
             die("Error: " . $e->getMessage());
         } 
     }
-    public function getIdByUsername($username){
+    public function getIdByUsername($name){
         try{
-            $sql="SELECT * FROM `user` WHERE name=:username ";
+            $sql="SELECT * FROM `user` WHERE name=:name ";
             $result= $this->conn->prepare($sql);
-            $result->bindParam(':username',$username);
+            $result->bindParam(':name',$name);
             $result->execute();
             if ($result) {
                 $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
@@ -104,11 +222,11 @@ class UserService{
 
     }
 
-    public function getRoleByUsername($username){
+    public function getRoleByname($name){
         try{
-            $sql="SELECT * FROM `user` WHERE name=:username ";
+            $sql="SELECT * FROM `user` WHERE name=:name ";
             $result= $this->conn->prepare($sql);
-            $result->bindParam(':username',$username);
+            $result->bindParam(':name',$name);
             $result->execute();
             if ($result) {
                 $userInfo = $result->fetch(PDO::FETCH_ASSOC); 
@@ -128,14 +246,14 @@ class UserService{
 
     }
 
-    public function addUserToDataBase($username,$password,$email){
+    public function addUserToDataBase($name,$password,$email){
         try{
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $roleService = new RoleService();
             $roleId=$roleService->getRoleIdByName('user');
-            $sql="INSERT INTO `user` (name, password, email, role_id) VALUES (:username, :password, :email, :role_id)";
+            $sql="INSERT INTO `user` (name, password, email, role_id) VALUES (:name, :password, :email, :role_id)";
             $result= $this->conn->prepare($sql);
-            $result->bindParam(':username',$username);
+            $result->bindParam(':name',$name);
             $result->bindParam(':password',$hashedPassword);
             $result->bindParam(':email',$email);
             $result->bindParam(':role_id',$roleId);
@@ -154,10 +272,10 @@ class UserService{
         return session_start();
     }
 
-    public function setSession($username) {
+    public function setSession($name) {
         $this->startSession();
-        $user=$this->getUserByName($username);
-        $_SESSION['username']=$user->getUsername();
+        $user=$this->getUserByName($name);
+        $_SESSION['name']=$user->getUsername();
         $_SESSION['id']=$user->getId();
 
         $_SESSION['role_id']=$user->getRoleId();
@@ -166,7 +284,7 @@ class UserService{
     }
     public function getSession() {
         $this->startSession();
-        $desiredVariables = ['username', 'id', 'role_id'];
+        $desiredVariables = ['name', 'id', 'role_id'];
         $sessionData = [];
         foreach ($desiredVariables as $variable) {
             if (isset($_SESSION[$variable])) {

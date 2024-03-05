@@ -140,7 +140,7 @@
                                             <ul class="logo_name">
                                                 <li id="logo_info"><a href="">logo</a></li>
                                                 
-                                                <li id="name_info"><a href="">'.  $sessionData['username'] .'</a></li>
+                                                <li id="name_info"><a href="">'.  $sessionData['name'] .'</a></li>
                                             </ul>
                                         </li>
                                         
