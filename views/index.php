@@ -1,11 +1,16 @@
 <?require_once'../controllers/productController.php';
-require_once '../config/init.php';
+//require_once '../config/init.php';
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
 
     require '../services/userService.php';
     $userService = new UserService();
+
+    require '../controllers/cartShoppingController.php';
+    $cartController = new CartShoppingController();
+    $cartContent = $cartController->getProductToForm();
+
 ?>
 
 
@@ -18,7 +23,8 @@ require_once '../config/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
-    
+    <link rel="stylesheet" href="../resource/static/css/cart.css">
+  
     <title>WEFOOD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,10 +54,82 @@ require_once '../config/init.php';
                     $sessionData = $userService->getSession();
                     if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
                         // Người dùng đã đăng nhập                      
-                        echo '                    
-                        <button class="btn btn-primary" type="button" onclick="toggleOffcanvas()">
-                            Open Offcanvas
-                        </button>
+                        echo ' 
+                            <!-- Nút kích hoạt Offcanvas -->                   
+                            <button class="btn btn-primary" type="button" onclick="toggleOffcanvas()">
+                                <img id="cart_icon" src="../resource/static/img/shopping-cart.png">
+                                <span>0</span>
+                            </button>
+
+                            <!-- Offcanvas -->
+                            <div class="offcanvas" id="offcanvasExample">
+                                <span class="close-btn" onclick="toggleOffcanvas()">X</span>
+                                <h1 class="title">Shopping Cart</h1>
+                                
+                                <div class="list_cart">';
+                                    // Hiển thị các sản phẩm trong giỏ hàng
+                                    if (!empty($cartContent)) {
+                                        foreach ($cartContent as $item) {
+                                            echo'
+                                                <div class="cart_item">
+                                                    <img src="../resource/static/img/12.jpg" alt="">
+                                                    <div class="cart_name">bun bo</div>   
+                                                    
+                                                    <div class="mid_quan_pri"> 
+                                                        <div class="quantity"> 
+                                                            <span>2</span>                                                     
+                                                            <span> x </span>
+                                                        </div>
+                                                        <div class="totalPrice">5000</div>
+                                                    </div>           
+                                                    <div class="clear_item">X</div>
+                                                </div>
+
+                                                <div class="cart_item">
+                                                    <img src="../resource/static/img/12.jpg" alt="">
+                                                    <div class="cart_name">bun bo</div>   
+                                                    
+                                                    <div class="mid_quan_pri"> 
+                                                        <div class="quantity"> 
+                                                            <span>2</span>                                                     
+                                                            <span> x </span>
+                                                        </div>
+                                                        <div class="totalPrice">5000</div>
+                                                    </div>           
+                                                    <div class="clear_item">X</div>
+                                                </div>
+                                            ';
+
+                                            // echo '<div class="cart_item">
+                                            //         <img src="' . $item['product_image'] . '" alt="">
+                                            //         <div class="cart_name">' . $item['product_name'] . '</div>
+                                            //         <div class="totalPrice">' . $item['product_price'] . '</div>
+                                            //         <div class="quantity">                                                      
+                                            //             <span>' . $item['quantity'] . '</span>
+                                            //         </div>
+                                            //         <div class="clear_item">X</div>
+                                            //     </div>';
+                                        }
+                                    } else {
+                                        echo'<h1 class="titlee">them hang vao gio ngay</h1>';
+                                    }
+                                            echo '    
+                                         
+                                </div>
+                                <div class="checkout">
+                                    <div class="total">
+                                        <p>Thành tiền :</p>
+                                        <div class="sub_total">180.000</div>                
+                                    </div>
+                                    <div class="btn_payment">
+                                        <button class="view_cart"> view cart </button>
+                                        <button class="Payment"> Thanh toán </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
 
         
                             <button id="avt_users">logo</button>
@@ -157,18 +235,31 @@ if (isset($_GET['logout'])) {
                                         <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
-                                    <button class="btn buy">Mua ngay</button>
-                                    <button class="btn cart">+</button>
+                                    <div class="btn cart quantity">
+                                        <span class="minus">-</span>
+                                        <span class="num">00</span>
+                                        <span class="plus">+</span>
+                                    </div>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
+                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
+                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
+                                    </form>
+                                       
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName() ?></a>
                                     <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
+                                
                             </div>
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-
+                        
 
                     </ul>
                 </div>
@@ -296,7 +387,42 @@ if (isset($_GET['logout'])) {
 
 
 
+<script>
 
+    const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
+
+quantityContainers.forEach(quantityContainer => {
+    const plus = quantityContainer.querySelector(".plus");
+    const minus = quantityContainer.querySelector(".minus");
+    const num = quantityContainer.querySelector(".num");
+    
+    let b = 1;
+    let a = 0;
+    
+    plus.addEventListener("click", () => {
+        a+=b;
+        if (a < 10) {
+            num.innerText = "0" + a;
+        } else {
+            num.innerText = a;
+        }
+        console.log(a);
+    });
+    
+    minus.addEventListener("click", () => {
+        if (a >= 1) {
+            a-=b;
+            if (a < 10) {
+                num.innerText = "0" + a;
+            } else {
+                num.innerText = a;
+            }
+        }
+    });
+});
+
+
+</script>
 
 <script src="../resource/static/js/index.js"></script>
 
@@ -389,6 +515,21 @@ window.addEventListener('scroll', function() {
                 }
             });
         });
+    </script>
+
+<!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
+    <script>
+       
+        function toggleOffcanvas() {
+            var offcanvas = document.getElementById("offcanvasExample");
+            offcanvas.classList.toggle("active");
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            dropdownMenu.classList.toggle("active");
+            dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
+        }
     </script>
 
 
