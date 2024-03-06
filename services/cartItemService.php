@@ -22,6 +22,23 @@ class CartItemService{
             die("Error: ". $e->getMessage());
         }
     }
+    public function getTotalAmountInCart($cartId) {
+        try {
+            
+            $sql = "SELECT cart_id, SUM(cartitem.quantity * product.price) AS total_amount
+                    FROM cartitem
+                    JOIN product ON cartitem.product_id = product.id
+                    WHERE cart_id = :cart_id
+                    GROUP BY cart_id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':cart_id', $cartId);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ($result) ? $result['total_amount'] : 0;
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
     public function getItemWithCartId($cart_id) {
         try{
             $sql="SELECT * FROM `cartitem` WHERE cart_id=:cart_id ";

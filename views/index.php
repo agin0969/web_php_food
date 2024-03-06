@@ -1,4 +1,6 @@
 <?require_once'../controllers/productController.php';
+require '../services/CartService.php';
+require '../services/cartItemService.php';
 //require_once '../config/init.php';
 
     $productController=new ProductController();
@@ -11,17 +13,21 @@
     $sessionData = $userService->getSession();
 
 
+    if(!empty($sessionData)){
 
+    
     $userId=$sessionData['id'];
-    require '../services/CartService.php';
+            
+    
     $cartService= new CartService();
     $cartInfor=$cartService->getCartByUserId($userId);
 
 
-    require '../services/cartItemService.php';
+  
     $cartItemService = new CartItemService();
     $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
-
+    $totalPrice=$cartItemService->getTotalAmountInCart($cartInfor->getId());
+    }
 ?>
 
 
@@ -126,7 +132,7 @@
                                 <div class="checkout">
                                     <div class="total">
                                         <p>Thành tiền :</p>
-                                        <div class="sub_total">180.000</div>                
+                                        <div class="sub_total">'.$totalPrice.'</div>                
                                     </div>
                                     <div class="btn_payment">
                                         <button class="view_cart"> view cart </button>
@@ -233,6 +239,7 @@ if (isset($_GET['logout'])) {
                 <!-- traf sua -->
                 <div class="product" id="mon_nuoc">
                     <ul class="milktea">
+
                         <?php foreach ($products as $product): ?>
                         <?php if ($product->getCategoryId() == 1): ?>
                         <li>
@@ -242,26 +249,27 @@ if (isset($_GET['logout'])) {
                                         <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
-                                    <div class="btn cart quantity">
-                                        <span class="minus">-</span>
-                                        <span class="num">00</span>
-                                        <span class="plus">+</span>
-                                    </div>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
-                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
-                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
+                                    <?php if(!empty($sessionData)) { ?>
+                                    <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
+                                        <div class="btn cart quantity">
+                                            
+                                            <span class="minus">-</span>
+                                            <input name="input_quantity" value="01" class="num"
+                                                style="width: 30px; background:none; border:none" readonly>
+                                            <span class="plus">+</span>
+                                            
+                                        </div>
+                                        <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
+                                        <input type="hidden" id="id1" name="id1" value="">
+                                        <button class="btn buy" type="button" name="add_cart" value="Add cart"
+                                            onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
                                     </form>
-
+                                    <?php } ?>
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName() ?></a>
                                     <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
-
                             </div>
                         </li>
                         <?php endif; ?>
@@ -392,7 +400,17 @@ if (isset($_GET['logout'])) {
 
 
 
-
+    <script>
+    function getid(productid) {
+        document.getElementById('id1').value = productid;
+        document.getElementById('cartForm').submit();
+    }
+    </script>
+    <script>
+    function getcartid(cart_id) {
+        document.getElementById('cart_id').value = cart_id;
+    }
+    </script>
 
     <script>
     const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
@@ -400,31 +418,25 @@ if (isset($_GET['logout'])) {
     quantityContainers.forEach(quantityContainer => {
         const plus = quantityContainer.querySelector(".plus");
         const minus = quantityContainer.querySelector(".minus");
-        const num = quantityContainer.querySelector(".num");
+        const input = quantityContainer.querySelector(".num");
 
-        let b = 1;
-        let a = 0;
+        let val = parseInt(input.value);
 
         plus.addEventListener("click", () => {
-            a += b;
-            if (a < 10) {
-                num.innerText = "0" + a;
-            } else {
-                num.innerText = a;
-            }
-            console.log(a);
+            val++;
+            updateValue();
         });
 
         minus.addEventListener("click", () => {
-            if (a >= 1) {
-                a -= b;
-                if (a < 10) {
-                    num.innerText = "0" + a;
-                } else {
-                    num.innerText = a;
-                }
+            if (val > 0) {
+                val--;
+                updateValue();
             }
         });
+
+        function updateValue() {
+            input.value = val;
+        }
     });
     </script>
 
