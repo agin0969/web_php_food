@@ -1,0 +1,82 @@
+<?
+require_once '../database/database.php';
+require_once '../models/cardItem.php';
+
+class CartItemService{
+    private $conn;
+    public function __construct(){
+        $this->conn=new Database();
+    }
+    public function addCartItem($product_id, $quantity,$cart_id){
+        try {
+            $sql="INSERT INTO `cartitem` (product_id,quantity,cart_id) VALUES (:product_id, :quantity,:cart_id)";
+            $result=$this->conn->prepare($sql);
+            $result->bindParam(':product_id',$product_id);
+            $result->bindParam(':quantity',$quantity);
+            $result->bindParam(':cart_id',$cart_id);
+            $result->execute();
+            if ($result){
+                return true;
+            } else return false;
+        } catch (PDOException $e) {
+            die("Error: ". $e->getMessage());
+        }
+    }
+    public function getItemWithCartId($cart_id) {
+        try{
+            $sql="SELECT * FROM `cartitem` WHERE cart_id=:cart_id ";
+            $result= $this->conn->prepare($sql);
+            $result->bindParam(':cart_id',$cart_id);
+            $result->execute();
+            if ($result){
+                $itemDatas = $result->fetchAll(PDO::FETCH_ASSOC);
+                $items = array();
+            foreach ($itemDatas as $itemData) {
+                $item = new CartItem(
+                    $itemData['id'],
+                    $itemData['product_id'],
+                    $itemData['quantity'],
+                    $itemData['cart_id']
+                    
+                );
+                $items[] = $item;
+            }
+            } else {
+                $items = array();
+            }
+        }catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+        return $items;
+        
+    }
+    public function getQuantityWithCartId($cart_id){
+        try {
+            $sql="SELECT SUM(cartitem.quantity) AS total FROM `cartitem` WHERE cart_id=:cart_id";
+            $result= $this->conn->prepare($sql);
+            $result->bindParam(':cart_id',$cart_id);
+            $result->execute();
+            if($result){
+                $count=$result->fetch(PDO::FETCH_ASSOC);
+                return $count['total'];
+            }
+            else return null;
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+    public function deleteCartItemById($id) {
+        try{
+            $sql="DELETE FROM `cartitem` WHERE id=:id ";
+            $result= $this->conn->prepare($sql);
+            $result->bindParam(':id',$id);
+            $result->execute();
+            return true;
+        }
+        catch (PDOException $e) {
+                die("Error: " . $e->getMessage());
+        } 
+        
+    }
+    
+}

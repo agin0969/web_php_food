@@ -4,12 +4,23 @@
     $productController=new ProductController();
     $products=$productController->getAllProduct();
 
+    $productService = new ProductService();
+
     require '../services/userService.php';
     $userService = new UserService();
+    $sessionData = $userService->getSession();
 
-    require '../controllers/cartShoppingController.php';
-    $cartController = new CartShoppingController();
-    $cartContent = $cartController->getProductToForm();
+
+
+    $userId=$sessionData['id'];
+    require '../services/CartService.php';
+    $cartService= new CartService();
+    $cartInfor=$cartService->getCartByUserId($userId);
+
+
+    require '../services/cartItemService.php';
+    $cartItemService = new CartItemService();
+    $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
 
 ?>
 
@@ -24,7 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
     <link rel="stylesheet" href="../resource/static/css/cart.css">
-  
+
     <title>WEFOOD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,22 +54,24 @@
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
                         <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
                         <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
                         <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
-                
+
                 <?
-                    $sessionData = $userService->getSession();
-                    if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
+                    
+                    if (!empty($sessionData['name']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
                         // Người dùng đã đăng nhập                      
                         echo ' 
                             <!-- Nút kích hoạt Offcanvas -->                   
-                            <button class="btn btn-primary" type="button" onclick="toggleOffcanvas()">
+                            <button class="btn btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
+                            style="background: none; border:none;"
+                            >
                                 <img id="cart_icon" src="../resource/static/img/shopping-cart.png">
-                                <span>0</span>
+                                <span>'.$cartItemService->getQuantityWithCartId($cartInfor->getId()).'</span>
                             </button>
 
                             <!-- Offcanvas -->
@@ -68,36 +81,30 @@
                                 
                                 <div class="list_cart">';
                                     // Hiển thị các sản phẩm trong giỏ hàng
-                                    if (!empty($cartContent)) {
-                                        foreach ($cartContent as $item) {
+                                    if (!empty($cartItems)) {
+                                        foreach ($cartItems as $cartItem) {
                                             echo'
                                                 <div class="cart_item">
-                                                    <img src="../resource/static/img/12.jpg" alt="">
-                                                    <div class="cart_name">bun bo</div>   
-                                                    
+                                                    <img src="'.$productService->getProductById($cartItem->getProductId())->getImage().'" alt="">
+                                                    <div class="cart_name">'.$productService->getProductById($cartItem->getProductId())->getName().'</div>   
                                                     <div class="mid_quan_pri"> 
                                                         <div class="quantity"> 
-                                                            <span>2</span>                                                     
+                                                            <span>'.$cartItem->getQuantity().'</span>                                                     
                                                             <span> x </span>
                                                         </div>
-                                                        <div class="totalPrice">5000</div>
+                                                        <div class="totalPrice">'.$productService->getProductById($cartItem->getProductId())->getPrice() * $cartItem->getQuantity().'</div>
                                                     </div>           
-                                                    <div class="clear_item">X</div>
+                                                    <form class="input-from" action="../controllers/cartItemController.php" method="post"
+                                                    enctype="multipart/form-data">
+                                                    <input type="submit" class="clear_item" type="submit" value="x"
+                                        name="submit">
+                                                    
+                                                    <input type="hidden"  name="id" value="'.$cartItem->getId().'">
+
+                                                    </form>
                                                 </div>
 
-                                                <div class="cart_item">
-                                                    <img src="../resource/static/img/12.jpg" alt="">
-                                                    <div class="cart_name">bun bo</div>   
-                                                    
-                                                    <div class="mid_quan_pri"> 
-                                                        <div class="quantity"> 
-                                                            <span>2</span>                                                     
-                                                            <span> x </span>
-                                                        </div>
-                                                        <div class="totalPrice">5000</div>
-                                                    </div>           
-                                                    <div class="clear_item">X</div>
-                                                </div>
+                                                
                                             ';
 
                                             // echo '<div class="cart_item">
@@ -170,14 +177,14 @@ if (isset($_GET['logout'])) {
                 ?>
 
         </header>
-        
+
         <div class="content">
-            
+
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng </h2>
                 <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
                 <button class="btn_address">ĐỔI</button>
-                <button class="btn_address">Mặc định</button>               
+                <button class="btn_address">Mặc định</button>
             </div>
             <!--muc tim kiem cac san pham-->
             <div class="search_info">
@@ -210,7 +217,7 @@ if (isset($_GET['logout'])) {
                     <span>
                         <img src="../resource/static/img/star.png" alt="">
                     </span>
-                    
+
                     <p>Hơn 500 luợt đánh giá 5 sao</p>
                 </div>
 
@@ -248,18 +255,18 @@ if (isset($_GET['logout'])) {
                                         <input type="hidden" name="quantity" value="1">
                                         <input class="btn buy" type="submit" name="add_cart" value="Add cart">
                                     </form>
-                                       
+
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName() ?></a>
                                     <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
-                                
+
                             </div>
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                        
+
 
                     </ul>
                 </div>
@@ -351,9 +358,9 @@ if (isset($_GET['logout'])) {
 
 
         <!-- link file footer-->
-   <!--     <link rel="stylesheet" href="../views/footer.php">    -->
+        <!--     <link rel="stylesheet" href="../views/footer.php">    -->
         <div id="container_content">
-            
+
             <div id="footer">
                 <div class="my-info">
                     <ul>
@@ -380,54 +387,51 @@ if (isset($_GET['logout'])) {
 
 
 
-<div class="test"></div>
+    <div class="test"></div>
 
 
 
 
 
 
-<script>
-
+    <script>
     const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
 
-quantityContainers.forEach(quantityContainer => {
-    const plus = quantityContainer.querySelector(".plus");
-    const minus = quantityContainer.querySelector(".minus");
-    const num = quantityContainer.querySelector(".num");
-    
-    let b = 1;
-    let a = 0;
-    
-    plus.addEventListener("click", () => {
-        a+=b;
-        if (a < 10) {
-            num.innerText = "0" + a;
-        } else {
-            num.innerText = a;
-        }
-        console.log(a);
-    });
-    
-    minus.addEventListener("click", () => {
-        if (a >= 1) {
-            a-=b;
+    quantityContainers.forEach(quantityContainer => {
+        const plus = quantityContainer.querySelector(".plus");
+        const minus = quantityContainer.querySelector(".minus");
+        const num = quantityContainer.querySelector(".num");
+
+        let b = 1;
+        let a = 0;
+
+        plus.addEventListener("click", () => {
+            a += b;
             if (a < 10) {
                 num.innerText = "0" + a;
             } else {
                 num.innerText = a;
             }
-        }
+            console.log(a);
+        });
+
+        minus.addEventListener("click", () => {
+            if (a >= 1) {
+                a -= b;
+                if (a < 10) {
+                    num.innerText = "0" + a;
+                } else {
+                    num.innerText = a;
+                }
+            }
+        });
     });
-});
+    </script>
 
-
-</script>
-
-<script src="../resource/static/js/index.js"></script>
+    <script src="../resource/static/js/index.js"></script>
 
     <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
-<script>    
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
         var mid_user_info = document.querySelector(".mid_user_info");
@@ -453,52 +457,50 @@ quantityContainers.forEach(quantityContainer => {
 
 
 
-<!-- js tính năng cuộn background theo danh mục sanr phẩm-->
-<script>
-window.addEventListener('scroll', function() {
-    var foodBoxContainer = document.getElementById('FoodBoxContainer');
-    var banner = document.getElementById("banner");
+    <!-- js tính năng cuộn background theo danh mục sanr phẩm-->
+    <script>
+    window.addEventListener('scroll', function() {
+        var foodBoxContainer = document.getElementById('FoodBoxContainer');
+        var banner = document.getElementById("banner");
 
 
-    var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
-    var windowHeight = window.innerHeight;
+        var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
 
-    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
-    if (foodBoxContainerRect.bottom <= windowHeight) {
-        banner.style.position = 'absolute';
-    } else {
-        banner.style.position = ''; // Trả về giá trị mặc định của position
+        // Khi phần tử FoodBoxContainer được kéo đến cuối trang
+        if (foodBoxContainerRect.bottom <= windowHeight) {
+            banner.style.position = 'absolute';
+        } else {
+            banner.style.position = ''; // Trả về giá trị mặc định của position
+        }
+    });
+    </script>
+
+
+    <!-- js hiển thị phần con của menu -->
+    <script>
+    function showFoodbox(foodType) {
+        var foodBoxes = document.getElementsByClassName('product');
+
+        // Ẩn tất cả các box trước khi hiển thị box mới
+        for (var i = 0; i < foodBoxes.length; i++) {
+            foodBoxes[i].style.display = 'none';
+        }
+
+
+        // Hiển thị box tương ứng với loại thức ăn
+        var selectedFoodBox = document.getElementById(foodType);
+        if (selectedFoodBox) {
+            selectedFoodBox.style.display = 'block';
+
+        } else {
+            console.log("Không tìm thấy box với id: " + foodType);
+        }
     }
-});
-
-
-</script>
-
-
- <!-- js hiển thị phần con của menu -->
-            <script>
-                function showFoodbox(foodType) {
-                var foodBoxes = document.getElementsByClassName('product');
-                
-                // Ẩn tất cả các box trước khi hiển thị box mới
-                for (var i = 0; i < foodBoxes.length; i++) {
-                    foodBoxes[i].style.display = 'none';
-                }
-
-                
-                // Hiển thị box tương ứng với loại thức ăn
-                var selectedFoodBox = document.getElementById(foodType);
-                if (selectedFoodBox) {
-                    selectedFoodBox.style.display = 'block';
-                    
-                } else {
-                    console.log("Không tìm thấy box với id: " + foodType);
-                }
-                }
-                window.onload = function() {
-                    showFoodbox('mon_nuoc'); 
-                };
-            </script>
+    window.onload = function() {
+        showFoodbox('mon_nuoc');
+    };
+    </script>
 
 
 
@@ -506,30 +508,29 @@ window.addEventListener('scroll', function() {
     <!-- js hiển thị phần chức nang cuộn cho header -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if( $(this).scrollTop()) {
-                    $('header').addClass('sticky');
-                }else{
-                    $('header').removeClass('sticky');
-                }
-            });
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop()) {
+                $('header').addClass('sticky');
+            } else {
+                $('header').removeClass('sticky');
+            }
         });
+    });
     </script>
 
-<!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
+    <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
     <script>
-       
-        function toggleOffcanvas() {
-            var offcanvas = document.getElementById("offcanvasExample");
-            offcanvas.classList.toggle("active");
-        }
+    function toggleOffcanvas() {
+        var offcanvas = document.getElementById("offcanvasExample");
+        offcanvas.classList.toggle("active");
+    }
 
-        function toggleDropdown() {
-            var dropdownMenu = document.getElementById("dropdownMenu");
-            dropdownMenu.classList.toggle("active");
-            dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
-        }
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("active");
+        dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
+    }
     </script>
 
 
