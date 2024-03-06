@@ -4,11 +4,14 @@ class CartItem {
     private $product_id;
     private $quantity;
 
+    private $cart_id;
+
     // Constructor
-    public function __construct($id, $product_id, $quantity) {
+    public function __construct($id, $product_id, $quantity, $cart_id) {
         $this->id = $id;
         $this->product_id = $product_id;
         $this->quantity = $quantity;
+        $this->cart_id=$cart_id;
     }
 
     // Getters
@@ -23,6 +26,10 @@ class CartItem {
     public function getQuantity() {
         return $this->quantity;
     }
+    public function getCart_id() {
+        return $this->cart_id;
+    }
+    
 
     // Setters
     public function setId($id) {
@@ -35,5 +42,8 @@ class CartItem {
 
     public function setQuantity($quantity) {
         $this->quantity = $quantity;
+    }
+    public function setCart_id($cart_id) {
+        $this->cart_id = $cart_id;
     }
 }

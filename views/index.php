@@ -1,16 +1,33 @@
 <?require_once'../controllers/productController.php';
+require '../services/CartService.php';
+require '../services/cartItemService.php';
 //require_once '../config/init.php';
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
 
+    $productService = new ProductService();
+
     require '../services/userService.php';
     $userService = new UserService();
+    $sessionData = $userService->getSession();
 
-    require '../controllers/cartShoppingController.php';
-    $cartController = new CartShoppingController();
-    $cartContent = $cartController->getProductToForm();
 
+    if(!empty($sessionData)){
+
+    
+    $userId=$sessionData['id'];
+            
+    
+    $cartService= new CartService();
+    $cartInfor=$cartService->getCartByUserId($userId);
+
+
+  
+    $cartItemService = new CartItemService();
+    $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
+    $totalPrice=$cartItemService->getTotalAmountInCart($cartInfor->getId());
+    }
 ?>
 
 
@@ -24,7 +41,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
     <link rel="stylesheet" href="../resource/static/css/cart.css">
-  
+
     <title>WEFOOD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,22 +60,24 @@
                 <a href="" class="logo">WEFOOD</a>
                 <nav>
                     <ul id="main-menu">
-                        <li id = "milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                        <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
                         <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
                         <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
                         <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
                     </ul>
                 </nav>
-                
+
                 <?
-                    $sessionData = $userService->getSession();
-                    if (!empty($sessionData['username']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
+                    
+                    if (!empty($sessionData['name']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
                         // Người dùng đã đăng nhập                      
                         echo ' 
                             <!-- Nút kích hoạt Offcanvas -->                   
-                            <button class="btn btn-primary" type="button" onclick="toggleOffcanvas()">
+                            <button class="btn btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
+                            style="background: none; border:none;"
+                            >
                                 <img id="cart_icon" src="../resource/static/img/shopping-cart.png">
-                                <span>0</span>
+                                <span>'.$cartItemService->getQuantityWithCartId($cartInfor->getId()).'</span>
                             </button>
 
                             <!-- Offcanvas -->
@@ -68,36 +87,30 @@
                                 
                                 <div class="list_cart">';
                                     // Hiển thị các sản phẩm trong giỏ hàng
-                                    if (!empty($cartContent)) {
-                                        foreach ($cartContent as $item) {
+                                    if (!empty($cartItems)) {
+                                        foreach ($cartItems as $cartItem) {
                                             echo'
                                                 <div class="cart_item">
-                                                    <img src="../resource/static/img/12.jpg" alt="">
-                                                    <div class="cart_name">bun bo</div>   
-                                                    
+                                                    <img src="'.$productService->getProductById($cartItem->getProductId())->getImage().'" alt="">
+                                                    <div class="cart_name">'.$productService->getProductById($cartItem->getProductId())->getName().'</div>   
                                                     <div class="mid_quan_pri"> 
                                                         <div class="quantity"> 
-                                                            <span>2</span>                                                     
+                                                            <span>'.$cartItem->getQuantity().'</span>                                                     
                                                             <span> x </span>
                                                         </div>
-                                                        <div class="totalPrice">5000</div>
+                                                        <div class="totalPrice">'.$productService->getProductById($cartItem->getProductId())->getPrice() * $cartItem->getQuantity().'</div>
                                                     </div>           
-                                                    <div class="clear_item">X</div>
+                                                    <form class="input-from" action="../controllers/cartItemController.php" method="post"
+                                                    enctype="multipart/form-data">
+                                                    <input type="submit" class="clear_item" type="submit" value="x"
+                                        name="submit">
+                                                    
+                                                    <input type="hidden"  name="id" value="'.$cartItem->getId().'">
+
+                                                    </form>
                                                 </div>
 
-                                                <div class="cart_item">
-                                                    <img src="../resource/static/img/12.jpg" alt="">
-                                                    <div class="cart_name">bun bo</div>   
-                                                    
-                                                    <div class="mid_quan_pri"> 
-                                                        <div class="quantity"> 
-                                                            <span>2</span>                                                     
-                                                            <span> x </span>
-                                                        </div>
-                                                        <div class="totalPrice">5000</div>
-                                                    </div>           
-                                                    <div class="clear_item">X</div>
-                                                </div>
+                                                
                                             ';
 
                                             // echo '<div class="cart_item">
@@ -119,7 +132,7 @@
                                 <div class="checkout">
                                     <div class="total">
                                         <p>Thành tiền :</p>
-                                        <div class="sub_total">180.000</div>                
+                                        <div class="sub_total">'.$totalPrice.'</div>                
                                     </div>
                                     <div class="btn_payment">
                                         <button class="view_cart"> view cart </button>
@@ -170,14 +183,14 @@ if (isset($_GET['logout'])) {
                 ?>
 
         </header>
-        
+
         <div class="content">
-            
+
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng </h2>
                 <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
                 <button class="btn_address">ĐỔI</button>
-                <button class="btn_address">Mặc định</button>               
+                <button class="btn_address">Mặc định</button>
             </div>
             <!--muc tim kiem cac san pham-->
             <div class="search_info">
@@ -210,7 +223,7 @@ if (isset($_GET['logout'])) {
                     <span>
                         <img src="../resource/static/img/star.png" alt="">
                     </span>
-                    
+
                     <p>Hơn 500 luợt đánh giá 5 sao</p>
                 </div>
 
@@ -226,6 +239,7 @@ if (isset($_GET['logout'])) {
                 <!-- traf sua -->
                 <div class="product" id="mon_nuoc">
                     <ul class="milktea">
+
                         <?php foreach ($products as $product): ?>
                         <?php if ($product->getCategoryId() == 1): ?>
                         <li>
@@ -235,31 +249,32 @@ if (isset($_GET['logout'])) {
                                         <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
-                                    <div class="btn cart quantity">
-                                        <span class="minus">-</span>
-                                        <span class="num">00</span>
-                                        <span class="plus">+</span>
-                                    </div>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
-                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
-                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
+                                    <?php if(!empty($sessionData)) { ?>
+                                    <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
+                                        <div class="btn cart quantity">
+                                            
+                                            <span class="minus">-</span>
+                                            <input name="input_quantity" value="01" class="num"
+                                                style="width: 30px; background:none; border:none" readonly>
+                                            <span class="plus">+</span>
+                                            
+                                        </div>
+                                        <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
+                                        <input type="hidden" id="id1" name="id1" value="">
+                                        <button class="btn buy" type="button" name="add_cart" value="Add cart"
+                                            onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
                                     </form>
-                                       
+                                    <?php } ?>
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName() ?></a>
                                     <div class="product-price"><?= $product->getPrice() ?></div>
                                 </div>
-                                
                             </div>
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                        
+
 
                     </ul>
                 </div>
@@ -384,9 +399,9 @@ if (isset($_GET['logout'])) {
 
 
         <!-- link file footer-->
-   <!--     <link rel="stylesheet" href="../views/footer.php">    -->
+        <!--     <link rel="stylesheet" href="../views/footer.php">    -->
         <div id="container_content">
-            
+
             <div id="footer">
                 <div class="my-info">
                     <ul>
@@ -413,54 +428,55 @@ if (isset($_GET['logout'])) {
 
 
 
-<div class="test"></div>
+    <div class="test"></div>
 
 
 
 
+    <script>
+    function getid(productid) {
+        document.getElementById('id1').value = productid;
+        document.getElementById('cartForm').submit();
+    }
+    </script>
+    <script>
+    function getcartid(cart_id) {
+        document.getElementById('cart_id').value = cart_id;
+    }
+    </script>
 
-
-<script>
-
+    <script>
     const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
 
-quantityContainers.forEach(quantityContainer => {
-    const plus = quantityContainer.querySelector(".plus");
-    const minus = quantityContainer.querySelector(".minus");
-    const num = quantityContainer.querySelector(".num");
-    
-    let b = 1;
-    let a = 0;
-    
-    plus.addEventListener("click", () => {
-        a+=b;
-        if (a < 10) {
-            num.innerText = "0" + a;
-        } else {
-            num.innerText = a;
-        }
-        console.log(a);
-    });
-    
-    minus.addEventListener("click", () => {
-        if (a >= 1) {
-            a-=b;
-            if (a < 10) {
-                num.innerText = "0" + a;
-            } else {
-                num.innerText = a;
+    quantityContainers.forEach(quantityContainer => {
+        const plus = quantityContainer.querySelector(".plus");
+        const minus = quantityContainer.querySelector(".minus");
+        const input = quantityContainer.querySelector(".num");
+
+        let val = parseInt(input.value);
+
+        plus.addEventListener("click", () => {
+            val++;
+            updateValue();
+        });
+
+        minus.addEventListener("click", () => {
+            if (val > 0) {
+                val--;
+                updateValue();
             }
+        });
+
+        function updateValue() {
+            input.value = val;
         }
     });
-});
+    </script>
 
-
-</script>
-
-<script src="../resource/static/js/index.js"></script>
+    <script src="../resource/static/js/index.js"></script>
 
     <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
-<script>    
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
         var mid_user_info = document.querySelector(".mid_user_info");
@@ -486,52 +502,50 @@ quantityContainers.forEach(quantityContainer => {
 
 
 
-<!-- js tính năng cuộn background theo danh mục sanr phẩm-->
-<script>
-window.addEventListener('scroll', function() {
-    var foodBoxContainer = document.getElementById('FoodBoxContainer');
-    var banner = document.getElementById("banner");
+    <!-- js tính năng cuộn background theo danh mục sanr phẩm-->
+    <script>
+    window.addEventListener('scroll', function() {
+        var foodBoxContainer = document.getElementById('FoodBoxContainer');
+        var banner = document.getElementById("banner");
 
 
-    var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
-    var windowHeight = window.innerHeight;
+        var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
 
-    // Khi phần tử FoodBoxContainer được kéo đến cuối trang
-    if (foodBoxContainerRect.bottom <= windowHeight) {
-        banner.style.position = 'absolute';
-    } else {
-        banner.style.position = ''; // Trả về giá trị mặc định của position
+        // Khi phần tử FoodBoxContainer được kéo đến cuối trang
+        if (foodBoxContainerRect.bottom <= windowHeight) {
+            banner.style.position = 'absolute';
+        } else {
+            banner.style.position = ''; // Trả về giá trị mặc định của position
+        }
+    });
+    </script>
+
+
+    <!-- js hiển thị phần con của menu -->
+    <script>
+    function showFoodbox(foodType) {
+        var foodBoxes = document.getElementsByClassName('product');
+
+        // Ẩn tất cả các box trước khi hiển thị box mới
+        for (var i = 0; i < foodBoxes.length; i++) {
+            foodBoxes[i].style.display = 'none';
+        }
+
+
+        // Hiển thị box tương ứng với loại thức ăn
+        var selectedFoodBox = document.getElementById(foodType);
+        if (selectedFoodBox) {
+            selectedFoodBox.style.display = 'block';
+
+        } else {
+            console.log("Không tìm thấy box với id: " + foodType);
+        }
     }
-});
-
-
-</script>
-
-
- <!-- js hiển thị phần con của menu -->
-            <script>
-                function showFoodbox(foodType) {
-                var foodBoxes = document.getElementsByClassName('product');
-                
-                // Ẩn tất cả các box trước khi hiển thị box mới
-                for (var i = 0; i < foodBoxes.length; i++) {
-                    foodBoxes[i].style.display = 'none';
-                }
-
-                
-                // Hiển thị box tương ứng với loại thức ăn
-                var selectedFoodBox = document.getElementById(foodType);
-                if (selectedFoodBox) {
-                    selectedFoodBox.style.display = 'block';
-                    
-                } else {
-                    console.log("Không tìm thấy box với id: " + foodType);
-                }
-                }
-                window.onload = function() {
-                    showFoodbox('mon_nuoc'); 
-                };
-            </script>
+    window.onload = function() {
+        showFoodbox('mon_nuoc');
+    };
+    </script>
 
 
 
@@ -539,30 +553,29 @@ window.addEventListener('scroll', function() {
     <!-- js hiển thị phần chức nang cuộn cho header -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if( $(this).scrollTop()) {
-                    $('header').addClass('sticky');
-                }else{
-                    $('header').removeClass('sticky');
-                }
-            });
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop()) {
+                $('header').addClass('sticky');
+            } else {
+                $('header').removeClass('sticky');
+            }
         });
+    });
     </script>
 
-<!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
+    <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
     <script>
-       
-        function toggleOffcanvas() {
-            var offcanvas = document.getElementById("offcanvasExample");
-            offcanvas.classList.toggle("active");
-        }
+    function toggleOffcanvas() {
+        var offcanvas = document.getElementById("offcanvasExample");
+        offcanvas.classList.toggle("active");
+    }
 
-        function toggleDropdown() {
-            var dropdownMenu = document.getElementById("dropdownMenu");
-            dropdownMenu.classList.toggle("active");
-            dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
-        }
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("active");
+        dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
+    }
     </script>
 
 

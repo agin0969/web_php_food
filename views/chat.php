@@ -15,36 +15,92 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
-    <style>
-    :root {
-        --bs-backdrop-opacity: 0 !important;
-       
-    }
+    <link href="../resource/static/css/chat.css " rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
-    </style>
 
 </head>
 
 <body>
+    <script>
+    function scrollToBottom() {
+        var chatBody = $('#chat-container');
+        chatBody.scrollTop(chatBody[0].scrollHeight);
+    }
+    $(document).ready(function() {
+        getChatLog();
+    });
+
+    // Hàm để lấy tin nhắn từ server và cập nhật giao diện người dùng
+    function getChatLog() {
+        $.ajax({
+            url: '../controllers/userChatController.php',
+            type: 'GET',
+            success: function(data) {
+                var messages = data.split('\n');
+                var count = 0;
+                var a;
+                $('#chat-container').html('');
+                messages.forEach(function(message) {
+                    count = count + 1;
+                    $('#chat-container').append(
+                        '<button class="btn-light btn d-flex flex-column">' +
+                        '<span>- ' + message + '</span>' +
+                        '</button>');
+                    
+                });
+                if (count >= a) {
+                        scrollToBottom();
+                        a = count;
+                    }
+
+
+            },
+            complete: function() {
+                setTimeout(getChatLog, 200);
+            }
+        });
+    }
+
+    // Hàm để gửi tin nhắn lên server
+    function sendMessage() {
+        var message = $('#input-message').val(); // Corrected ID here
+        $.ajax({
+            url: '../controllers/userChatController.php',
+            type: 'POST',
+            data: {
+                message: message
+            },
+            success: function() {
+                // Gửi tin nhắn thành công, xóa nội dung ô nhập tin nhắn
+                $('#input-message').val(''); // Corrected ID here
+            }
+        });
+    }
+    </script>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Chat??
     </button>
 
     <!-- Modal -->
-    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog" style="margin-top: 50%; margin-left: 60%;">
-            <div class="modal-content">
-                <div class="modal-header">Chat with ad</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="container chat-container">
+        <div class="container chat-body " id="chat-container">
+
+        </div>
+        <form>
+            <div class="row input-chat">
+                <div class="col">
+                    <input type="text" class="form-control" id="input-message" placeholder="message!">
                 </div>
-                <div class="modal-body">
-                    ...
+                <div class="col">
+                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Send</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
+
 
 </body>
 
