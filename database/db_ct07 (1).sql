@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2024 at 01:58 AM
+-- Generation Time: Mar 06, 2024 at 05:36 PM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -32,6 +32,13 @@ CREATE TABLE `cart` (
   `user_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`) VALUES
+(1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +51,13 @@ CREATE TABLE `cartitem` (
   `quantity` int DEFAULT NULL,
   `cart_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cartitem`
+--
+
+INSERT INTO `cartitem` (`id`, `product_id`, `quantity`, `cart_id`) VALUES
+(100, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -166,7 +180,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `password`, `email`, `role_id`) VALUES
 (1, 'AdminUser', 'adminpassword', 'admin@example.com', 1),
-(2, 'RegularUser', 'userpassword', 'user@example.com', 2);
+(2, 'RegularUser', 'userpassword', 'user@example.com', 2),
+(3, 'qqqqqq', '$2y$10$vja1crmlABictnmKV4FVyOYxmMhN6f2IquL8N8zAeoJv9zMmyuiY2', 'on', 2);
 
 --
 -- Indexes for dumped tables
@@ -184,7 +199,8 @@ ALTER TABLE `cart`
 ALTER TABLE `cartitem`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cart_id` (`cart_id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `cart_id_2` (`cart_id`);
 
 --
 -- Indexes for table `category`
@@ -217,6 +233,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cartitem`
+--
+ALTER TABLE `cartitem`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
@@ -226,7 +254,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -237,7 +265,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `cartitem`
   ADD CONSTRAINT `cartitem_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
-  ADD CONSTRAINT `fk_foreign_key_cartid` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
   ADD CONSTRAINT `fk_foreign_key_productid` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
