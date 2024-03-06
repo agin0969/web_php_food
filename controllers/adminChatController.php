@@ -9,6 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-$chatLog = file_get_contents('../resource/static/chat/chatlog.txt');
-echo $chatLog;
+$chatLog = file('../resource/static/chat/chatlog.txt', FILE_IGNORE_NEW_LINES);
+
 ?>
