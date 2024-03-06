@@ -276,8 +276,19 @@ if (isset($_GET['logout'])) {
                                         <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
-                                    <button class="btn buy">Mua ngay</button>
-                                    <button class="btn cart">+</button>
+                                    <div class="btn cart quantity">
+                                        <span class="minus">-</span>
+                                        <span class="num">00</span>
+                                        <span class="plus">+</span>
+                                    </div>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
+                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
+                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
+                                    </form>
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName()?></a>
@@ -302,8 +313,19 @@ if (isset($_GET['logout'])) {
                                         <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
-                                    <button class="btn buy">Mua ngay</button>
-                                    <button class="btn cart">+</button>
+                                    <div class="btn cart quantity">
+                                        <span class="minus">-</span>
+                                        <span class="num">00</span>
+                                        <span class="plus">+</span>
+                                    </div>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
+                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
+                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
+                                    </form>
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName() ?></a>
@@ -328,8 +350,19 @@ if (isset($_GET['logout'])) {
                                         <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
                                             alt="san pham">
                                     </a>
-                                    <button class="btn buy">Mua ngay</button>
-                                    <button class="btn cart">+</button>
+                                    <div class="btn cart quantity">
+                                        <span class="minus">-</span>
+                                        <span class="num">00</span>
+                                        <span class="plus">+</span>
+                                    </div>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
+                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
+                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
+                                    </form>
                                 </div>
                                 <div class="product-info">
                                     <a href="" class="product-name"><?= $product->getName() ?></a>
