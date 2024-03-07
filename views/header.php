@@ -39,7 +39,9 @@ require_once '../config/init.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Document</title>
-
+    <link rel="stylesheet" href="../resource/static/css/style.css">
+    <link rel="stylesheet" href="../resource/static/css/cart.css">
+    
 </head>
 <body>
 <header>
@@ -170,7 +172,58 @@ if (isset($_GET['logout'])) {
                 ?>
 
         </header>
+        <script src="../resource/static/js/index.js" type="text/javascript"></script>
+        <!-- hiệu ứng tắt / bật thanh trạng thái người dùng -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var avt_users = document.getElementById("avt_users");
+        var mid_user_info = document.querySelector(".mid_user_info");
 
+        avt_users.addEventListener("click", function() {
+            if (mid_user_info.style.display == "none") {
+                mid_user_info.style.display = "block";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            } else {
+                mid_user_info.style.display = "none";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            }
+        });
+    });
+    </script>
+
+    <!-- js hiển thị phần chức nang cuộn cho header -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop()) {
+                $('header').addClass('sticky');
+            } else {
+                $('header').removeClass('sticky');
+            }
+        });
+    });
+    </script>
+
+    <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
+    <script>
+    function toggleOffcanvas() {
+        var offcanvas = document.getElementById("offcanvasExample");
+        offcanvas.classList.toggle("active");
+    }
+
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("active");
+        dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
+    }
+    </script>
         
 </body>
 </html>
