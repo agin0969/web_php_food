@@ -1,33 +1,6 @@
-<?require_once'../controllers/productController.php';
-require '../services/CartService.php';
-require '../services/cartItemService.php';
-//require_once '../config/init.php';
+<?
+require_once'../views/header.php';
 
-    $productController=new ProductController();
-    $products=$productController->getAllProduct();
-
-    $productService = new ProductService();
-
-    require '../services/userService.php';
-    $userService = new UserService();
-    $sessionData = $userService->getSession();
-
-
-    if(!empty($sessionData)){
-
-    
-    $userId=$sessionData['id'];
-            
-    
-    $cartService= new CartService();
-    $cartInfor=$cartService->getCartByUserId($userId);
-
-
-  
-    $cartItemService = new CartItemService();
-    $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
-    $totalPrice=$cartItemService->getTotalAmountInCart($cartInfor->getId());
-    }
 ?>
 
 
@@ -48,6 +21,12 @@ require '../services/cartItemService.php';
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,136 +34,9 @@ require '../services/cartItemService.php';
     <div id="wraper">
         <!--background-->
         <div id="banner"></div>
-        <header>
-            <div class="inner-header container">
-                <a href="" class="logo">WEFOOD</a>
-                <nav>
-                    <ul id="main-menu">
-                        <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
-                        <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
-                        <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
-                        <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
-                    </ul>
-                </nav>
+        <!-- <header>   </header> -->
 
-                <?
-                    
-                    if (!empty($sessionData['name']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
-                        // Người dùng đã đăng nhập                      
-                        echo ' 
-                            <!-- Nút kích hoạt Offcanvas -->                   
-                            <button class="btn btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
-                            style="background: none; border:none;"
-                            >
-                                <img id="cart_icon" src="../resource/static/img/shopping-cart.png">
-                                <span>'.$cartItemService->getQuantityWithCartId($cartInfor->getId()).'</span>
-                            </button>
-
-                            <!-- Offcanvas -->
-                            <div class="offcanvas" id="offcanvasExample">
-                                <span class="close-btn" onclick="toggleOffcanvas()">X</span>
-                                <h1 class="title">Shopping Cart</h1>
-                                
-                                <div class="list_cart">';
-                                    // Hiển thị các sản phẩm trong giỏ hàng
-                                    if (!empty($cartItems)) {
-                                        foreach ($cartItems as $cartItem) {
-                                            echo'
-                                                <div class="cart_item">
-                                                    <img src="'.$productService->getProductById($cartItem->getProductId())->getImage().'" alt="">
-                                                    <div class="cart_name">'.$productService->getProductById($cartItem->getProductId())->getName().'</div>   
-                                                    <div class="mid_quan_pri"> 
-                                                        <div class="quantity"> 
-                                                            <span>'.$cartItem->getQuantity().'</span>                                                     
-                                                            <span> x </span>
-                                                        </div>
-                                                        <div class="totalPrice">'.$productService->getProductById($cartItem->getProductId())->getPrice() * $cartItem->getQuantity().'</div>
-                                                    </div>           
-                                                    <form class="input-from" action="../controllers/cartItemController.php" method="post"
-                                                    enctype="multipart/form-data">
-                                                    <input type="submit" class="clear_item" type="submit" value="x"
-                                        name="submit">
-                                                    
-                                                    <input type="hidden"  name="id" value="'.$cartItem->getId().'">
-
-                                                    </form>
-                                                </div>
-
-                                                
-                                            ';
-
-                                            // echo '<div class="cart_item">
-                                            //         <img src="' . $item['product_image'] . '" alt="">
-                                            //         <div class="cart_name">' . $item['product_name'] . '</div>
-                                            //         <div class="totalPrice">' . $item['product_price'] . '</div>
-                                            //         <div class="quantity">                                                      
-                                            //             <span>' . $item['quantity'] . '</span>
-                                            //         </div>
-                                            //         <div class="clear_item">X</div>
-                                            //     </div>';
-                                        }
-                                    } else {
-                                        echo'<h1 class="titlee">them hang vao gio ngay</h1>';
-                                    }
-                                            echo '    
-                                         
-                                </div>
-                                <div class="checkout">
-                                    <div class="total">
-                                        <p>Thành tiền :</p>
-                                        <div class="sub_total">'.$totalPrice.'</div>                
-                                    </div>
-                                    <div class="btn_payment">
-                                        <button class="view_cart"> view cart </button>
-                                        <button class="Payment"> Thanh toán </button>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
-        
-                            <button id="avt_users">logo</button>
-                            <div class="user_info">
-                                <div class="mid_user_info">
-                                    <ul class="users_info">
-                                        <li>
-                                            <ul class="logo_name">
-                                                <li id="logo_info"><a href="">logo</a></li>
-                                                
-                                                <li id="name_info"><a href="">'.  $sessionData['name'] .'</a></li>
-                                            </ul>
-                                        </li>
-                                        
-                                        <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
-                                        <li><a href="">Profile</a></li>
-                                        <li><a href="?logout=true">Đăng xuất</a></li>
-                                    </ul>
-                                </div>   
-                            </div>
-                        ';
-                    } else {
-                        // Người dùng chưa đăng nhập
-                        echo '
-                            <a href="../views/login.php" id="lg_lo">
-                                <button class="login_signup">Đăng nhập/Đăng ký</button>
-                            </a>'
-                        ;
-                    }
-
-                    // Kiểm tra nếu người dùng chọn đăng xuất
-if (isset($_GET['logout'])) {
-    $userService->clearSession();
-    header('Location: ../views/index.php');
-    exit();
-}
-
-                ?>
-
-        </header>
-
-        <div class="content">
+        <div class="content" style="height: 110vh !important;" >
 
             <div class="address">
                 <h2>Thay đổi địa chỉ giao hàng </h2>
@@ -235,7 +87,7 @@ if (isset($_GET['logout'])) {
 
             <!--cac san pham cua mot menu-->
             <div id="FoodBoxContainer">
-
+                <div class="mid_foodbox" style="overflow-y: auto; height : 510px">
                 <!-- traf sua -->
                 <div class="product" id="mon_nuoc">
                     <ul class="milktea">
@@ -277,6 +129,7 @@ if (isset($_GET['logout'])) {
 
 
                     </ul>
+                </div>
                 </div>
                 <!-- anư vặt -->
                 <div class="product" id="mon_kho">
