@@ -157,8 +157,8 @@ require '../services/cartItemService.php';
                                             </ul>
                                         </li>
                                         
-                                        <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
-                                        <li><a href="">Profile</a></li>
+                                         <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
+                                       <li><a href="userProfile.php">Profile</a></li>
                                         <li><a href="?logout=true">Đăng xuất</a></li>
                                     </ul>
                                 </div>   

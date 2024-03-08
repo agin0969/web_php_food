@@ -1,26 +1,43 @@
 <?php
-require_once '../services/userService.php';
+require '../services/userService.php';
 
 $userService = new UserService();
+$sessionData = $userService->getSession();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Lấy thông tin từ biểu mẫu
-    $id = $_POST['id1'];
-    $name = $_POST['name'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $role_id = $_POST['role_id'];
+if (!empty($sessionData)) {
+    $userId = $sessionData['id'];
 
-    if($userService->changeUserInfor($id,$name,$password,$email,$role_id)){
-        header("Location: ../views/adminWithUser.php");
-         exit;
-     }  else {
-         header("Location: ../views/404.php");
-         exit;
-     }
-} else {
-    // Nếu không phải là yêu cầu POST, có thể xử lý theo cách khác tùy thuộc vào yêu cầu của bạn.
-    // Ví dụ: Chuyển hướng người dùng hoặc hiển thị trang lỗi.
-    echo "Yêu cầu không hợp lệ.";
+    // Lấy thông tin người dùng sau khi đã cập nhật (hoặc không)
+    $user = $userService->getUserById($userId);
+
+    if ($user) {
+
+        $userName = $user->getUsername();
+        $email = $user->getEmail();
+        $password = $user->getPassword();
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'  ) {
+        $id = $_POST['id1'];
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $role_id = $_POST['role_id'];
+
+        if ($userService->changeUserInfor($id, $name, $password, $email, $role_id)) {
+            if ($role_id == 1) {
+                header("Location: ../views/adminWithUser.php");
+                exit;
+            } elseif ($role_id == 2) {
+                header("Location: ../views/index.php");
+                exit;
+            }
+
+        } else {
+            // Có lỗi xảy ra, chuyển hướng đến trang lỗi
+            header("Location: ../views/404.php");
+            exit;
+        }
+    }
 }
 ?>

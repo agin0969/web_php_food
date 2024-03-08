@@ -1,3 +1,34 @@
+<?require_once'../controllers/productController.php';
+require '../services/CartService.php';
+require '../services/cartItemService.php';
+//require_once '../config/init.php';
+
+    $productController=new ProductController();
+    $products=$productController->getAllProduct();
+
+    $productService = new ProductService();
+
+    require '../services/userService.php';
+    $userService = new UserService();
+    $sessionData = $userService->getSession();
+
+
+    if(!empty($sessionData)){
+
+    
+    $userId=$sessionData['id'];
+            
+    
+    $cartService= new CartService();
+    $cartInfor=$cartService->getCartByUserId($userId);
+
+
+  
+    $cartItemService = new CartItemService();
+    $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
+    $totalPrice=$cartItemService->getTotalAmountInCart($cartInfor->getId());
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

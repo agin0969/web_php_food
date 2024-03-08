@@ -95,7 +95,9 @@ class UserService{
     
             return true;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            // Log the error or throw a more meaningful exception
+            error_log("Error in changeUserInfor: " . $e->getMessage());
+            throw new RuntimeException("An error occurred while updating user information.");
         }
     }
     
