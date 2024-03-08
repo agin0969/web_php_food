@@ -398,12 +398,7 @@
 
     <?require_once'../resource/static/js/index.js'?>
 
-<<<<<<< HEAD
-    <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
-   
-=======
     
->>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
 
 
 
@@ -456,13 +451,7 @@
 
 
 
-<<<<<<< HEAD
-
-
- 
-=======
     
->>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
 
 
 </body>
