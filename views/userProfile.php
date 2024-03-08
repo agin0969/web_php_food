@@ -123,15 +123,16 @@ if (!empty($sessionData)) {
 										</td>
 									</tr>
 									<tr id="TR_87">
-										<td id="TD_88">
-											<label id="LABEL_89">
-											</label>
-										</td>
-										<td id="TD_90">
-        									<button type="submit">Lưu</button>
-												
-										</td>
-									</tr>
+									<td id="TD_88">
+										<label id="LABEL_89">
+										</label>
+									</td>
+									<td id="TD_90">
+										<button type="submit" id="BUTTON_91">
+											Lưu
+										</button>
+									</td>
+								</tr>
 								</table>
 							</form>
 						</div>
