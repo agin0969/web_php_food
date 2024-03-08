@@ -42,8 +42,14 @@ require_once '../config/init.php';
     <link rel="stylesheet" href="../resource/static/css/style.css">
     <link rel="stylesheet" href="../resource/static/css/cart.css">
     <title>Document</title>
+<<<<<<< HEAD
 
 
+=======
+    <link rel="stylesheet" href="../resource/static/css/style.css">
+    <link rel="stylesheet" href="../resource/static/css/cart.css">
+    
+>>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
 </head>
 <body>
 <header>
@@ -174,6 +180,7 @@ if (isset($_GET['logout'])) {
                 ?>
 
         </header>
+<<<<<<< HEAD
         <script>
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
@@ -223,6 +230,10 @@ if (isset($_GET['logout'])) {
         dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
     }
     </script>
+=======
+        <script src="../resource/static/js/index.js" type="text/javascript"></script>
+       
+>>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
         
 </body>
 </html>

@@ -1,7 +1,4 @@
-<?
-require_once'../views/header.php';
 
-?>
 
 
 
@@ -34,221 +31,242 @@ require_once'../views/header.php';
     <div id="wraper">
         <!--background-->
         <div id="banner"></div>
-        <!-- <header>   </header> -->
-
+<!-- <header>   </header> -->
+        <?
+        require_once'../views/header.php';
+        ?>
         <div class="content" style="height: 110vh !important;" >
 
-            <div class="address">
-                <h2>Thay đổi địa chỉ giao hàng </h2>
-                <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
-                <button class="btn_address">ĐỔI</button>
-                <button class="btn_address">Mặc định</button>
+            
+            <div class="box_content_left">
+                <!--muc tim kiem cac san pham-->
+                <div class="search_info">
+                    <h2>Đặt đồ ăn nhanh chóng ... </h2>
+                    <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
+                    <button class="btn_search">Tìm</button>
+                </div>
+    
+                <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
+                <div class="box-info-web">
+                    <div class="box-info-web-1">
+                        <p id="p1">Siêu Ưu Đãi</p>
+                        <p id="p2"> 50 %</p>
+                        <link rel="stylesheet" href="xem thêm" class="">
+                    </div>
+    
+                    <div class="box-info-web-2">
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+                        <span>
+                            <img src="../resource/static/img/star.png" alt="">
+                        </span>
+    
+                        <p>Hơn 500 luợt đánh giá 5 sao</p>
+                    </div>
+    
+                    <div class="box-info-web-3">
+                        <p id="p1">Phản Hồi</p>
+                        <p id="p2">Hơn 600 phản hồi tích cực!</p>
+                    </div>
+                </div>
+
             </div>
-            <!--muc tim kiem cac san pham-->
-            <div class="search_info">
-                <h2>Đặt đồ ăn nhanh chóng ... </h2>
-                <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
-                <button class="btn_search">Tìm</button>
-            </div>
-
-            <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
-            <div class="box-info-web">
-                <div class="box-info-web-1">
-                    <p id="p1">Siêu Ưu Đãi</p>
-                    <p id="p2"> 50 %</p>
-                    <link rel="stylesheet" href="xem thêm" class="">
+            <div class="box_content_right">
+                <!-- địa chỉ giao hàng -->
+                <div class="address">
+                    <h2>Thay đổi địa chỉ giao hàng </h2>
+                    <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
+                    <button class="btn_address">ĐỔI</button>
+                    <button class="btn_address">Mặc định</button>
                 </div>
 
-                <div class="box-info-web-2">
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-
-                    <p>Hơn 500 luợt đánh giá 5 sao</p>
-                </div>
-
-                <div class="box-info-web-3">
-                    <p id="p1">Phản Hồi</p>
-                    <p id="p2">Hơn 600 phản hồi tích cực!</p>
-                </div>
-            </div>
-
-            <!--cac san pham cua mot menu-->
-            <div id="FoodBoxContainer">
-                <div class="mid_foodbox" style="overflow-y: auto; height : 510px">
-                <!-- traf sua -->
-                <div class="product" id="mon_nuoc">
-                    <ul class="milktea">
-
-                        <?php foreach ($products as $product): ?>
-                        <?php if ($product->getCategoryId() == 1): ?>
-                        <li>
-                            <div class="item">
-                                <div class="product-top">
-                                    <a href="" class="thump">
-                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
-                                            alt="san pham">
-                                    </a>
-                                    <?php if(!empty($sessionData)) { ?>
-                                    <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
-                                        <div class="btn cart quantity">
-                                            
-                                            <span class="minus">-</span>
-                                            <input name="input_quantity" value="01" class="num"
-                                                style="width: 30px; background:none; border:none" readonly>
-                                            <span class="plus">+</span>
-                                            
-                                        </div>
-                                        <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
-                                        <input type="hidden" id="id1" name="id1" value="">
-                                        <button class="btn buy" type="button" name="add_cart" value="Add cart"
-                                            onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
-                                    </form>
-                                    <?php } ?>
-                                </div>
-                                <div class="product-info">
-                                    <a href="" class="product-name"><?= $product->getName() ?></a>
-                                    <div class="product-price"><?= $product->getPrice() ?></div>
-                                </div>
-                            </div>
-                        </li>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-
-
-                    </ul>
-                </div>
-                </div>
-                <!-- anư vặt -->
-                <div class="product" id="mon_kho">
-
-                    <ul class="milktea">
-                        <?php foreach ($products as $product): ?>
-                        <?php if ($product->getCategoryId() == 2): ?>
-                        <li>
-                            <div class="item">
-                                <div class="product-top">
-                                    <a href="" class="thump">
-                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
-                                            alt="san pham">
-                                    </a>
-                                    <div class="btn cart quantity">
-                                        <span class="minus">-</span>
-                                        <span class="num">00</span>
-                                        <span class="plus">+</span>
+                <!--cac san pham cua mot menu-->
+                <div id="FoodBoxContainer">
+                    <div class="mid_foodbox" style="overflow-y: auto; height : 510px">
+                    <!-- traf sua -->
+                    <div class="product" id="mon_nuoc">
+                        <ul class="milktea">
+    
+                            <?php foreach ($products as $product): ?>
+                            <?php if ($product->getCategoryId() == 1): ?>
+                            <li>
+                                <div class="item">
+                                    <div class="product-top">
+                                        <a href="" class="thump">
+                                            <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                                alt="san pham">
+                                        </a>
+                                        <?php if(!empty($sessionData)) { ?>
+                                        <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
+                                            <div class="btn cart quantity">
+                                                
+                                                <span class="minus">-</span>
+                                                <input name="input_quantity" value="01" class="num"
+                                                    style="width: 30px; background:none; border:none" readonly>
+                                                <span class="plus">+</span>
+                                                
+                                            </div>
+                                            <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
+                                            <input type="hidden" id="id1" name="id1" value="">
+                                            <button class="btn buy" type="button" name="add_cart" value="Add cart"
+                                                onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                        </form>
+                                        <?php } ?>
                                     </div>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
-                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
-                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
-                                    </form>
-                                </div>
-                                <div class="product-info">
-                                    <a href="" class="product-name"><?= $product->getName()?></a>
-                                    <div class="product-price"><?= $product->getPrice() ?></div>
-                                </div>
-                            </div>
-                        </li>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-                <!-- đô uống -->
-                <div class="product" id="thuc_uong">
-
-                    <ul class="milktea">
-                        <?php foreach ($products as $product): ?>
-                        <?php if ($product->getCategoryId() == 3): ?>
-                        <li>
-                            <div class="item">
-                                <div class="product-top">
-                                    <a href="" class="thump">
-                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
-                                            alt="san pham">
-                                    </a>
-                                    <div class="btn cart quantity">
-                                        <span class="minus">-</span>
-                                        <span class="num">00</span>
-                                        <span class="plus">+</span>
+                                    <div class="product-info">
+                                        <a href="" class="product-name"><?= $product->getName() ?></a>
+                                        <div class="product-price"><?= $product->getPrice() ?></div>
                                     </div>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
-                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
-                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
-                                    </form>
                                 </div>
-                                <div class="product-info">
-                                    <a href="" class="product-name"><?= $product->getName() ?></a>
-                                    <div class="product-price"><?= $product->getPrice() ?></div>
-                                </div>
-                            </div>
-                        </li>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-                <!-- ăn trưa -->
-                <div class="product" id="trang_mieng">
-
-                    <ul class="milktea">
-                        <?php foreach ($products as $product): ?>
-                        <?php if ($product->getCategoryId() == 1): ?>
-                        <li>
-                            <div class="item">
-                                <div class="product-top">
-                                    <a href="" class="thump">
-                                        <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
-                                            alt="san pham">
-                                    </a>
-                                    <div class="btn cart quantity">
-                                        <span class="minus">-</span>
-                                        <span class="num">00</span>
-                                        <span class="plus">+</span>
+                            </li>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+    
+    
+                        </ul>
+                    </div>
+                   
+                    <!-- anư vặt -->
+                    <div class="product" id="mon_kho">
+    
+                        <ul class="milktea">
+                            <?php foreach ($products as $product): ?>
+                            <?php if ($product->getCategoryId() == 2): ?>
+                            <li>
+                                <div class="item">
+                                    <div class="product-top">
+                                        <a href="" class="thump">
+                                            <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                                alt="san pham">
+                                        </a>
+                                        <?php if(!empty($sessionData)) { ?>
+                                        <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
+                                            <div class="btn cart quantity">
+                                                
+                                                <span class="minus">-</span>
+                                                <input name="input_quantity" value="01" class="num"
+                                                    style="width: 30px; background:none; border:none" readonly>
+                                                <span class="plus">+</span>
+                                                
+                                            </div>
+                                            <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
+                                            <input type="hidden" id="id1" name="id1" value="">
+                                            <button class="btn buy" type="button" name="add_cart" value="Add cart"
+                                                onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                        </form>
+                                        <?php } ?>
                                     </div>
-                                    <form action="" method="post">
-                                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                                        <input type="hidden" name="product_name" value="<?= $product->getName() ?>">
-                                        <input type="hidden" name="product_price" value="<?= $product->getPrice() ?>">
-                                        <input type="hidden" name="product_image" value=".,/img/12.jpg">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <input class="btn buy" type="submit" name="add_cart" value="Add cart">
-                                    </form>
+                                    <div class="product-info">
+                                        <a href="" class="product-name"><?= $product->getName()?></a>
+                                        <div class="product-price"><?= $product->getPrice() ?></div>
+                                    </div>
                                 </div>
-                                <div class="product-info">
-                                    <a href="" class="product-name"><?= $product->getName() ?></a>
-                                    <div class="product-price"><?= $product->getPrice() ?></div>
+                            </li>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <!-- đô uống -->
+                    <div class="product" id="thuc_uong">
+    
+                        <ul class="milktea">
+                            <?php foreach ($products as $product): ?>
+                            <?php if ($product->getCategoryId() == 3): ?>
+                            <li>
+                                <div class="item">
+                                    <div class="product-top">
+                                        <a href="" class="thump">
+                                            <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                                alt="san pham">
+                                        </a>
+                                        <?php if(!empty($sessionData)) { ?>
+                                        <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
+                                            <div class="btn cart quantity">
+                                                
+                                                <span class="minus">-</span>
+                                                <input name="input_quantity" value="01" class="num"
+                                                    style="width: 30px; background:none; border:none" readonly>
+                                                <span class="plus">+</span>
+                                                
+                                            </div>
+                                            <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
+                                            <input type="hidden" id="id1" name="id1" value="">
+                                            <button class="btn buy" type="button" name="add_cart" value="Add cart"
+                                                onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                        </form>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="" class="product-name"><?= $product->getName() ?></a>
+                                        <div class="product-price"><?= $product->getPrice() ?></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
+                            </li>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <!-- ăn trưa -->
+                    <div class="product" id="trang_mieng">
+    
+                        <ul class="milktea">
+                            <?php foreach ($products as $product): ?>
+                            <?php if ($product->getCategoryId() == 1): ?>
+                            <li>
+                                <div class="item">
+                                    <div class="product-top">
+                                        <a href="" class="thump">
+                                            <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                                alt="san pham">
+                                        </a>
+                                        <?php if(!empty($sessionData)) { ?>
+                                        <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="post">
+                                            <div class="btn cart quantity">
+                                                
+                                                <span class="minus">-</span>
+                                                <input name="input_quantity" value="01" class="num"
+                                                    style="width: 30px; background:none; border:none" readonly>
+                                                <span class="plus">+</span>
+                                                
+                                            </div>
+                                            <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
+                                            <input type="hidden" id="id1" name="id1" value="">
+                                            <button class="btn buy" type="button" name="add_cart" value="Add cart"
+                                                onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                        </form>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="" class="product-name"><?= $product->getName() ?></a>
+                                        <div class="product-price"><?= $product->getPrice() ?></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+    
+    
+    
+    
+                    </div>
                 </div>
-
-
+            </div>
 
 
             </div>
 
-        </div>
 
 
         <!-- link file footer-->
@@ -282,7 +300,58 @@ require_once'../views/header.php';
 
 
     <div class="test"></div>
+ <!-- js cho header -->
+  <!-- hiệu ứng tắt / bật thanh trạng thái người dùng -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var avt_users = document.getElementById("avt_users");
+        var mid_user_info = document.querySelector(".mid_user_info");
 
+        avt_users.addEventListener("click", function() {
+            if (mid_user_info.style.display == "none") {
+                mid_user_info.style.display = "block";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            } else {
+                mid_user_info.style.display = "none";
+                avt_users.classList.toggle("avt_animations");
+                setTimeout(function() {
+                    avt_users.classList.remove("avt_animations");
+                }, 300);
+            }
+        });
+    });
+    </script>
+
+    <!-- js hiển thị phần chức nang cuộn cho header -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop()) {
+                $('header').addClass('sticky');
+            } else {
+                $('header').removeClass('sticky');
+            }
+        });
+    });
+    </script>
+
+    <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
+    <script>
+    function toggleOffcanvas() {
+        var offcanvas = document.getElementById("offcanvasExample");
+        offcanvas.classList.toggle("active");
+    }
+
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("active");
+        dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
+    }
+    </script>
 
 
 
@@ -297,6 +366,7 @@ require_once'../views/header.php';
         document.getElementById('cart_id').value = cart_id;
     }
     </script>
+
 
     <script>
     const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
@@ -326,10 +396,14 @@ require_once'../views/header.php';
     });
     </script>
 
-    <script src="../resource/static/js/index.js"></script>
+    <?require_once'../resource/static/js/index.js'?>
 
+<<<<<<< HEAD
     <!-- hiệu ứng tắt / bật thanh trạng thái người dùng-->
    
+=======
+    
+>>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
 
 
 
@@ -382,9 +456,13 @@ require_once'../views/header.php';
 
 
 
+<<<<<<< HEAD
 
 
  
+=======
+    
+>>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
 
 
 </body>
