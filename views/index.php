@@ -42,6 +42,7 @@
                 <!--muc tim kiem cac san pham-->
                 <div class="search_info">
                     <h2>Đặt đồ ăn nhanh chóng ... </h2>
+                    <h2>Tiện lợi, dễ dàng, ... </h2>
                     <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
                     <button class="btn_search">Tìm</button>
                 </div>
