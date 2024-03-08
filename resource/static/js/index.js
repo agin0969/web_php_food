@@ -62,33 +62,38 @@
         }
     });
     
-    
+    const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
 
-    
-    
-    // <!-- js hiển thị phần con của menu -->
-    
-    function showFoodbox(foodType) {
-        var foodBoxes = document.getElementsByClassName('product');
+    quantityContainers.forEach(quantityContainer => {
+        const plus = quantityContainer.querySelector(".plus");
+        const minus = quantityContainer.querySelector(".minus");
+        const input = quantityContainer.querySelector(".num");
 
-        // Ẩn tất cả các box trước khi hiển thị box mới
-        for (var i = 0; i < foodBoxes.length; i++) {
-            foodBoxes[i].style.display = 'none';
+        let val = parseInt(input.value);
+
+        plus.addEventListener("click", () => {
+            val++;
+            updateValue();
+        });
+
+        minus.addEventListener("click", () => {
+            if (val > 0) {
+                val--;
+                updateValue();
+            }
+        });
+
+        function updateValue() {
+            input.value = val;
         }
+    });
+   
+    
+    
 
-
-        // Hiển thị box tương ứng với loại thức ăn
-        var selectedFoodBox = document.getElementById(foodType);
-        if (selectedFoodBox) {
-            selectedFoodBox.style.display = 'block';
-
-        } else {
-            console.log("Không tìm thấy box với id: " + foodType);
-        }
-    }
-    window.onload = function() {
-        showFoodbox('mon_nuoc');
-    };
+    
+    
+  
  
 
 

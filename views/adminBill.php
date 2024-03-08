@@ -58,6 +58,115 @@ $count = 1;
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
+            <div class="container-fluid aa">
+
+                <table class="table table-striped table-container" style="border-radius: 20px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Cart ID</th>
+                            <th scope="col">Giá trị</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Thao tác</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php  ?>
+                        <tr>
+                            <th scope="row">
+                                <?php echo $count ?>
+                            </th>
+                            <td>
+                                <?php echo '' ?>
+                            </td>
+                            <td>
+                                <?php echo '' ?>
+                            </td>
+                            <td>
+                                <?php echo '' ?>
+                            </td>
+                            <td>
+                                <?php echo '' ?>
+                            </td>
+                            <td>
+                                <?php echo '' ?>
+                            </td>
+
+                            <td>
+                                <?php echo '' ?>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col ml-1">
+                                        <button class="btn btn-outline-success" type="button" onclick="">Xóa</button>
+                                    </div>
+                                    <div class="col ml-1">
+                                    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#bill-re"
+                                            onclick="">Sửa</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php $count = $count + 1 ?>
+                        <?php ?>
+                    </tbody>
+                </table>
+
+                <form id="form-delete" action="" method="POST">
+                    <input type="hidden" id="id" name="id" value="">
+                </form>
+
+
+
+            </div>
+            <div class="modal fade" id="bill-re" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="input-from" id="form-repair" action="../controllers/proChgAdCon.php" method="post"
+                            enctype="multipart/form-data">
+                            <div class="modal-body">
+
+                            
+                                <div class="mb-3 row">
+                                    <label for="transport" class="col-sm-2 col-form-label ">Đơn vị V/C</label>
+                                    <div class="col">
+                                        <select class="form-select" aria-label="transport" name="transport">
+                                            
+                                            <option value="1">VN-Post</option>
+                                            <option value="2">Món khô</option>
+                                            <option value="3">Thức uống</option>
+                                            <option value="4">Tráng miệng</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                                <input type="hidden" id="id1" name="id1">
+
+                                
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="">Xác nhận</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
