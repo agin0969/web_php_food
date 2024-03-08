@@ -115,85 +115,6 @@
                                                     style="width: 30px; background:none; border:none" readonly>
                                                 <span class="plus">+</span>
                                                 
-<<<<<<< HEAD
-                                                <li id="name_info"><a href="">'.  $sessionData['name'] .'</a></li>
-                                            </ul>
-                                        </li>
-                                        
-                                         <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
-                                       <li><a href="userProfile.php">Profile</a></li>
-                                        <li><a href="?logout=true">Đăng xuất</a></li>
-                                    </ul>
-                                </div>   
-                            </div>
-                        ';
-                    } else {
-                        // Người dùng chưa đăng nhập
-                        echo '
-                            <a href="../views/login.php" id="lg_lo">
-                                <button class="login_signup">Đăng nhập/Đăng ký</button>
-                            </a>'
-                        ;
-                    }
-
-                    // Kiểm tra nếu người dùng chọn đăng xuất
-if (isset($_GET['logout'])) {
-    $userService->clearSession();
-    header('Location: ../views/index.php');
-    exit();
-}
-
-                ?>
-
-        </header>
-
-        <div class="content">
-
-            <div class="address">
-                <h2>Thay đổi địa chỉ giao hàng </h2>
-                <input class="set-address" type="text" name="set-address" placeholder="Nhập địa chỉ giao hàng,..." />
-                <button class="btn_address">ĐỔI</button>
-                <button class="btn_address">Mặc định</button>
-            </div>
-            <!--muc tim kiem cac san pham-->
-            <div class="search_info">
-                <h2>Đặt đồ ăn nhanh chóng ... </h2>
-                <input class="search" type="text" name="search" placeholder="Tìm địa điểm, món ăn, đồ uống,..." />
-                <button class="btn_search">Tìm</button>
-            </div>
-
-            <!-- 3 hình ảnh thêm về thông tin uy tín của trang web-->
-            <div class="box-info-web">
-                <div class="box-info-web-1">
-                    <p id="p1">Siêu Ưu Đãi</p>
-                    <p id="p2"> 50 %</p>
-                    <link rel="stylesheet" href="xem thêm" class="">
-                </div>
-
-                <div class="box-info-web-2">
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-                    <span>
-                        <img src="../resource/static/img/star.png" alt="">
-                    </span>
-
-                    <p>Hơn 500 luợt đánh giá 5 sao</p>
-                </div>
-
-                <div class="box-info-web-3">
-                    <p id="p1">Phản Hồi</p>
-                    <p id="p2">Hơn 600 phản hồi tích cực!</p>
-=======
                                             </div>
                                             <input type="hidden" id="cart_id" name="cart_id" value="<?php echo $cartInfor->getId(); ?>">
                                             <input type="hidden" id="id1" name="id1" value="">
@@ -340,7 +261,6 @@ if (isset($_GET['logout'])) {
     
     
                     </div>
->>>>>>> ab3f16aaa61899c3234509c6e01df3b03dade6e5
                 </div>
             </div>
 

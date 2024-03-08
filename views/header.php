@@ -1,15 +1,7 @@
-<<<<<<< HEAD
 <?require_once'../controllers/productController.php';
 require '../services/CartService.php';
 require '../services/cartItemService.php';
 //require_once '../config/init.php';
-=======
-<?
-require_once'../controllers/productController.php';
-require '../services/CartService.php';
-require '../services/cartItemService.php';
-require_once '../config/init.php';
->>>>>>> ab3f16aaa61899c3234509c6e01df3b03dade6e5
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
@@ -36,15 +28,7 @@ require_once '../config/init.php';
     $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
     $totalPrice=$cartItemService->getTotalAmountInCart($cartInfor->getId());
     }
-<<<<<<< HEAD
 ?>
-=======
-
-?>
-
-
-
->>>>>>> ab3f16aaa61899c3234509c6e01df3b03dade6e5
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,14 +37,8 @@ require_once '../config/init.php';
     <link rel="stylesheet" href="../resource/static/css/style.css">
     <link rel="stylesheet" href="../resource/static/css/cart.css">
     <title>Document</title>
-<<<<<<< HEAD
-
-
-=======
-    <link rel="stylesheet" href="../resource/static/css/style.css">
-    <link rel="stylesheet" href="../resource/static/css/cart.css">
+  
     
->>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
 </head>
 <body>
 <header>
@@ -191,7 +169,6 @@ if (isset($_GET['logout'])) {
                 ?>
 
         </header>
-<<<<<<< HEAD
         <script>
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
@@ -241,10 +218,6 @@ if (isset($_GET['logout'])) {
         dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
     }
     </script>
-=======
-        <script src="../resource/static/js/index.js" type="text/javascript"></script>
-       
->>>>>>> daf1f3b10ae4ab93eedc0f1713df07dfde8255d1
         
 </body>
 </html>
