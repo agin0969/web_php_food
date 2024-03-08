@@ -1,5 +1,5 @@
 
- /*
+ 
 // hiệu ứng đổi màu của thanh header khi cuộn trang
 $(document).ready(function () {
     $(window).scroll(function () {
@@ -9,7 +9,7 @@ $(document).ready(function () {
             $('header').removeClass('sticky');
         }
     });
-});*/
+});
 
 
 // hiệu ứng tắt / bật thanh trạng thái người dùng

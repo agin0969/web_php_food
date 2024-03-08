@@ -36,6 +36,7 @@ $count = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
+    
     <link href="../resource/static/css/adminView.css " rel="stylesheet" type="text/css">
     <script src="../resource/static/js/hideAndShow.js" type="text/javascript"> </script>
     <script>
@@ -154,7 +155,9 @@ $count = 1;
                     </div>
 
                     <div class="mb-3 row">
-                        <input class="form-control form-control-sm" id="file" type="file" name="file">
+                        <input class="form-control form-control-sm col" id="file" type="file" name="file">
+                        <div class="btn btn-secondary col deleteFile" onclick="clearFileChoosen()">Xóa</div>
+                        
                     </div>
                     <input class="btn submit-add btn-secondary" type="submit" value="Thêm sản phẩm" name="submit">
 
@@ -170,7 +173,7 @@ $count = 1;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form class="input-from" action="../controllers/proChgAdCon.php" method="post"
+                            <form class="input-from" id="form-repair" action="../controllers/proChgAdCon.php" method="post"
                                 enctype="multipart/form-data">
                                 <div class="modal-body">
 
@@ -215,8 +218,8 @@ $count = 1;
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <input type="submit" class="btn btn-primary" type="submit" value="changes"
-                                        name="submit">
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="repairProduct()">Sửa</button>
                                 </div>
                             </form>
                         </div>
@@ -229,8 +232,6 @@ $count = 1;
 
 
     </div>
-
-
 
 
 </body>
