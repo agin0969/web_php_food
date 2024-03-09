@@ -199,11 +199,14 @@ class ProductService{
 
     public function getProductByListId($ids){
         try {
+            if(count($ids)===0){
+                return $products=array();
+            }
             $placeholders = implode(',', array_fill(0, count($ids), '?'));
             $sql = "SELECT * FROM `product` WHERE id IN ($placeholders)";
             $result = $this->conn->prepare($sql);
             $result->execute($ids);
-    
+            if($result){
             $productdata = $result->fetchAll(PDO::FETCH_ASSOC);
             $products = array();
             foreach ($productdata as $data) {
@@ -217,6 +220,10 @@ class ProductService{
                 );
                 $products[]=$product;
             }
+            
+        } else {
+            $products=array();
+        }
             return $products;
         } catch (PDOException $e) {
             die("Lỗi: " . $e->getMessage());

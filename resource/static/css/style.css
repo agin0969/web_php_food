@@ -220,7 +220,7 @@ header.sticky ul.users_info > li:hover{
 #banner{
     background-image: url(https://images.foody.vn/res/g115/1146978/prof/s640x400/foody-upload-api-foody-mobile-fo-6aaa5e7a-220805103122.jpeg);
     background-repeat: no-repeat;
-    min-height: 130vh;
+    min-height: 120vh;
     width: 100%;
     background-size: cover;
     position: fixed;
@@ -292,14 +292,6 @@ ul.milktea li{
     position: relative;
 }
 
-.btn{
-    width: 70%;
-    padding: 10px 12px;
-    text-align: center;
-    justify-content: center;
-    margin: 0 3px;
-    display: flex;
-}
  .cart{
     position: absolute;
     width: 15%;
@@ -342,7 +334,7 @@ ul.milktea li{
 
 .search_info{
     position: absolute;
-    top: 4vh;
+    top: 6vh;
     width: 100%;
     left: 15px;
 }
@@ -410,34 +402,38 @@ ul.milktea li{
     opacity: 0.8;
 }
 
-.buy_cart{
+.btn{
+    width: 70%;
+    padding: 10px 12px;
+    text-align: center;
+    justify-content: center;
+    margin: 0 3px;
     display: flex;
-    position: relative;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: #369d52;
+    margin-bottom: 3px;
 }
 
 .buy{
-    color: #ffffff;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background-color: #369d52;
-    padding: 8px 15px;
+    padding: 7px 5px;
     cursor: pointer;
     transition: opacity 0.2s ease;
-    margin-left: 110px;
+    margin-left: auto;
+    width: 100px ;
+    min-width: 50px;
 }
 .buy:hover{
     opacity: 0.8;
 }
 .cart{
-    color: #ffffff;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background-color: #369d52;
-    padding: 8px 15px;
+    padding: 7px 10px;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    width: 150px;
+    min-width: 100px;
 }
 .cart:hover{
     opacity: 0.8;
@@ -563,27 +559,53 @@ ul.milktea li{
     margin-top: 15px;
 }
 
-#container_content{
-    display: none; /* Mặc định ẩn phần container_nav */
-    background-color: #0a2210;
-    height: 400px;
-    width: 100%;
-    position: absolute;
-    z-index: 100;
-}
-/*
-#footer{
-    background-color: #0a2210;
-    height: 400px;
-    width: 100%;
-    position: absolute;
-    z-index: 100;
-}*/
 
-.test{
-    background-color: #000000;
-    height: 400px;
+/* footer  */
+#footer{
+    background-color: #eeeeee;
+    height: 800px;
     width: 100%;
     z-index: 2;
+    margin-top: 300px;
+    padding-top: 30px;
+    color: #00000096;
 }
+
+.my_info ul{
+    display: flex;
+    justify-content: center;  
+}
+
+.my_info ul li{
+    display: flex;
+    flex-direction: column;
+    padding:  20px 0;
+    margin: 0 30px;
+}
+
+.my_info ul li h1{
+    font-size: 20px;
+}
+
+.my_info ul li img{
+    display: block;
+
+}
+
+.my_info h2{
+    margin-left: 50px;
+}
+
+.danh_muc{
+    padding: 20px 0;
+    border-bottom: 2px solid #030109d6;
+    margin: 0 50px;
+}
+
+.danh_muc li{
+    margin:  0 20px;
+}
+
+
+
 

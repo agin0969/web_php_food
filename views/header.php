@@ -59,7 +59,7 @@ require '../services/cartItemService.php';
                         // Người dùng đã đăng nhập                      
                         echo ' 
                             <!-- Nút kích hoạt Offcanvas -->                   
-                            <button class="btn btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
+                            <button class="btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
                             style="background: none; border:none;"
                             >
                                 <img id="cart_icon" src="../resource/static/img/shopping-cart.png">

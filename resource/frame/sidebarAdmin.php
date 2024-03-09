@@ -39,7 +39,7 @@
                 </button>
                 <div class="collapse collapse-bill" id="collapseBill">
                     <ul>
-                        <li><a href="">
+                        <li><a href="adminBill.php">
                             <span>Danh sách hóa đơn</span>
                         </a></li>
                     </ul>
