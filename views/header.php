@@ -31,29 +31,33 @@ require '../services/cartItemService.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../resource/static/css/style.css">
     <link rel="stylesheet" href="../resource/static/css/cart.css">
     <title>Document</title>
-  
-    
-</head>
-<body>
-<header>
-            <div class="inner-header container">
-                <a href="" class="logo">WEFOOD</a>
-                <nav>
-                    <ul id="main-menu">
-                        <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
-                        <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
-                        <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
-                        <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
-                    </ul>
-                </nav>
 
-                <?
+
+</head>
+
+<body>
+
+
+    <header>
+        <div class="inner-header container">
+            <a href="" class="logo">WEFOOD</a>
+            <nav>
+                <ul id="main-menu">
+                    <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
+                    <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
+                    <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
+                    <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
+                </ul>
+            </nav>
+
+            <?
                     
                     if (!empty($sessionData['name']) && !empty($sessionData['id']) && !empty($sessionData['role_id'])) {
                         // Người dùng đã đăng nhập                      
@@ -120,11 +124,12 @@ require '../services/cartItemService.php';
                                         <p>Thành tiền :</p>
                                         <div class="sub_total">'.$totalPrice.'</div>                
                                     </div>
-                                    <div class="btn_payment">
-                                        <button class="view_cart"> view cart </button>
-                                        <button class="Payment"> Thanh toán </button>
-                                    </div>
-
+                                    
+                                        <div class="btn_payment">
+                                            <button class="view_cart"> view cart </button>
+                                            <button class="Payment" > Thanh toán </button>
+                                        </div>
+                        
                                 </div>
                             </div>
 
@@ -168,8 +173,8 @@ if (isset($_GET['logout'])) {
 
                 ?>
 
-        </header>
-        <script>
+    </header>
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
         var avt_users = document.getElementById("avt_users");
         var mid_user_info = document.querySelector(".mid_user_info");
@@ -205,8 +210,8 @@ if (isset($_GET['logout'])) {
     });
     </script>
 
-       <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
-       <script>
+    <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
+    <script>
     function toggleOffcanvas() {
         var offcanvas = document.getElementById("offcanvasExample");
         offcanvas.classList.toggle("active");
@@ -218,6 +223,7 @@ if (isset($_GET['logout'])) {
         dropdownMenu.style.display = dropdownMenu.classList.contains("active") ? "block" : "none";
     }
     </script>
-        
+
 </body>
+
 </html>

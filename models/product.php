@@ -1,14 +1,14 @@
 <?
 class Product {
-    private int $id;
-    private string $name;
-    private int $category_id;
-    private float $price;
-    private string $image;
+    private  $id;
+    private  $name;
+    private  $category_id;
+    private  $price;
+    private  $image;
 
-    private string  $description;
+    private   $description;
 
-    public function __construct(int $id, string $name, int $category_id, float $price, string $image,  string $description) {
+    public function __construct( $id,  $name,  $category_id,  $price,  $image,   $description) {
         $this->id = $id;
         $this->name = $name;
         $this->category_id = $category_id;
@@ -58,10 +58,10 @@ class Product {
     }
 
     public function getDescription(): string {
-    return $this->name;
+    return $this->description;
 }
 
-    public function setDescription(string $name): void {
-    $this->name = $name;
+    public function setDescription(string $description): void {
+    $this->description=$description;
 }
 }

@@ -1,6 +1,6 @@
 <? 
 require_once '../config/init.php';
-require_once'../services/productService.php';
+require_once'../services/billService.php';
 require_once'../models/checkuser.php';
 $checkSession= new Checkuser();
 if (!$checkSession->checkSessionAdmin()){
@@ -8,13 +8,10 @@ if (!$checkSession->checkSessionAdmin()){
     exit;
 }
 
-$productService = new ProductService();
-if (isset($_GET['numbers'])) {
-    $numbers = $_GET['numbers'];
-    $products = $productService->getProductByListId($numbers);
-} else {
-    $products = $productService->getAllProduct();
-}
+$billService = new BillService();
+
+    $bills = $billService->getAllBill();
+
 
 $count = 1;
 
@@ -75,46 +72,44 @@ $count = 1;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php  ?>
+                        <?php foreach ($bills as $bill):  ?>
                         <tr>
                             <th scope="row">
                                 <?php echo $count ?>
                             </th>
                             <td>
-                                <?php echo '' ?>
+                                <?php echo $bill->getId() ?>
                             </td>
                             <td>
-                                <?php echo '' ?>
+                                <?php echo $bill->getCartId() ?>
                             </td>
                             <td>
-                                <?php echo '' ?>
+                                <?php echo $bill->getTotalPrice() ?>
                             </td>
                             <td>
-                                <?php echo '' ?>
+                                <?php echo $bill->getDiaChi() ?>
                             </td>
                             <td>
-                                <?php echo '' ?>
+                                <?php echo $bill->getNgayTao() ?>
                             </td>
 
                             <td>
-                                <?php echo '' ?>
+                                <?php echo $bill->getStatus() ?>
                             </td>
                             <td>
                                 <div class="row">
-                                    <div class="col ml-1">
-                                        <button class="btn btn-outline-success" type="button" onclick="">Xóa</button>
-                                    </div>
+                                   
                                     <div class="col ml-1">
                                     <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
                                             data-bs-target="#bill-re"
-                                            onclick="">Sửa</button>
+                                            onclick="">Xác Nhận</button>
 
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <?php $count = $count + 1 ?>
-                        <?php ?>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
 
