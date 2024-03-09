@@ -1,31 +1,16 @@
-// <!-- hiệu ứng tắt / bật thanh trạng thái người dùng -->
-   
-    document.addEventListener("DOMContentLoaded", function() {
-        var avt_users = document.getElementById("#avt_users");
-        var mid_user_info = document.querySelector(".mid_user_info");
+//<!-- js lấy id từ form -->1
 
-        avt_users.addEventListener("click", function() {
-            if (mid_user_info.style.display == "none") {
-                mid_user_info.style.display = "block";
-                avt_users.classList.toggle("avt_animations");
-                setTimeout(function() {
-                    avt_users.classList.remove("avt_animations");
-                }, 300);
-            } else {
-                mid_user_info.style.display = "none";
-                avt_users.classList.toggle("avt_animations");
-                setTimeout(function() {
-                    avt_users.classList.remove("avt_animations");
-                }, 300);
-            }
-        });
-    });
- 
+    function getid(productid) {
+        document.getElementById('id1').value = productid;
+        document.getElementById('cartForm').submit();
+    }
+
+    function getcartid(cart_id) {
+        document.getElementById('cart_id').value = cart_id;
+    }
 
 
-
-
-    // <!-- js tính năng cuộn background theo danh mục sanr phẩm-->
+    // <!-- js tính năng cuộn background theo danh mục sanr phẩm-->1
  
     window.addEventListener('scroll', function() {
         var foodBoxContainer = document.getElementById('FoodBoxContainer');
@@ -45,7 +30,36 @@
  
 
 
-    // <!-- js hiển thị phần con của menu -->
+   // <!-- js tính năng cho nut tăng giảm số lượng -->1
+
+    const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
+
+    quantityContainers.forEach(quantityContainer => {
+        const plus = quantityContainer.querySelector(".plus");
+        const minus = quantityContainer.querySelector(".minus");
+        const input = quantityContainer.querySelector(".num");
+
+        let val = parseInt(input.value);
+
+        plus.addEventListener("click", () => {
+            val++;
+            updateValue();
+        });
+
+        minus.addEventListener("click", () => {
+            if (val > 0) {
+                val--;
+                updateValue();
+            }
+        });
+
+        function updateValue() {
+            input.value = val;
+        }
+    });
+    
+
+    // <!-- js hiển thị phần con của menu -->1
     
     function showFoodbox(foodType) {
         var foodBoxes = document.getElementsByClassName('product');

@@ -62,7 +62,7 @@ require_once '../config/init.php';
                         // Người dùng đã đăng nhập                      
                         echo ' 
                             <!-- Nút kích hoạt Offcanvas -->                   
-                            <button class="btn btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
+                            <button class="btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
                             style="background: none; border:none;"
                             >
                                 <img id="cart_icon" src="../resource/static/img/shopping-cart.png">
@@ -172,8 +172,7 @@ if (isset($_GET['logout'])) {
                 ?>
 
         </header>
-        <script src="../resource/static/js/index.js" type="text/javascript"></script>
-       
+
         
 </body>
 </html>

@@ -31,11 +31,11 @@
     <div id="wraper">
         <!--background-->
         <div id="banner"></div>
-<!-- <header>   </header> -->
+        <!-- <header>   </header> -->
         <?
         require_once'../views/header.php';
         ?>
-        <div class="content" style="height: 110vh !important;" >
+        <div class="content" style="height: 110vh !important; " >
 
             
             <div class="box_content_left">
@@ -93,7 +93,7 @@
 
                 <!--cac san pham cua mot menu-->
                 <div id="FoodBoxContainer">
-                    <div class="mid_foodbox" style="overflow-y: auto; height : 510px">
+                    <div class="mid_foodbox" style="overflow-y: auto; height : 70vh">
                     <!-- traf sua -->
                     <div class="product" id="mon_nuoc">
                         <ul class="milktea">
@@ -270,37 +270,18 @@
 
 
 
-        <!-- link file footer-->
-        <!--     <link rel="stylesheet" href="../views/footer.php">    -->
-        <div id="container_content">
-
-            <div id="footer">
-                <div class="my-info">
-                    <ul>
-                        <div>Thông tin liên hệ </div>
-                        <li>
-                            <p>.09xxxxxxx01</p>
-                        </li>
-                        <li>
-                            <p>fanbage: Wefood cân tất</p>
-                        </li>
-                        <li>
-                            <p>blog</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            
+            
+            
+            
+            
         </div>
+        <!-- link file footer-->
+        <?   require_once'../views/footer.php'; ?>  
+                                        
+<!-- javascript cho index -->
 
 
-
-
-    </div>
-
-
-
-
-    <div class="test"></div>
  <!-- js cho header -->
   <!-- hiệu ứng tắt / bật thanh trạng thái người dùng -->
   <script>
@@ -355,7 +336,7 @@
     </script>
 
 
-
+<!-- js lấy id từ form -->
     <script>
     function getid(productid) {
         document.getElementById('id1').value = productid;
@@ -368,7 +349,7 @@
     }
     </script>
 
-
+<!-- js tính năng cho nut tăng giảm số lượng -->
     <script>
     const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
 
@@ -397,7 +378,7 @@
     });
     </script>
 
-    <?require_once'../resource/static/js/index.js'?>
+   
 
     
 

@@ -48,16 +48,17 @@
     left: 20%px;
 }
 
-.btn-primary{
+.btn-primary .button-cart{
     position: relative;
     display: inline-block;
-    width: 48px;
+    width: 48px !important;
     height: 38px;
     margin-left: 200px;
     padding-left: 0;
     padding-right: 33px;
 
 }
+
 .close-btn{
     color: rgb(255, 255, 255);
 }
