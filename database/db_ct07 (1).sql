@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2024 at 05:36 PM
+-- Generation Time: Mar 09, 2024 at 05:41 AM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -57,7 +57,7 @@ CREATE TABLE `cartitem` (
 --
 
 INSERT INTO `cartitem` (`id`, `product_id`, `quantity`, `cart_id`) VALUES
-(100, 2, 1, 1);
+(107, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -79,6 +79,45 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (2, 'Món Khô'),
 (3, 'Thức Uống'),
 (4, 'Tráng Miệng');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dv_van_chuyen`
+--
+
+CREATE TABLE `dv_van_chuyen` (
+  `id` int NOT NULL,
+  `ten_don_vi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dv_van_chuyen`
+--
+
+INSERT INTO `dv_van_chuyen` (`id`, `ten_don_vi`) VALUES
+(1, 'Giao hàng nhanh'),
+(2, 'Viettel Post'),
+(3, 'Giao hàng tiết kiệm'),
+(4, 'GrabExpress'),
+(5, 'NowShip'),
+(6, 'ShipChung');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hoadon`
+--
+
+CREATE TABLE `hoadon` (
+  `id` int NOT NULL,
+  `cart_id` int NOT NULL,
+  `total_price` float NOT NULL,
+  `dia_chi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sdt` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngay_tao` datetime NOT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -163,6 +202,18 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ship`
+--
+
+CREATE TABLE `ship` (
+  `id` int NOT NULL,
+  `hoadon_id` int NOT NULL,
+  `dv_van_chuyen_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -180,8 +231,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `password`, `email`, `role_id`) VALUES
 (1, 'AdminUser', 'adminpassword', 'admin@example.com', 1),
-(2, 'RegularUser', 'userpassword', 'user@example.com', 2),
-(3, 'qqqqqq', '$2y$10$vja1crmlABictnmKV4FVyOYxmMhN6f2IquL8N8zAeoJv9zMmyuiY2', 'on', 2);
+(2, 'RegularUser', '$2y$10$W7sacXbHaCaCjUIS8kP2NeRpt8rMnZOnxhvBDFNC./tdtCC70ix0e', 'user@example.com', 2),
+(3, 'qqqqqq', '$2y$10$6i8K4tt6NAsbd8BCnCk8NuwwteVhliUW58DG2FCZ1BJ6DlaJU9Zqy', 'on@gmail.com3', 2);
 
 --
 -- Indexes for dumped tables
@@ -209,6 +260,19 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dv_van_chuyen`
+--
+ALTER TABLE `dv_van_chuyen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cart_id` (`cart_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -220,6 +284,14 @@ ALTER TABLE `product`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ship`
+--
+ALTER TABLE `ship`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hoadon_id` (`hoadon_id`),
+  ADD KEY `dv_van_chuyen_id` (`dv_van_chuyen_id`);
 
 --
 -- Indexes for table `user`
@@ -242,13 +314,31 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `cartitem`
 --
 ALTER TABLE `cartitem`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+
+--
+-- AUTO_INCREMENT for table `dv_van_chuyen`
+--
+ALTER TABLE `dv_van_chuyen`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `hoadon`
+--
+ALTER TABLE `hoadon`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `ship`
+--
+ALTER TABLE `ship`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -268,10 +358,23 @@ ALTER TABLE `cartitem`
   ADD CONSTRAINT `fk_foreign_key_productid` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
+-- Constraints for table `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD CONSTRAINT `fk_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`);
+
+--
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+--
+-- Constraints for table `ship`
+--
+ALTER TABLE `ship`
+  ADD CONSTRAINT `fk_dv_van_chuyen_id` FOREIGN KEY (`dv_van_chuyen_id`) REFERENCES `dv_van_chuyen` (`id`),
+  ADD CONSTRAINT `fk_hoadon_id_ship` FOREIGN KEY (`hoadon_id`) REFERENCES `hoadon` (`id`);
 
 --
 -- Constraints for table `user`
