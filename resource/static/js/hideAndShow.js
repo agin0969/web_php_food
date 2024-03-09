@@ -9,3 +9,14 @@ function ddelete(productId) {
 function getid(productid){
     document.getElementById('id1').value=productid;
 }
+function clearFileChoosen(){
+    document.getElementById('file').value="";
+    
+}
+function repairProduct(){
+    var confirmation = confirm("Bạn có chắc muốn sửa sản phẩm không?");
+    if (confirmation) {
+        document.getElementById('form-repair').submit();
+    }
+
+}

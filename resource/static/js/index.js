@@ -15,16 +15,34 @@
     window.addEventListener('scroll', function() {
         var foodBoxContainer = document.getElementById('FoodBoxContainer');
         var banner = document.getElementById("banner");
-
-
+        var containerContent = document.getElementById("container_content");
+    
         var foodBoxContainerRect = foodBoxContainer.getBoundingClientRect();
+        var bannerRect = banner.getBoundingClientRect();
+        var containerContentRect = containerContent.getBoundingClientRect();
         var windowHeight = window.innerHeight;
-
-        // Khi phần tử FoodBoxContainer được kéo đến cuối trang
-        if (foodBoxContainerRect.bottom <= windowHeight) {
-            banner.style.position = 'absolute';
+    
+        var foodBoxContainerHeight = foodBoxContainer.offsetHeight;
+        var scrollPosition = window.scrollY || window.pageYOffset;
+    
+        // Tính toán vị trí xuất hiện của container_content
+        var containerContentThreshold = foodBoxContainerHeight / 2;
+    
+        // Khi cuộn trang đã đạt đến ngưỡng xuất hiện của container_content
+        if (scrollPosition + windowHeight >= containerContentThreshold) {
+            containerContent.style.display = 'block'; // Hiển thị container_content
+            containerContent.style.top = bannerRect.bottom + '400px';
         } else {
-            banner.style.position = ''; // Trả về giá trị mặc định của position
+            containerContent.style.display = 'none'; // Ẩn container_content
+        }
+    
+        // Khi cuộn trang đã đạt đến cuối của foodBoxContainer
+        if (scrollPosition + windowHeight >= foodBoxContainerHeight) {
+            banner.style.position = 'absolute';
+            banner.style.top = windowHeight - bannerRect.height + '0px';
+        } else if (banner.style.position === 'absolute') {
+            banner.style.position = '';
+            banner.style.top = '';
         }
     });
  
@@ -78,10 +96,14 @@
         } else {
             console.log("Không tìm thấy box với id: " + foodType);
         }
-    }
-    window.onload = function() {
-        showFoodbox('mon_nuoc');
-    };
+    });
+   
+    
+    
+
+    
+    
+  
  
 
 
