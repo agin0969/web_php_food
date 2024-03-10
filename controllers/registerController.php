@@ -22,8 +22,11 @@ require_once '../services/cartService.php';
                 
             }
             else{
-                echo('something wrong');
-                header("refresh: 10; ../views/signup.php");
+               
+                header("Location: ../views/404.php");
+                exit();
+                
+                
             }
             
         }

@@ -8,7 +8,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address=$_POST['address'];
     $phone=$_POST['phoneNumber'];
     if($address !=null && $phone != null){
-        $billService->addToBill($cart_id,$totalPrice,$address,$phone,"Chờ xác nhận");
+        $result=$billService->addToBill($cart_id,$totalPrice,$address,$phone,"Chờ xác nhận");
+        if($result){
+            header('Location: ../views/adminBill.php');
+            exit();
+        } else {
+            header("Location: ../views/404.php");
+            exit();
+        }
     }
+} else {
+    header("Location: ../views/404.php");
+    exit();
 }
 

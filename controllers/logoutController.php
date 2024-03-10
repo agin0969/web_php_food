@@ -6,4 +6,7 @@ $userService= new UserService();
     if(isset($_SESSION['id'])){
         $userService->clearSession();
         header('Location: ../views/index.php');
-    } else echo 'ngo';
+    } else {
+        header("Location: ../views/404.php");
+        exit();
+    }
