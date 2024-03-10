@@ -123,17 +123,17 @@
             </div>
             <div class="box_content_right">
                 <!-- địa chỉ giao hàng -->
-                <div class="address">
+                <!-- <div class="address">
                     <h2>Thay đổi địa chỉ giao hàng </h2>
                     <input class="set-address" type="text" name="set-address"
                         placeholder="Nhập địa chỉ giao hàng,..." />
                     <button class="btn_address">ĐỔI</button>
                     <button class="btn_address">Mặc định</button>
-                </div>
+                </div> -->
 
                 <!--cac san pham cua mot menu-->
                 <div id="FoodBoxContainer">
-                    <div class="mid_foodbox" style="overflow-y: auto; height : 510px">
+                    <div class="mid_foodbox" style="overflow-y: auto; height : 90vh">
                         <!-- traf sua -->
                         <div class="product" id="mon_nuoc">
                             <ul class="milktea">
@@ -268,7 +268,7 @@
 
                             <ul class="milktea">
                                 <?php foreach ($products as $product): ?>
-                                <?php if ($product->getCategoryId() == 1): ?>
+                                <?php if ($product->getCategoryId() == 4): ?>
                                 <li>
                                     <div class="item">
                                         <div class="product-top">

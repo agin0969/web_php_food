@@ -246,7 +246,7 @@ header.sticky ul.users_info > li:hover{
 
 #FoodBoxContainer{
     position: absolute;
-    top: 45vh;
+    top: 25vh;
     height: auto;
     width: auto;
     background-color: rgba(255, 252, 252, 0.5);

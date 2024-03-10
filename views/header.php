@@ -127,7 +127,10 @@ require '../services/cartItemService.php';
                                     
                                         <div class="btn_payment">
                                             <button class="view_cart"> view cart </button>
-                                            <button class="Payment" > Thanh toán </button>
+                                            <a href="../views/userCart.php" class="Payment">
+                                                <button class="Payment" > Thanh toán </button>
+                                            </a>
+                                            
                                         </div>
                         
                                 </div>
