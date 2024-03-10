@@ -88,7 +88,9 @@
 
 .offcanvas .list_cart{
     margin-top: 50px;
-    height: auto;
+    overflow-y: auto;
+    height: 66vh !important; 
+    padding-bottom: 50px;
 }
 
 .offcanvas .list_cart .cart_item{
@@ -136,10 +138,11 @@
     position: absolute;
     justify-content: space-between;
     align-items: center;
-    bottom: 100px;
-    margin-left: 10px;
     border-top: 2px solid #ffffffc6 ;
     padding-top: 12px;
+    background-color: #402f2f;
+    top: 80vh;
+    width: 100%;
 }
 
 .total {
