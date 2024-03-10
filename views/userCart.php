@@ -2,17 +2,24 @@
 require '../services/CartService.php';
 require '../services/cartItemService.php';
 require '../services/billService.php';
+require '../models/checkuser.php';
+require '../services/userService.php';
+$checkUser = new Checkuser();
+if(!$checkUser->checkSessionUser()){
+    header('Location: login.php');
+}
 
-//require_once '../config/init.php';
+    $userService = new UserService();
+    $sessionData = $userService->getSession();
+
+
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
 
     $productService = new ProductService();
 
-    require '../services/userService.php';
-    $userService = new UserService();
-    $sessionData = $userService->getSession();
+    
 
 
     if(!empty($sessionData)){
@@ -34,6 +41,7 @@ require '../services/billService.php';
     $billService = new BillService();
   
     }
+
 ?>
 
 

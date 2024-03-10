@@ -150,7 +150,7 @@ require '../services/cartItemService.php';
                                         
                                         <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
                                         <li><a href="userProfile.php">Profile</a></li>
-                                        <li><a href="?logout=true">Đăng xuất</a></li>
+                                        <li><a href="../controllers/logoutController.php">Đăng xuất</a></li>
                                     </ul>
                                 </div>   
                             </div>
@@ -165,11 +165,7 @@ require '../services/cartItemService.php';
                     }
 
                     // Kiểm tra nếu người dùng chọn đăng xuất
-if (isset($_GET['logout'])) {
-    $userService->clearSession();
-    header('Location: ../views/index.php');
-    exit();
-}
+
 
                 ?>
 
