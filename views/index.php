@@ -53,6 +53,7 @@
                         $("#live_search").focusin(function() {
                             $('#search_result').css('display', 'block');
                         });
+                        addCssClassToResults();
                     }
                 });
             } else {
@@ -60,6 +61,9 @@
             }
         });
     });
+            function addCssClassToResults() {
+                $('#search_result > div').addClass('search_result_item');
+            }
     </script>
 
     <div id="wraper">
@@ -325,12 +329,23 @@
                                         
 <!-- javascript cho index -->
 
+<!-- thêm thẻ div cho các kết quả trả về của search_result -->
+<script>
+    function handleSearchSuccess(data) {
+    var results = JSON.parse(data); // Giả sử dữ liệu trả về là một mảng JSON của kết quả tìm kiếm
 
-    <div class="test"></div>
+    var searchResultContainer = $('#search_result');
+    searchResultContainer.empty(); // Xóa bỏ nội dung cũ trước khi thêm kết quả mới
 
+    results.forEach(function(result) {
+        var div = $('<div class="search_result_item"></div>'); // Tạo một phần tử div mới
+        div.text(result.name); // Giả sử name là thuộc tính của mỗi kết quả tìm kiếm
+        searchResultContainer.append(div); // Thêm phần tử div vào searchResultContainer
+    });
 
-
-
+    $('#search_result').css('display', 'block');
+}
+</script>
 
 
 <!-- js lấy id từ form -->
