@@ -8,7 +8,9 @@ if (!$checkSession->checkSessionAdmin()){
     exit;
 }
 $userService = new UserService();
+ 
 $users = $userService->getAllUsers();
+
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +39,7 @@ $users = $userService->getAllUsers();
         <div class="body-content container-fluid">
             <div class="container-fluid content-header">
                 <span>Danh sách người dùng</span>
-                <form class="d-flex search-box" role="search" action="../controllers/userSeaCon.php" method="get">
-                    <input class="form-control me-2" type="search" id="search" name="search"
-                        placeholder="Search user name" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+               
             </div>
             <div class="container-fluid aa">
                 <table class="table table-striped table-container" style="border-radius: 20px;">
@@ -62,7 +60,7 @@ $users = $userService->getAllUsers();
                             <th scope="row"><?= $user->getId(); ?></th>
                             <td><?= $user->getId(); ?></td>
                             <td><?= $user->getUsername(); ?></td>
-                            <td><?= $user->getPassword(); ?></td>
+                            <td><?= "********" ?></td>
                             <td><?= $user->getEmail(); ?></td>
                             <td><?= $user->getRoleId(); ?></td>
                             <td>
