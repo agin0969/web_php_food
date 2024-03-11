@@ -100,7 +100,7 @@ class UserService{
             throw new RuntimeException("An error occurred while updating user information.");
         }
     }
-    
+     
     
 
     public function getAllUsers() {
