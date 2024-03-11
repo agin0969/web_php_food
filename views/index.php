@@ -14,6 +14,7 @@
     </script> -->
     <link rel="stylesheet" href="../resource/static/css/style.css">
     <link rel="stylesheet" href="../resource/static/css/cart.css">
+    <link rel="stylesheet" href="../resource/static/css/panigation.css">
 
     <title>WEFOOD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -306,9 +307,34 @@
                             </ul>
                         </div>
 
-
-
-
+                    </div>
+                    <!-- <div class="pagination">
+                        <div class="pagination_item">
+                            <div class="pagination_items left" onclick="backBtn()"><</div>
+                            <ul>
+                                <?php $total_pages = ceil($total_records / $records_per_page);
+                                for ($i = 1; $i <= $total_pages; $i++): ?>
+                                <li class="link <?php if ($i == $current_page) echo 'active'; ?>" value="<?php echo $i; ?>"
+                                    onclick="showFoodbox('trang_mieng', <?php echo $i; ?>)">
+                                    <?php echo $i; ?>
+                                </li>
+                                <?php endfor; ?>
+                            </ul>
+                            <div class="pagination_items right" onclick="nextBtn()">></div>
+                        </div>
+                    </div> -->
+                    <div class="pagination">
+                        <div class="pagination_item">
+                            <div class="pagination_items left" onclick="backBtn()"><</div>
+                            <ul>
+                                <li class="link active" value="1" onclick="activeLink()">1</li>
+                                <li class="link" value="2" onclick="activeLink()">2</li>
+                                <li class="link" value="3" onclick="activeLink()">3</li>
+                                <li class="link" value="4" onclick="activeLink()">4</li>
+                                <li class="link" value="5" onclick="activeLink()">5</li>                               
+                            </ul>
+                            <div class="pagination_items right" onclick="nextBtn()">></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -332,6 +358,69 @@
 <script src="../resource/static/js/index.js"></script>
 <script src="../resource/static/js/header.js"></script>
 
+<!-- javascript choj pagination -->
+<script>
+//     let links = document.getElementsByClassName("link");
+// let currentPage = 1;
+
+// function activeLink() {
+//     for (let link of links) {
+//         link.classList.remove("active");
+//     }
+//     event.target.classList.add("active");
+//     currentPage = parseInt(event.target.textContent);
+// }
+
+// function backBtn() {
+//     if (currentPage > 1) {
+//         for (let link of links) {
+//             link.classList.remove("active");
+//         }
+//         currentPage--;
+//         links[currentPage - 1].classList.add("active");
+//     }
+// }
+
+// function nextBtn() {
+//     if (currentPage < links.length) {
+//         for (let link of links) {
+//             link.classList.remove("active");
+//         }
+//         currentPage++;
+//         links[currentPage - 1].classList.add("active");
+//     }
+// }
+
+    let link = document.getElementsByClassName("link");
+    let currentValue = 1;
+    function activeLink(){
+        for(l of link){
+            l.classList.remove("active");
+        }
+        event.target.classList.add("active");
+        currentValue = event.target.value;
+    }
+
+    function backBtn(){
+        if(currentValue > 1){
+            for(l of link){
+                l.classList.remove("active");           
+            }
+            currentValue--;
+            link[currentValue-1].classList.add("active");
+        }
+    }
+
+    function nextBtn(){
+        if(currentValue < 5){
+            for(l of link){
+                l.classList.remove("active");           
+            }
+            currentValue++;
+            link[currentValue-1].classList.add("active");
+        }
+    }
+</script>
 
 <!-- js lấy id từ form -->
     <script>
@@ -346,6 +435,30 @@
     }
     // <!-- js hiển thị phần con của menu -->
 
+//     function showFoodbox(foodType, page) {
+//     var foodBoxes = document.getElementsByClassName('product');
+
+//     // Ẩn tất cả các box trước khi hiển thị box mới
+//     for (var i = 0; i < foodBoxes.length; i++) {
+//         foodBoxes[i].style.display = 'none';
+//     }
+
+//     // Tính toán chỉ số bắt đầu và kết thúc của sản phẩm trên trang
+//     var startIndex = (page - 1) * 10;
+//     var endIndex = page * 10;
+
+//     // Hiển thị box tương ứng với loại thức ăn
+//     var selectedFoodBox = document.getElementById(foodType);
+//     if (selectedFoodBox) {
+//         // Hiển thị các sản phẩm trong phạm vi của trang
+//         var productList = selectedFoodBox.getElementsByClassName('milktea')[0].getElementsByTagName('li');
+//         for (var i = startIndex; i < Math.min(endIndex, productList.length); i++) {
+//             productList[i].style.display = 'block';
+//         }
+//     } else {
+//         console.log("Không tìm thấy box với id: " + foodType);
+//     }
+// }
     function showFoodbox(foodType) {
         var foodBoxes = document.getElementsByClassName('product');
 

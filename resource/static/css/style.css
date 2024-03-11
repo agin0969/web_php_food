@@ -220,7 +220,7 @@ header.sticky ul.users_info > li:hover{
 #banner{
     background-image: url(https://images.foody.vn/res/g115/1146978/prof/s640x400/foody-upload-api-foody-mobile-fo-6aaa5e7a-220805103122.jpeg);
     background-repeat: no-repeat;
-    min-height: 120vh;
+    min-height: 135vh;
     width: 100%;
     background-size: cover;
     position: fixed;
@@ -242,6 +242,7 @@ header.sticky ul.users_info > li:hover{
     position: relative;
     height: auto;
     width: 45%;
+    margin-bottom: 20px;
 }
 
 #FoodBoxContainer{
@@ -635,6 +636,9 @@ ul.milktea li{
     background-color: #ffffff;
 }
 
+.pagination{
+    padding-top: 10px;
 
+}
 
 
