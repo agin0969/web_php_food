@@ -227,6 +227,22 @@ class ProductService{
             die("Lỗi: " . $e->getMessage());
         }
     }
+    public function getProductCount() {
+        try {
+            $sql = "SELECT COUNT(*) AS total FROM `product`";
+            $result = $this->conn->prepare($sql);
+            $result->execute();
+    
+            if ($result) {
+                $count = $result->fetch(PDO::FETCH_ASSOC);
+                return isset($count['total']) ? (int)$count['total'] : 0;
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
     
 
 }
