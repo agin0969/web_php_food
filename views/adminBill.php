@@ -72,7 +72,7 @@ $count = 1;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($bills as $bill):  ?>
+                        <?php foreach ($bills as $bill): if($bill->getStatus()==="Chờ xác nhận"){ ?>
                         <tr>
                             <th scope="row">
                                 <?php echo $count ?>
@@ -98,65 +98,77 @@ $count = 1;
                             </td>
                             <td>
                                 <div class="row">
-                                   
+                                    
                                     <div class="col ml-1">
-                                    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#bill-re"
-                                            onclick="">Xác Nhận</button>
+                                        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#bill-re" onclick="comfirm(<?echo $bill->getId()?>)">Xác Nhận</button>
 
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <?php $count = $count + 1 ?>
-                        <?php endforeach;?>
+                       
+                        <?php } endforeach;?>
                     </tbody>
                 </table>
 
-                <form id="form-delete" action="" method="POST">
-                    <input type="hidden" id="id" name="id" value="">
-                </form>
+
+                <script>
+                function comfirm(billid) {
+                    document.getElementById('id1').value = billid;
+
+                }
+
+                function comfirmBill() {
+                    var confirmation = confirm("Bạn có chắc muốn xác nhận hóa đơn không?");
+                    if (confirmation) {
+                        document.getElementById('comfirm-bill').submit();
+                    }
+
+                }
+                </script>
 
 
 
             </div>
-            <div class="modal fade" id="bill-re" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="bill-re" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form class="input-from" id="form-repair" action="../controllers/proChgAdCon.php" method="post"
+                        <form class="input-from" id="comfirm-bill" action="../controllers/billComfirmController.php" method="post"
                             enctype="multipart/form-data">
                             <div class="modal-body">
 
-                            
+
                                 <div class="mb-3 row">
                                     <label for="transport" class="col-sm-2 col-form-label ">Đơn vị V/C</label>
                                     <div class="col">
                                         <select class="form-select" aria-label="transport" name="transport">
-                                            
-                                            <option value="1">VN-Post</option>
-                                            <option value="2">Món khô</option>
-                                            <option value="3">Thức uống</option>
-                                            <option value="4">Tráng miệng</option>
+                                           
+                                            <option value="1">Giao hàng nhanh</option>
+                                            <option value="2">Viettel Post</option>
+                                            <option value="3">Giao hàng tiết kiệm</option>
+                                            <option value="4">GrabExpress</option>
+                                            <option value="5">NowShip</option>
                                         </select>
 
                                     </div>
 
                                 </div>
                                 <input type="hidden" id="id1" name="id1">
+                                <input type="hidden" id="bill_id" name="bill_id">
 
-                                
+
 
 
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="">Xác nhận</button>
+                                <button type="button" class="btn btn-primary" onclick="comfirmBill()">Xác nhận</button>
                             </div>
                         </form>
                     </div>

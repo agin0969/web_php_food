@@ -73,9 +73,7 @@ class ProductService{
             $result->execute();
             if($result){
                 return true;
-            } else {
-                return false;
-            }
+            } 
             }catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
             }

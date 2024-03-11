@@ -5,6 +5,7 @@ class Checkuser{
     public function checkSessionAdmin(){
         session_start();
         if (isset($_SESSION) && empty($_SESSION)){
+            
             return false;
         }
         else {

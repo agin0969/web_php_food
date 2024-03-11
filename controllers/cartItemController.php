@@ -4,8 +4,17 @@ $cartItemService=new CartItemService();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id=$_POST['id'];
-    $cartItemService->deleteCartItemById( $id );
-    header("Location: ../views/userCart.php");
+    $result=$cartItemService->deleteCartItemById( $id );
+    if ($result) {
+        header("Location: ../views/userCart.php");
+    } else {
+        header("Location: ../views/404.php");
+        exit();
+    }
+    
+} else {
+    header("Location: ../views/404.php");
+    exit();
 }
 
 ?>

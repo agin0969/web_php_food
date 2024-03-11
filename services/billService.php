@@ -70,32 +70,45 @@ class BillService{
             $stmt->bindParam(':cartId', $cartId);
             $stmt->execute();
     
-            $bills = array();
+            
     
             if ($stmt) {
-                $billData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $billData = $stmt->fetch(PDO::FETCH_ASSOC);
     
-                foreach ($billData as $data) {
+                
                     $bill = new Bill(
-                        $data['id'],
-                        $data['cart_id'],
-                        $data['total_price'],
-                        $data['dia_chi'],
-                        $data['sdt'],
-                        $data['ngay_tao'],
-                        $data['status']
+                        $billData['id'],
+                        $billData['cart_id'],
+                        $billData['total_price'],
+                        $billData['dia_chi'],
+                        $billData['sdt'],
+                        $billData['ngay_tao'],
+                        $billData['status']
                     );
     
-                    $bills[] = $bill;
-                }
+                    return $bill;
+               
             } else {
-                $bills = array();
+                return null;
             }
         } catch (PDOException $e) {
             die("Error: " . $e->getMessage());
         }
     
-        return $bills;
+    }
+    public function updateBillStatus($billId) {
+        $newStatus="đã xác nhận";
+        try {
+            $sql = "UPDATE `hoadon` SET `status` = :newStatus WHERE `id` = :billId";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':newStatus', $newStatus);
+            $stmt->bindParam(':billId', $billId);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
     }
 
 

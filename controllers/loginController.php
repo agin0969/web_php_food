@@ -14,7 +14,8 @@ class LoginController{
             header("Location: ../views/index.php");
         }
         else {
-            echo "dang nhap that bai";
+            echo '<script>alert("Đăng nhập thất bại. Sai tên đăng nhập hoặc mật khẩu.");</script>';
+            echo '<script>window.location.href = "../views/login.php";</script>';
         }
     }
 

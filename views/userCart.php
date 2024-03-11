@@ -2,17 +2,24 @@
 require '../services/CartService.php';
 require '../services/cartItemService.php';
 require '../services/billService.php';
+require '../models/checkuser.php';
+require '../services/userService.php';
+$checkUser = new Checkuser();
+if(!$checkUser->checkSessionUser()){
+    header('Location: login.php');
+}
 
-//require_once '../config/init.php';
+    $userService = new UserService();
+    $sessionData = $userService->getSession();
+
+
 
     $productController=new ProductController();
     $products=$productController->getAllProduct();
 
     $productService = new ProductService();
 
-    require '../services/userService.php';
-    $userService = new UserService();
-    $sessionData = $userService->getSession();
+    
 
 
     if(!empty($sessionData)){
@@ -34,6 +41,7 @@ require '../services/billService.php';
     $billService = new BillService();
   
     }
+
 ?>
 
 
@@ -133,6 +141,97 @@ require '../services/billService.php';
 
 
             <div class="col">
+
+                <div class="col" style="padding-left: 250px;">
+                    
+                    <div class="row">
+                        <span style="font-size: x-large; margin-bottom: 75px; margin-top:200px">Trạng thái đơn hàng </span>
+                    </div>
+                    <div style="padding-left: 50px ;">
+                        <style>
+                        <? $bill=$billService->getBillByCartId($cartInfor->getId());
+
+                        if($bill->getStatus() !="Chờ xác nhận") {
+                            echo '
+.trans {
+                                color: forestgreen;
+                            }
+
+                            .trans1 {
+                                color: forestgreen;
+                            }
+
+                            .trans2 {
+                                color: red;
+                            }
+
+                            ';
+
+                        }
+
+                        else {
+                            echo '
+.trans {
+                                color: red;
+                            }
+
+                            .trans1 {
+                                color: red;
+                            }
+
+                            .trans2 {
+                                color: red;
+                            }
+
+                            ';
+
+                        }
+
+                        ?>
+                        </style>
+                        <div class="row">
+                            <span class="trans">Chờ cửa hàng xác nhận </span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1">Bắt đầu vận chuyển </span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans2">Đang đến... </span>
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
         </div>

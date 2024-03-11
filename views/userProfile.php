@@ -1,8 +1,13 @@
 <?php
 require '../services/userService.php';
+require '../models/checkuser.php';
 
 $userService = new UserService();
 $sessionData = $userService->getSession();
+$checkUser = new Checkuser();
+if(!$checkUser->checkSessionUser()){
+    header('Location: login.php');
+}
 
 if (!empty($sessionData)) {
     $userId = $sessionData['id'];
