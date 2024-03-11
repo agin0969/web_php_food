@@ -329,23 +329,8 @@
                                         
 <!-- javascript cho index -->
 
-<!-- thêm thẻ div cho các kết quả trả về của search_result -->
-<script>
-    function handleSearchSuccess(data) {
-    var results = JSON.parse(data); // Giả sử dữ liệu trả về là một mảng JSON của kết quả tìm kiếm
-
-    var searchResultContainer = $('#search_result');
-    searchResultContainer.empty(); // Xóa bỏ nội dung cũ trước khi thêm kết quả mới
-
-    results.forEach(function(result) {
-        var div = $('<div class="search_result_item"></div>'); // Tạo một phần tử div mới
-        div.text(result.name); // Giả sử name là thuộc tính của mỗi kết quả tìm kiếm
-        searchResultContainer.append(div); // Thêm phần tử div vào searchResultContainer
-    });
-
-    $('#search_result').css('display', 'block');
-}
-</script>
+<script src="../resource/static/js/index.js"></script>
+<script src="../resource/static/js/header.js"></script>
 
 
 <!-- js lấy id từ form -->
@@ -385,7 +370,35 @@
     </script>
 
 
+ <!-- js tính năng cho nut tăng giảm số lượng -->1
+<script>
 
+    const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
+
+    quantityContainers.forEach(quantityContainer => {
+        const plus = quantityContainer.querySelector(".plus");
+        const minus = quantityContainer.querySelector(".minus");
+        const input = quantityContainer.querySelector(".num");
+
+        let val = parseInt(input.value);
+
+        plus.addEventListener("click", () => {
+            val++;
+            updateValue();
+        });
+
+        minus.addEventListener("click", () => {
+            if (val > 0) {
+                val--;
+                updateValue();
+            }
+        });
+
+        function updateValue() {
+            input.value = val;
+        }
+    });
+</script>
 
 
 

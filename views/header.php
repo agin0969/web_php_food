@@ -92,8 +92,7 @@ require '../services/cartItemService.php';
                                                     </div>           
                                                     <form class="input-from" action="../controllers/cartItemController.php" method="post"
                                                     enctype="multipart/form-data">
-                                                    <input type="submit" class="clear_item" type="submit" value="x"
-                                        name="submit">
+                                                     
                                                     
                                                     <input type="hidden"  name="id" value="'.$cartItem->getId().'">
 
@@ -126,7 +125,9 @@ require '../services/cartItemService.php';
                                     </div>
                                     
                                         <div class="btn_payment">
-                                            <button class="view_cart"> view cart </button>
+                                            <a href="../views/userCart.php" class="view_cart">
+                                                <button class="view_cart"> Chỉnh sửa </button>
+                                            </a>
                                             <a href="../views/userCart.php" class="Payment">
                                                 <button class="Payment" > Thanh toán </button>
                                             </a>
