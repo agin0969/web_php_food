@@ -1,0 +1,243 @@
+<?require_once'../controllers/productController.php';
+require '../services/CartService.php';
+require '../services/cartItemService.php';
+require '../services/billService.php';
+require '../models/checkuser.php';
+require '../services/userService.php';
+$checkUser = new Checkuser();
+if(!$checkUser->checkSessionUser()){
+    header('Location: login.php');
+}
+
+    $userService = new UserService();
+    $sessionData = $userService->getSession();
+
+
+
+    $productController=new ProductController();
+    $products=$productController->getAllProduct();
+
+    $productService = new ProductService();
+
+    
+
+
+    if(!empty($sessionData)){
+
+    
+    $userId=$sessionData['id'];
+            
+    
+    $cartService= new CartService();
+    $cartInfor=$cartService->getCartByUserId($userId);
+
+
+  
+    $cartItemService = new CartItemService();
+    $cartItems= $cartItemService->getItemWithCartId($cartInfor->getId());
+    $totalPrice=$cartItemService->getTotalAmountInCart($cartInfor->getId());
+
+
+    $billService = new BillService();
+  
+    }
+
+?>
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container-fluid" style="height: 100px;"></div>
+
+        <div class="row">
+            <div class="col g-5">
+                <div class="text-center">
+                    <img src="../resource/static/img/userimage.png"
+                        style="border-radius: 50% !important; height: 100px; width: 100px;">
+                </div>
+                <div class="mb-5 mt-5 row" style="text-align: center;">
+                    <span style="font-size: xx-large;">Thông tin giao hàng</span>
+                </div>
+                <form class="input-from" action="../controllers/billCreateController.php" method="post"
+                    enctype="multipart/form-data">
+                    <div class="mb-3 row">
+                        <label for="address" class="col-sm-3 col-form-label">Địa chỉ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="phoneNumber" class="col-sm-3 col-form-label">Số điện thoại</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                        </div>
+                    </div>
+                    <input type="hidden" name="cart_id" value="<?echo $cartInfor->getId()?>">
+                    <input type="hidden" name="total_price" value="<?echo $totalPrice?>">
+                    <div class="mb-3 row">
+                        <button class="btn btn-outline-success col-sm-11" type="submit" onclick="">Đặt hàng</button>
+                    </div>
+                </form>
+                <div class="container-fluid" style="height: 150px;"></div>
+                <div class="mb-5 mt-5 row" style="text-align: center;">
+                    <span style="font-size: xx-large;">Sản phẩm đã chọn</span>
+                </div>
+                <div class="cartitem-view" style="height: 400px; overflow-y: auto;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <? 
+                            foreach ($cartItems as $cartItem){
+                            echo '<tr>
+                                    <td>'.$productService->getProductById($cartItem->getProductId())->getName().'</td>
+                                    <td>'.$cartItem->getQuantity().'</td>
+                                    <td>'.$productService->getProductById($cartItem->getProductId())->getPrice() *$cartItem->getQuantity().'</td>
+                                    <td>
+                                        <form class="input-from" action="../controllers/cartItemController.php" method="post" enctype="multipart/form-data">
+                                            
+                                            <input type="hidden"  name="id" value="'.$cartItem->getId().'">
+                                            <button class="btn btn-outline-danger" type="submit" onclick="">Xóa</button>
+                                        </form>
+                                    </td>
+                                </tr>';
+
+                        }
+                        ?>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+
+                <div class="col" style="padding-left: 250px;">
+                    
+                    <div class="row">
+                        <span style="font-size: x-large; margin-bottom: 75px; margin-top:200px">Trạng thái đơn hàng </span>
+                    </div>
+                    <div style="padding-left: 50px ;">
+                        <style>
+                        <? $bill=$billService->getBillByCartId($cartInfor->getId());
+
+                        if($bill->getStatus() !="Chờ xác nhận") {
+                            echo '
+.trans {
+                                color: forestgreen;
+                            }
+
+                            .trans1 {
+                                color: forestgreen;
+                            }
+
+                            .trans2 {
+                                color: red;
+                            }
+
+                            ';
+
+                        }
+
+                        else {
+                            echo '
+.trans {
+                                color: red;
+                            }
+
+                            .trans1 {
+                                color: red;
+                            }
+
+                            .trans2 {
+                                color: red;
+                            }
+
+                            ';
+
+                        }
+
+                        ?>
+                        </style>
+                        <div class="row">
+                            <span class="trans">Chờ cửa hàng xác nhận </span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1">Bắt đầu vận chuyển </span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans1"> .</span>
+                        </div>
+                        <div class="row">
+                            <span class="trans2">Đang đến... </span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -96,7 +96,7 @@
         } else {
             console.log("Không tìm thấy box với id: " + foodType);
         }
-    });
+    };
    
     
     

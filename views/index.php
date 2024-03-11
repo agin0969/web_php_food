@@ -53,6 +53,7 @@
                         $("#live_search").focusin(function() {
                             $('#search_result').css('display', 'block');
                         });
+                        addCssClassToResults();
                     }
                 });
             } else {
@@ -60,6 +61,9 @@
             }
         });
     });
+            function addCssClassToResults() {
+                $('#search_result > div').addClass('search_result_item');
+            }
     </script>
 
     <div id="wraper">
@@ -119,17 +123,17 @@
             </div>
             <div class="box_content_right">
                 <!-- địa chỉ giao hàng -->
-                <div class="address">
+                <!-- <div class="address">
                     <h2>Thay đổi địa chỉ giao hàng </h2>
                     <input class="set-address" type="text" name="set-address"
                         placeholder="Nhập địa chỉ giao hàng,..." />
                     <button class="btn_address">ĐỔI</button>
                     <button class="btn_address">Mặc định</button>
-                </div>
+                </div> -->
 
                 <!--cac san pham cua mot menu-->
                 <div id="FoodBoxContainer">
-                    <div class="mid_foodbox" style="overflow-y: auto; height : 510px">
+                    <div class="mid_foodbox" style="overflow-y: auto; height : 90vh">
                         <!-- traf sua -->
                         <div class="product" id="mon_nuoc">
                             <ul class="milktea">
@@ -264,7 +268,7 @@
 
                             <ul class="milktea">
                                 <?php foreach ($products as $product): ?>
-                                <?php if ($product->getCategoryId() == 1): ?>
+                                <?php if ($product->getCategoryId() == 4): ?>
                                 <li>
                                     <div class="item">
                                         <div class="product-top">
@@ -325,12 +329,8 @@
                                         
 <!-- javascript cho index -->
 
-
-    <div class="test"></div>
-
-
-
-
+<script src="../resource/static/js/index.js"></script>
+<script src="../resource/static/js/header.js"></script>
 
 
 <!-- js lấy id từ form -->
@@ -370,7 +370,35 @@
     </script>
 
 
+ <!-- js tính năng cho nut tăng giảm số lượng -->1
+<script>
 
+    const quantityContainers = document.querySelectorAll(".btn.cart.quantity");
+
+    quantityContainers.forEach(quantityContainer => {
+        const plus = quantityContainer.querySelector(".plus");
+        const minus = quantityContainer.querySelector(".minus");
+        const input = quantityContainer.querySelector(".num");
+
+        let val = parseInt(input.value);
+
+        plus.addEventListener("click", () => {
+            val++;
+            updateValue();
+        });
+
+        minus.addEventListener("click", () => {
+            if (val > 0) {
+                val--;
+                updateValue();
+            }
+        });
+
+        function updateValue() {
+            input.value = val;
+        }
+    });
+</script>
 
 
 

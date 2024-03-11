@@ -9,7 +9,17 @@ require_once '../models/checkuser.php';
     $userService = new UserService();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          $id = $_POST['id'];
-         $userService->deleteUserById($id);
-         header("Location: ../views/adminWithUser.php");
-         exit;
-    }
+         $result=$userService->deleteUserById($id);
+         if($result){
+          header("Location: ../views/adminWithUser.php");
+           exit;
+
+         } else {
+          header("Location: ../views/404.php");
+          exit();
+      }
+         
+    }else {
+     header("Location: ../views/404.php");
+     exit();
+ }

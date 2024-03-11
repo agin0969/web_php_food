@@ -21,5 +21,17 @@ if (!$checkSession->checkSessionAdmin()){
         $price=$_POST['price'];
         $description=$_POST['descrip'];
         
-        $productService->addProductToDb($name, $category_id, $price, $img, $description);     
+        $result=$productService->addProductToDb($name, $category_id, $price, $img, $description);   
+        if($result){
+            header("Location: ../views/adminView.php");
+            exit();
+        }
+        else {
+            header("Location: ../views/404.php");
+            exit();
+        }
+        
+    }else {
+        header("Location: ../views/404.php");
+        exit();
     }

@@ -246,7 +246,7 @@ header.sticky ul.users_info > li:hover{
 
 #FoodBoxContainer{
     position: absolute;
-    top: 45vh;
+    top: 25vh;
     height: auto;
     width: auto;
     background-color: rgba(255, 252, 252, 0.5);
@@ -456,7 +456,7 @@ ul.milktea li{
 .box-info-web {
     position: absolute;
     display: flex;
-    top: 30vh;
+    top: 33vh;
     height: 250px;
     margin-left: -30px;
     animation: animation 3s infinite ease-in-out;
@@ -604,6 +604,35 @@ ul.milktea li{
 
 .danh_muc li{
     margin:  0 20px;
+}
+
+/* style cho search_results */
+#search_result{
+    display: block;
+    width: 56vh;
+    padding: 5px 5px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border: none
+}
+
+/* .search_result_item{
+    display: flex;
+    flex-direction: column;
+} */
+
+.search_result_item > * {
+    background-color: #eef4f4e4;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.search_result_item > *:hover{
+    background-color: #ffffff;
 }
 
 

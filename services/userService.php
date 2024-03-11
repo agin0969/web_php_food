@@ -275,7 +275,9 @@ class UserService{
     }
 
     public function setSession($name) {
-        $this->startSession();
+        if(session_status() != PHP_SESSION_ACTIVE){
+            $this->startSession();
+        }
         $user=$this->getUserByName($name);
         $_SESSION['name']=$user->getUsername();
         $_SESSION['id']=$user->getId();
@@ -285,7 +287,10 @@ class UserService{
         
     }
     public function getSession() {
-        $this->startSession();
+        if(session_status() != PHP_SESSION_ACTIVE){
+            $this->startSession();
+        }
+        
         $desiredVariables = ['name', 'id', 'role_id'];
         $sessionData = [];
         foreach ($desiredVariables as $variable) {

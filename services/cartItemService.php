@@ -7,19 +7,18 @@ class CartItemService{
     public function __construct(){
         $this->conn=new Database();
     }
-    public function addCartItem($product_id, $quantity,$cart_id){
+    public function addCartItem($product_id, $quantity, $cart_id) {
         try {
-            $sql="INSERT INTO `cartitem` (product_id,quantity,cart_id) VALUES (:product_id, :quantity,:cart_id)";
-            $result=$this->conn->prepare($sql);
-            $result->bindParam(':product_id',$product_id);
-            $result->bindParam(':quantity',$quantity);
-            $result->bindParam(':cart_id',$cart_id);
+            $sql = "INSERT INTO `cartitem` (product_id, quantity, cart_id) VALUES (:product_id, :quantity, :cart_id)";
+            $result = $this->conn->prepare($sql);
+            $result->bindParam(':product_id', $product_id);
+            $result->bindParam(':quantity', $quantity);
+            $result->bindParam(':cart_id', $cart_id);
             $result->execute();
-            if ($result){
-                return true;
-            } else return false;
+
+            return $result;
         } catch (PDOException $e) {
-            die("Error: ". $e->getMessage());
+            die("Error: " . $e->getMessage());
         }
     }
     public function getTotalAmountInCart($cartId) {
