@@ -1,0 +1,78 @@
+/* Thêm CSS cho trang productDetail */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+    padding: 20px;
+}
+
+.container {
+    padding: 140px;
+}
+
+.product-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-detail .product-image {
+    flex: 1;
+}
+
+.product-detail .product-info {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.product-info h2 {
+    margin-top: 0;
+}
+
+.product-info p {
+    margin-bottom: 10px;
+}
+
+.product-info .form-group {
+    margin-bottom: 20px;
+}
+
+.product-info .btn {
+    margin-right: 10px;
+}
+
+/* Hiển thị các nút "+", "-" trong input số lượng */
+.input-group {
+    width: 100px;
+    display: flex;
+}
+
+.input-group .btn {
+    padding: 7px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.input-group .input-number {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column;
+    }
+
+    .product-detail .product-info {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .input-group .input-number {
+        width: calc(100% - 60px);
+    }
+}
