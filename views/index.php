@@ -312,7 +312,7 @@
                         <div class="pagination_item">
                             <div class="pagination_items left" onclick="backBtn()"><</div>
                             <ul>
-                                <?php $total_pages = ceil($total_records / $records_per_page);
+                                <?php $total_pages = $productService->getProductCount() / 4;
                                 for ($i = 1; $i <= $total_pages; $i++): ?>
                                 <li class="link <?php if ($i == $current_page) echo 'active'; ?>" value="<?php echo $i; ?>"
                                     onclick="showFoodbox('trang_mieng', <?php echo $i; ?>)">
@@ -327,11 +327,11 @@
                         <div class="pagination_item">
                             <div class="pagination_items left" onclick="backBtn()"><</div>
                             <ul>
-                                <li class="link active" value="1" onclick="activeLink()">1</li>
-                                <li class="link" value="2" onclick="activeLink()">2</li>
-                                <li class="link" value="3" onclick="activeLink()">3</li>
-                                <li class="link" value="4" onclick="activeLink()">4</li>
-                                <li class="link" value="5" onclick="activeLink()">5</li>                               
+                                <li class="link active" value="1" onclick="activeLink(); paginateProducts(1);">1</li>
+                                <li class="link" value="2" onclick="activeLink(); paginateProducts(2);">2</li>
+                                <li class="link" value="3" onclick="activeLink(); paginateProducts(3);">3</li>
+                                <li class="link" value="4" onclick="activeLink(); paginateProducts(4);">4</li>
+                                <li class="link" value="5" onclick="activeLink(); paginateProducts(5);">5</li>                               
                             </ul>
                             <div class="pagination_items right" onclick="nextBtn()">></div>
                         </div>
@@ -360,45 +360,17 @@
 
 <!-- javascript choj pagination -->
 <script>
-//     let links = document.getElementsByClassName("link");
-// let currentPage = 1;
-
-// function activeLink() {
-//     for (let link of links) {
-//         link.classList.remove("active");
-//     }
-//     event.target.classList.add("active");
-//     currentPage = parseInt(event.target.textContent);
-// }
-
-// function backBtn() {
-//     if (currentPage > 1) {
-//         for (let link of links) {
-//             link.classList.remove("active");
-//         }
-//         currentPage--;
-//         links[currentPage - 1].classList.add("active");
-//     }
-// }
-
-// function nextBtn() {
-//     if (currentPage < links.length) {
-//         for (let link of links) {
-//             link.classList.remove("active");
-//         }
-//         currentPage++;
-//         links[currentPage - 1].classList.add("active");
-//     }
-// }
 
     let link = document.getElementsByClassName("link");
     let currentValue = 1;
+    let productsPerPage = 4;
     function activeLink(){
         for(l of link){
             l.classList.remove("active");
         }
         event.target.classList.add("active");
         currentValue = event.target.value;
+        displayProducts();
     }
 
     function backBtn(){
@@ -408,7 +380,8 @@
             }
             currentValue--;
             link[currentValue-1].classList.add("active");
-        }
+            displayProducts();
+        }     
     }
 
     function nextBtn(){
@@ -418,8 +391,28 @@
             }
             currentValue++;
             link[currentValue-1].classList.add("active");
+            displayProducts();
         }
     }
+
+    function paginateProducts(page) {
+    let productsPerPage = 4;
+    let startIndex = (page - 1) * productsPerPage;
+    let endIndex = startIndex + productsPerPage;
+    let visibleProducts = document.querySelectorAll('.product');
+
+    for (let i = 0; i < visibleProducts.length; i++) {
+        visibleProducts[i].style.display = "none";
+    }
+
+    // Hiển thị các sản phẩm ở phạm vi từ startIndex đến endIndex
+    for (let i = startIndex; i < endIndex && i < visibleProducts.length; i++) {
+        visibleProducts[i].style.display = "block";
+    }
+}
+
+
+
 </script>
 
 <!-- js lấy id từ form -->
@@ -433,32 +426,9 @@
     function getcartid(cart_id) {
         document.getElementById('cart_id').value = cart_id;
     }
-    // <!-- js hiển thị phần con của menu -->
 
-//     function showFoodbox(foodType, page) {
-//     var foodBoxes = document.getElementsByClassName('product');
+    //<!-- js hiển thị phần con của menu -->
 
-//     // Ẩn tất cả các box trước khi hiển thị box mới
-//     for (var i = 0; i < foodBoxes.length; i++) {
-//         foodBoxes[i].style.display = 'none';
-//     }
-
-//     // Tính toán chỉ số bắt đầu và kết thúc của sản phẩm trên trang
-//     var startIndex = (page - 1) * 10;
-//     var endIndex = page * 10;
-
-//     // Hiển thị box tương ứng với loại thức ăn
-//     var selectedFoodBox = document.getElementById(foodType);
-//     if (selectedFoodBox) {
-//         // Hiển thị các sản phẩm trong phạm vi của trang
-//         var productList = selectedFoodBox.getElementsByClassName('milktea')[0].getElementsByTagName('li');
-//         for (var i = startIndex; i < Math.min(endIndex, productList.length); i++) {
-//             productList[i].style.display = 'block';
-//         }
-//     } else {
-//         console.log("Không tìm thấy box với id: " + foodType);
-//     }
-// }
     function showFoodbox(foodType) {
         var foodBoxes = document.getElementsByClassName('product');
 
