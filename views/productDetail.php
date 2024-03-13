@@ -33,6 +33,10 @@
         align-items: center;
         gap: 10px;
     }
+    .product-info h2,
+    .product-info p {
+        color: black;
+    }
 </style>
 </head>
 <body>
