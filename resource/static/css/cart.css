@@ -177,7 +177,12 @@
 
 }
 
-
+.titlee{
+    justify-content: center;
+    text-align: center;
+    padding: 5px 60px;
+    margin-left: 20px;
+}
 
 
 

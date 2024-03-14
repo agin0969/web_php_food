@@ -113,7 +113,7 @@ require '../services/cartItemService.php';
                                             //     </div>';
                                         }
                                     } else {
-                                        echo'<h1 class="titlee">them hang vao gio ngay</h1>';
+                                        echo'<h1 class="titlee">Thêm sản phẩm vào giỏ hàng!!</h1>';
                                     }
                                             echo '    
                                          
@@ -140,19 +140,21 @@ require '../services/cartItemService.php';
 
 
         
-                            <button id="avt_users">logo</button>
+                            <button id="avt_users">
+                                    <img src="" alt="" class="">
+                            </button>
                             <div class="user_info">
                                 <div class="mid_user_info">
                                     <ul class="users_info">
                                         <li>
                                             <ul class="logo_name">
-                                                <li id="logo_info"><a href="">logo</a></li>
+                                                <li id="logo_info"><img src="" alt="" class=""></li>
                                                 
-                                                <li id="name_info"><a href="">'.  $sessionData['name'] .'</a></li>
+                                                <li id="name_info">'.  $sessionData['name'] .'</li>
                                             </ul>
                                         </li>
                                         
-                                        <li id="email"><a href="">'.  $sessionData['id'] .'</a></li>
+                                        <li id="email">'.  $sessionData['id'] .'</li>
                                         <li><a href="userProfile.php">Profile</a></li>
                                         <li><a href="../controllers/logoutController.php">Đăng xuất</a></li>
                                     </ul>

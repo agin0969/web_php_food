@@ -106,6 +106,16 @@ ul#main-menu a{
     background-color: #f0f0f0;
     text-decoration: none;
     color: #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#logo_info{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffff;
 }
 
 @keyframes avt_animate{
@@ -131,7 +141,7 @@ ul#main-menu a{
 
 .mid_user_info{
     position: absolute;
-    background-color: #1110133d;
+    background-color: #222124;
     border: 1px solid #11a6e6;
     width: 250px;
     height: auto;
@@ -158,27 +168,29 @@ ul#main-menu a{
 
 #name_info{
     border: none;
-}
-
-#name_info a{
+    text-align: center;
+    padding-top: 5px;
     color: #ffffff;
     font-size: 24px;
     font-weight: 600;
     font-family: "Roboto", sans-serif;
+    padding-left: 10px;
 }
 
-#email a{
+
+#email{
     font-size: 13px;
+    padding-left: 20px;
+    color: #eceaea;
 }
 
 ul.users_info >li{  
     display: block;
     padding: 7px ;
-    border: 1px solid #000;
-    background-color: #221e2996;
+    border: none;
+    background-color: #222124;
     text-decoration: none;
     color: #000;
-    margin-bottom: 5px;
     border-radius: 7px;
     padding-bottom: 2px;
     justify-content: center;
@@ -200,15 +212,12 @@ ul.users_info > li:hover{
     background-color: #3a3543ad;
 }
 
-header.sticky ul.users_info > li a{
-    color: #ffffff;
-}
 
 header.sticky .mid_user_info{
-    background-color: #1110138d;
+    background-color: #222124;
 }
 header.sticky ul.users_info > li:hover{
-    background-color: #14121cad;
+    background-color: #3a3543ad;
 }
 
 
