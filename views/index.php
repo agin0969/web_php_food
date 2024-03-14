@@ -308,21 +308,12 @@
                         </div>
 
                     </div>
-                    <!-- <div class="pagination">
-                        <div class="pagination_item">
-                            <div class="pagination_items left" onclick="backBtn()"><</div>
-                            <ul>
-                                <?php $total_pages = $productService->getProductCount() / 4;
-                                for ($i = 1; $i <= $total_pages; $i++): ?>
-                                <li class="link <?php if ($i == $current_page) echo 'active'; ?>" value="<?php echo $i; ?>"
-                                    onclick="showFoodbox('trang_mieng', <?php echo $i; ?>)">
-                                    <?php echo $i; ?>
-                                </li>
-                                <?php endfor; ?>
-                            </ul>
-                            <div class="pagination_items right" onclick="nextBtn()">></div>
-                        </div>
-                    </div> -->
+                    
+
+                    
+
+
+                    <!-- /* phân trang cho danh mục sản phẩm  */ -->
                     <div class="pagination">
                         <div class="pagination_item">
                             <div class="pagination_items left" onclick="backBtn()"><</div>
@@ -342,14 +333,46 @@
 
         </div>
 
-
-
-            
-            
-            
-            
+         
             
         </div>
+
+        <!-- phần chân giới thiệu trang web -->
+        <div class="introduce_web">
+            <div class="introduce_box wefood">
+                <h1>Wefood là gì</h1>
+                <p>Là trang web được tạo nên bởi 4 đôi bàn tay
+                    với ý nghĩa mang đến những món ăn, thức uống ngon nhất đến với tất cả mọi người.
+                </p>                             
+            </div>  
+            <div class="mui_ten">
+                <img src="../resource/static/img/mui_ten.png" alt="muix tên">
+            </div> 
+            
+            <div class="introduce_box wefood">                
+                <p>Cả hai nhé, chỉ với vài thao tác đơn giản và một vài phút thì những món ăn ngon nhất sẻ được chuẩn bị và giao đến tay bạn.
+                </p> 
+                <h1>Nhanh chóng hay tiện lợi</h1>                            
+            </div>  
+            <div class="mui_ten">
+                <img src="../resource/static/img/mui_ten.png" alt="muix tên">
+            </div>
+
+            <div class="introduce_box wefood3">
+                <h1>Sẽ chán Ư ??</h1>
+                <p>Bạn không cần phải lo về điều này, Menu của chúng tôi đa dạng các món ăn thức uống và
+                     với quy trình cập nhật thêm nhiều món ăn thì sẻ có nhiều sự lựa chọn hơn cho bạn đây nhé .
+                </p>                             
+            </div>
+
+            <div class="end_text"> Vậy còn chần chờ gì nửa, hãy đặt ngay cho bản thân, gia đình và bạn bè
+                 những món ăn, thức uống ngon nhất ngay nào!!
+            </div>
+
+
+        </div>    
+
+
         <!-- link file footer-->
         <?   require_once'../views/footer.php'; ?>  
                                         

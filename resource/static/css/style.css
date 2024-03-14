@@ -567,9 +567,10 @@ ul.milktea li{
     height: 800px;
     width: 100%;
     z-index: 2;
-    margin-top: 300px;
+    margin-top: 10px;
     padding-top: 30px;
     color: #00000096;
+    margin-bottom: -100px;
 }
 
 .my_info ul{
@@ -640,5 +641,76 @@ ul.milktea li{
     padding-top: 10px;
 
 }
+
+
+.introduce_web{
+    color: #000;
+    height: auto;
+    margin: 300px 110px;
+    padding: 0 30px;
+    margin-bottom: 100px;
+}
+
+.introduce_box {
+    display: flex;
+    height: 100px;
+    font-family: "Roboto", sans-serif;
+}
+
+.introduce_box h1{
+    padding: 0 5px;
+    padding-bottom: 2px;
+    font-size: 27px;
+    width: 30%;
+    text-align: center;
+    line-height: 100px;
+    background-color: #00BA51;
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+.introduce_box p{
+    padding: 5px 20px;
+    font-size: 24px;
+    width: 70%;
+    color: #333333e9;
+    padding-top: 14px;
+}
+
+.introduce_box p:hover{
+    background-color: #ebe9e9;
+    border-radius: 5px;
+}
+
+.mui_ten{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.mui_ten img{
+    width: 60px;
+    transform: rotate(90deg);
+}
+
+.wefood3 p{
+    padding-top: 2px;
+}
+
+.end_text{
+    display: block;
+    text-align: center;
+    margin-top: 80px;
+    color: #02833a;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 5px 50px;
+}
+
+
+
+
+
+
 
 
