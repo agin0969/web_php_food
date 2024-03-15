@@ -321,8 +321,8 @@
                                 <li class="link active" value="1" onclick="activeLink(); paginateProducts(1);">1</li>
                                 <li class="link" value="2" onclick="activeLink(); paginateProducts(2);">2</li>
                                 <li class="link" value="3" onclick="activeLink(); paginateProducts(3);">3</li>
-                                <li class="link" value="4" onclick="activeLink(); paginateProducts(4);">4</li>
-                                <li class="link" value="5" onclick="activeLink(); paginateProducts(5);">5</li>                               
+                                <!-- <li class="link" value="4" onclick="activeLink(); paginateProducts(4);">4</li>
+                                <li class="link" value="5" onclick="activeLink(); paginateProducts(5);">5</li>                                -->
                             </ul>
                             <div class="pagination_items right" onclick="nextBtn()">></div>
                         </div>
@@ -368,8 +368,6 @@
             <div class="end_text"> Vậy còn chần chờ gì nửa, hãy đặt ngay cho bản thân, gia đình và bạn bè
                  những món ăn, thức uống ngon nhất ngay nào!!
             </div>
-
-
         </div>    
 
 
@@ -392,8 +390,8 @@
             l.classList.remove("active");
         }
         event.target.classList.add("active");
-        currentValue = event.target.value;
-        displayProducts();
+        currentValue = parseInt(event.target.getAttribute("value"));
+        paginateProducts(currentValue);
     }
 
     function backBtn(){
@@ -403,7 +401,7 @@
             }
             currentValue--;
             link[currentValue-1].classList.add("active");
-            displayProducts();
+            paginateProducts(currentValue);
         }     
     }
 
@@ -414,15 +412,18 @@
             }
             currentValue++;
             link[currentValue-1].classList.add("active");
-            displayProducts();
+            paginateProducts(currentValue);
+            console.log(currentValue);
         }
     }
+
+    let currentFoodType = "";
 
     function paginateProducts(page) {
     let productsPerPage = 4;
     let startIndex = (page - 1) * productsPerPage;
     let endIndex = startIndex + productsPerPage;
-    let visibleProducts = document.querySelectorAll('.product');
+    let visibleProducts = document.querySelectorAll('.product#' + currentFoodType + ' li');
 
     for (let i = 0; i < visibleProducts.length; i++) {
         visibleProducts[i].style.display = "none";
@@ -451,6 +452,7 @@
     }
 
     //<!-- js hiển thị phần con của menu -->
+    
 
     function showFoodbox(foodType) {
         var foodBoxes = document.getElementsByClassName('product');
@@ -460,15 +462,21 @@
             foodBoxes[i].style.display = 'none';
         }
 
-
+        currentFoodType = foodType;
+        paginateProducts(1);
         // Hiển thị box tương ứng với loại thức ăn
         var selectedFoodBox = document.getElementById(foodType);
         if (selectedFoodBox) {
-            selectedFoodBox.style.display = 'block';
+            selectedFoodBox.style.display = 'block';        
+            console.log(foodType);
 
         } else {
             console.log("Không tìm thấy box với id: " + foodType);
         }
+        for (var i = 0; i < link.length; i++) {
+            link[i].classList.remove("active");
+        }
+        link[0].classList.add("active");
     }
     window.onload = function() {
         showFoodbox('mon_nuoc');

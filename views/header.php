@@ -47,7 +47,7 @@ require '../services/cartItemService.php';
 
     <header>
         <div class="inner-header container">
-            <a href="" class="logo">WEFOOD</a>
+            <a href="../views/index.php" class="logo">WEFOOD</a>
             <nav>
                 <ul id="main-menu">
                     <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>

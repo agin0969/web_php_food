@@ -38,10 +38,10 @@
         color: black;
     }
 </style>
-</head>
+</head> 
 <body>
 
-<?php
+<?php 
     require '../services/productService.php';
     $productService = new ProductService();
     $product = $productService->getProductById($_GET['id']);
