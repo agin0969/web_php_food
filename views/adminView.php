@@ -4,7 +4,10 @@ require_once'../services/productService.php';
 require_once'../models/checkuser.php';
 $checkSession= new Checkuser();
 if (!$checkSession->checkSessionAdmin()){
-    header("Location: ../views/login.php");
+    echo "<script>";
+    echo "alert('Bạn không có quyền truy cập vào trang này!');";
+    echo "window.location.href = 'index.php';";
+    echo "</script>";
     exit;
 }
 

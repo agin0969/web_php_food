@@ -19,8 +19,7 @@ for ($i=0; $i < $tmp; $i++) {
     
     
     
-    echo'<button type="button" class="list-group-item list-group-item-action">'.$products[$i]->getName().'</button>';
-
+    echo '<button type="button" class="list-group-item list-group-item-action"><a href="../views/productDetail.php?id=' . $products[$i]->getId() . '">' . $products[$i]->getName() . '</a></button>';
 }
 echo '</div>';
 

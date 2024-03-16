@@ -243,6 +243,100 @@ class ProductService{
             die("Error: " . $e->getMessage());
         }
     }
+    public function getProductCountByFoodType($foodtypeId) {
+        try {
+            
+            $sql = "SELECT COUNT(*) AS total FROM `product` WHERE `category_id` = :category_id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':category_id', $foodtypeId, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return isset($result['total']) ? (int)$result['total'] : 0;
+            
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+    public function getProductsByCategoryId($category_id){
+        try {
+            $sql = "SELECT * FROM `product` WHERE category_id = ?";
+            $result = $this->conn->prepare($sql);
+            $result->execute([$category_id]);
+            if($result){
+                $productdata = $result->fetchAll(PDO::FETCH_ASSOC);
+                $products = array();
+                foreach ($productdata as $data) {
+                    $product = new Product(
+                        $data['id'],
+                        $data['name'],
+                        $data['category_id'],
+                        $data['price'],
+                        $data['image'],
+                        $data['description']
+                    );
+                    $products[]=$product;
+                }
+                
+            } else {
+                $products=array();
+            }
+            return $products;
+        } catch (PDOException $e) {
+            die("Lỗi: " . $e->getMessage());
+        }
+    }
+   
+    public function getProductsPerPage($start, $limit) {
+        try {
+            $sql = "SELECT * FROM `product` LIMIT ?, ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(1, $start, PDO::PARAM_INT);
+            $stmt->bindParam(2, $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            $products = array();
+            while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $product = new Product(
+                    $data['id'],
+                    $data['name'],
+                    $data['category_id'],
+                    $data['price'],
+                    $data['image'],
+                    $data['description']
+                );
+                $products[] = $product;
+            }
+            return $products;
+        } catch (PDOException $e) {
+            die("Lỗi: " . $e->getMessage());
+        }
+    }
+
+    public function getProductsByCategoryIdPerPage($category_id, $start, $limit) {
+        try {
+            $sql = "SELECT * FROM `product` WHERE category_id = ? LIMIT ?, ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(1, $category_id, PDO::PARAM_INT);
+            $stmt->bindParam(2, $start, PDO::PARAM_INT);
+            $stmt->bindParam(3, $limit, PDO::PARAM_INT);
+            $stmt->execute();
+            $products = array();
+            while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $product = new Product(
+                    $data['id'],
+                    $data['name'],
+                    $data['category_id'],
+                    $data['price'],
+                    $data['image'],
+                    $data['description']
+                );
+                $products[] = $product;
+            }
+            return $products;
+        } catch (PDOException $e) {
+            die("Lỗi: " . $e->getMessage());
+        }
+    }
     
+
 
 }

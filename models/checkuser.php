@@ -3,7 +3,11 @@ class Checkuser{
     public function __construct(){
     }
     public function checkSessionAdmin(){
+        if(!isset($_SESSION)){
+
+        
         session_start();
+        }
         if (isset($_SESSION) && empty($_SESSION)){
             
             return false;
@@ -20,7 +24,11 @@ class Checkuser{
     }
 
     public function checkSessionUser(){
-        session_start();
+        if(!isset($_SESSION)){
+
+        
+            session_start();
+            }
         if (isset($_SESSION) && empty($_SESSION)){
             return false;
         }

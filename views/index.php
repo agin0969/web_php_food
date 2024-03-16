@@ -36,35 +36,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $("#live_search").keyup(function() {
-            var query = $(this).val();
-            if (query != "") {
-                $.ajax({
-                    url: '../controllers/indexLiveSearch.php',
-                    method: 'POST',
-                    data: {
-                        query: query
-                    },
-                    success: function(data) {
-                        $('#search_result').html(data);
-                        $('#search_result').css('display', 'block');
-                        $("#live_search").focusout(function() {
-                            $('#search_result').css('display', 'none');
-                        });
-                        $("#live_search").focusin(function() {
-                            $('#search_result').css('display', 'block');
-                        });
-                        addCssClassToResults();
-                    }
-                });
-            } else {
-                $('#search_result').css('display', 'none');
-            }
-        });
+    $("#live_search").keyup(function() {
+        var query = $(this).val();
+        if (query != "") {
+            $.ajax({
+                url: '../controllers/indexLiveSearch.php',
+                method: 'POST',
+                data: {
+                    query: query
+                },
+                success: function(data) {
+                    $('#search_result').html(data);
+                    $('#search_result').css('display', 'block');
+                }
+            });
+        } else {
+            $('#search_result').css('display', 'none');
+        }
     });
-            function addCssClassToResults() {
-                $('#search_result > div').addClass('search_result_item');
-            }
+
+    // Bắt sự kiện khi click vào một liên kết trong kết quả tìm kiếm
+    $(document).on('click', '.search_result_item a', function(e) {
+        e.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+        var url = $(this).attr('href'); // Lấy đường dẫn từ thuộc tính href của liên kết
+        window.location.href = url; // Chuyển hướng trình duyệt đến URL được nhấp
+    });
+});
     </script>
 
     <div id="wraper">
@@ -555,6 +552,7 @@
         }
     });
     </script>
+   
 
 
 

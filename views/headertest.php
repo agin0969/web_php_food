@@ -47,13 +47,13 @@ require '../services/cartItemService.php';
 
     <header>
         <div class="inner-header container">
-            <a href="../views/index.php" onclick="showFoodbox('home')" class="logo">WEFOOD</a>
+            <a href="../views/test.php" class="logo">WEFOOD</a>
             <nav>
                 <ul id="main-menu">
-                    <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
-                    <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
-                    <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
-                    <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
+                    <li id="milktea"><a href="#" onclick="">Món Nước</a></li>
+                    <li><a href="../views/test.php?categoryShow=1">Món Khô</a></li>
+                    <li><a href="#" onclick="">Thức Uống</a></li>
+                    <li><a href="#" onclick="">Tráng Miệng</a></li>
                 </ul>
             </nav>
 
