@@ -313,8 +313,24 @@
                     
 
 
-                    <!-- /* phân trang cho danh mục sản phẩm  */ -->
+                    <!-- /* phân trang cho danh mục sản phẩm  */ --> 
+                    <? $tong_so_san_pham = $productService->getProductCount()/4;
+                        $tong_so_trang = ceil($tong_so_san_pham / 4);
+                    ?> 
+
                     <div class="pagination">
+                        <div class="pagination_item">
+                            <div class="pagination_items left" onclick="backBtn()"><</div>
+                            <ul>
+                                <?php for ($i = 1; $i <= $tong_so_trang; $i++): ?>
+                                    <li class="link <?php echo ($i == 1) ? 'active' : ''; ?>" value="<?php echo $i; ?>" onclick="activeLink(); paginateProducts(<?php echo $i; ?>);"><?php echo $i; ?></li>
+                                <?php endfor; ?>
+                            </ul>
+                            <div class="pagination_items right" onclick="nextBtn()">></div>
+                        </div>
+                    </div>
+                                  
+                    <!-- <div class="pagination">
                         <div class="pagination_item">
                             <div class="pagination_items left" onclick="backBtn()"><</div>
                             <ul>
@@ -322,11 +338,11 @@
                                 <li class="link" value="2" onclick="activeLink(); paginateProducts(2);">2</li>
                                 <li class="link" value="3" onclick="activeLink(); paginateProducts(3);">3</li>
                                 <!-- <li class="link" value="4" onclick="activeLink(); paginateProducts(4);">4</li>
-                                <li class="link" value="5" onclick="activeLink(); paginateProducts(5);">5</li>                                -->
+                                <li class="link" value="5" onclick="activeLink(); paginateProducts(5);">5</li>    --> <!--
                             </ul>
                             <div class="pagination_items right" onclick="nextBtn()">></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
