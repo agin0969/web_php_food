@@ -1,6 +1,7 @@
 <? require_once '../services/productService.php';
 require_once '../models/checkuser.php';
 require_once '../services/uploadService.php';
+
 $checkSession= new Checkuser();
 if (!$checkSession->checkSessionAdmin()){
     header("Location: ../views/login.php");

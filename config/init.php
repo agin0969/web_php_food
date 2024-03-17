@@ -1,6 +1,7 @@
 <?
 require_once'config.php';
 
+
 // File: init.php
 
 /*
@@ -19,7 +20,9 @@ function exceptionHandler($ex) {
         echo "<p>Nội dung: " . $ex->getMessage() . "</p>";
         echo "<p>Tập tin: " . $ex->getFile() . " dòng thứ " . $ex->getLine() . "</p>";
     } else {
-        echo "<h2>Lỗi. Vui lòng thử lại</h2>";
+        $add= new ErrorService();
+        $add->addError($ex->getMessage().$ex->getFile());
+        header('Location: ../views/404.php');
     }
 
     exit;

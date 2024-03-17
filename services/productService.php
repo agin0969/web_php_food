@@ -133,7 +133,7 @@ class ProductService{
     
             return true;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     

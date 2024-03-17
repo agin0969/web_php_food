@@ -14,7 +14,7 @@ class ErrorService
     public function addError($error_message)
     {
         try {
-            $sql = "INSERT INTO errors (time, message) VALUES (NOW(), :error_message)";
+            $sql = "INSERT INTO exception (time, message) VALUES (NOW(), :error_message)";
             $result = $this->conn->prepare($sql);
             $result->bindParam(':error_message', $error_message);
             $result->execute();
@@ -27,7 +27,7 @@ class ErrorService
     public function getErrorById($error_id)
     {
         try {
-            $sql = "SELECT * FROM errors WHERE id = :error_id";
+            $sql = "SELECT * FROM exception WHERE id = :error_id";
             $result = $this->conn->prepare($sql);
             $result->bindParam(':error_id', $error_id);
             $result->execute();
