@@ -142,19 +142,16 @@
                                     <div class="item">
                                         <div class="product-top">
                                             <a href="productDetail.php?id=<?echo $product->getid()?>" class="thump">
-                                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                                <img src="<?php echo $product->getImage() ?>"
                                                     alt="san pham">
                                             </a>
                                             <?php if(!empty($sessionData)) { ?>
                                             <form name="cartForm" id="cartForm"
                                                 action="../controllers/addToCartItemController.php" method="post">
-                                                <div class="btn cart quantity">
-
-                                                    <span class="minus">-</span>
-                                                    <input name="input_quantity" value="01" class="num"
-                                                        style="width: 30px; background:none; border:none" readonly>
-                                                    <span class="plus">+</span>
-
+                                                <div class=" cart quantity">
+                                                    <!-- <span class="minus">-</span> -->
+                                                    <input type="hidden" name="input_quantity" value="01" class="num">
+                                                    <!-- <span class="plus">+</span> -->
                                                 </div>
                                                 <input type="hidden" id="cart_id" name="cart_id"
                                                     value="<?php echo $cartInfor->getId(); ?>">
@@ -327,19 +324,7 @@
                         </div>
                     </div>
                                   
-                    <!-- <div class="pagination">
-                        <div class="pagination_item">
-                            <div class="pagination_items left" onclick="backBtn()"><</div>
-                            <ul>
-                                <li class="link active" value="1" onclick="activeLink(); paginateProducts(1);">1</li>
-                                <li class="link" value="2" onclick="activeLink(); paginateProducts(2);">2</li>
-                                <li class="link" value="3" onclick="activeLink(); paginateProducts(3);">3</li>
-                                <!-- <li class="link" value="4" onclick="activeLink(); paginateProducts(4);">4</li>
-                                <li class="link" value="5" onclick="activeLink(); paginateProducts(5);">5</li>    --> <!--
-                            </ul>
-                            <div class="pagination_items right" onclick="nextBtn()">></div>
-                        </div>
-                    </div> -->
+                
                 </div>
             </div>
 
@@ -419,7 +404,7 @@
     }
 
     function nextBtn(){
-        if(currentValue < 5){
+        if(currentValue < $tong_so_trang){
             for(l of link){
                 l.classList.remove("active");           
             }
