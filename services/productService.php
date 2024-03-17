@@ -37,7 +37,7 @@ class ProductService{
                 $products = array();
             }
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
         return $products;
     }
@@ -56,7 +56,7 @@ class ProductService{
             return true;
         }
         catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
             } 
         
     }
@@ -75,7 +75,7 @@ class ProductService{
                 return true;
             } 
             }catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
             }
     }
 
@@ -166,7 +166,7 @@ class ProductService{
              return null;
         }
         }catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         } 
     } 
     public function getIdProductByNameLike($name){
@@ -191,7 +191,7 @@ class ProductService{
          
 
         } catch (PDOException $e) {
-            die("Lỗi: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -224,7 +224,7 @@ class ProductService{
         }
             return $products;
         } catch (PDOException $e) {
-            die("Lỗi: " . $e->getMessage());
+            throw $e;
         }
     }
     public function getProductCount() {
@@ -240,7 +240,7 @@ class ProductService{
                 return 0;
             }
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     public function getProductCountByFoodType($foodtypeId) {
@@ -254,7 +254,7 @@ class ProductService{
             return isset($result['total']) ? (int)$result['total'] : 0;
             
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     public function getProductsByCategoryId($category_id){
@@ -282,7 +282,7 @@ class ProductService{
             }
             return $products;
         } catch (PDOException $e) {
-            die("Lỗi: " . $e->getMessage());
+            throw $e;
         }
     }
    
@@ -307,7 +307,7 @@ class ProductService{
             }
             return $products;
         } catch (PDOException $e) {
-            die("Lỗi: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -333,7 +333,7 @@ class ProductService{
             }
             return $products;
         } catch (PDOException $e) {
-            die("Lỗi: " . $e->getMessage());
+            throw $e;
         }
     }
     

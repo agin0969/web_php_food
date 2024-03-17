@@ -20,7 +20,7 @@ class ErrorService
             $result->execute();
             return true;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -33,7 +33,7 @@ class ErrorService
             $result->execute();
             return $result->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
 }

@@ -25,7 +25,7 @@ class BillService{
             return true;
         } catch (PDOException $e) {
             
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -57,7 +57,7 @@ class BillService{
                 $bills = array();
             }
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
 
         return $bills;
@@ -92,7 +92,7 @@ class BillService{
                 return null;
             }
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     
     }
@@ -107,7 +107,7 @@ class BillService{
 
             return true;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
 
