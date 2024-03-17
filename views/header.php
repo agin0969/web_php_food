@@ -12,6 +12,9 @@ require '../services/cartItemService.php';
     $userService = new UserService();
     $sessionData = $userService->getSession();
 
+    require '../models/checkuser.php';
+    $checkUser = new Checkuser();
+
 
     if(!empty($sessionData)){
 
@@ -154,7 +157,11 @@ require '../services/cartItemService.php';
                                             </ul>
                                         </li>
                                         
-                                        <li id="email">'.  $sessionData['id'] .'</li>
+                                        <li id="email">'.  $sessionData['id'] .'</li>';
+                                        if($checkUser->checkSessionAdmin() ) {
+                                            echo '<li><a href="adminView.php">Quản lí</a></li>';
+                                        }                                    
+                                        echo '
                                         <li><a href="userProfile.php">Profile</a></li>
                                         <li><a href="../controllers/logoutController.php">Đăng xuất</a></li>
                                     </ul>
