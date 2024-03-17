@@ -19,7 +19,7 @@
                 return false;
             }
         }catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
         }
     }
     public function getCartByUserId($user_id){
@@ -45,7 +45,7 @@
              return null;
         }
         }catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         } 
     } 
 

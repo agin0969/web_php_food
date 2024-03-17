@@ -41,7 +41,7 @@
 
     <script>
         setTimeout(function() {
-            window.location.href = "index.php";
+            window.history.back();
         }, 3000);
     </script>
 </body>

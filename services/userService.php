@@ -42,7 +42,7 @@ class UserService{
         }
         }
         catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         } 
         
     }
@@ -124,7 +124,7 @@ class UserService{
 
             return $users;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -151,7 +151,7 @@ class UserService{
                 return null; // Return null if user with the given ID is not found
             }
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     public function deleteUserById($userId) {
@@ -167,7 +167,7 @@ class UserService{
                 return false; // Unable to delete user
             }
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     //tra ve doi tuong user theo name
@@ -196,7 +196,7 @@ class UserService{
              return null;
         }
         }catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         } 
     }
     public function getIdByUsername($name){
@@ -218,7 +218,7 @@ class UserService{
                 return false;
             }
             }catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
             } 
                 
 
@@ -243,7 +243,7 @@ class UserService{
                 return false;
             }
             }catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
             } 
 
     }
@@ -266,7 +266,7 @@ class UserService{
                 return false;
             }
             }catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
             }
     }
 

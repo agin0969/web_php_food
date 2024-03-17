@@ -12,8 +12,7 @@ if (!$checkSession->checkSessionAdmin()){
          if($productService->deleteProductById($id))
          {
 
-         header("Location: ../views/adminView.php");
-         exit;
+            echo "<script>window.history.back();</script>";
          }  else {
             header("Location: ../views/404.php");
             exit;
