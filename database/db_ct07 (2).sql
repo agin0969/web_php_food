@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2024 at 05:41 AM
+-- Generation Time: Mar 17, 2024 at 09:06 AM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -37,7 +37,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`) VALUES
-(1, 3);
+(1, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,9 @@ CREATE TABLE `cartitem` (
 --
 
 INSERT INTO `cartitem` (`id`, `product_id`, `quantity`, `cart_id`) VALUES
-(107, 1, 1, 1);
+(107, 1, 1, 1),
+(108, 1, 1, 2),
+(109, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -102,6 +105,27 @@ INSERT INTO `dv_van_chuyen` (`id`, `ten_don_vi`) VALUES
 (4, 'GrabExpress'),
 (5, 'NowShip'),
 (6, 'ShipChung');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exception`
+--
+
+CREATE TABLE `exception` (
+  `id` int NOT NULL,
+  `message` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `exception`
+--
+
+INSERT INTO `exception` (`id`, `message`, `time`) VALUES
+(1, 'Kiểu tập tin phải là hình ảnh.', '2024-03-17 15:43:36'),
+(2, 'SQLSTATE[01000]: Warning: 1265 Data truncated for column \'price\' at row 1D:\\VSCode + ampps\\Ampps\\www\\web_php_food\\services\\productService.php', '2024-03-17 16:03:10'),
+(3, 'SQLSTATE[01000]: Warning: 1265 Data truncated for column \'price\' at row 1D:\\VSCode + ampps\\Ampps\\www\\web_php_food\\services\\productService.php', '2024-03-17 16:05:12');
 
 -- --------------------------------------------------------
 
@@ -178,7 +202,7 @@ INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `image`, `descripti
 (37, 'Bánh Tart Trái Cây', 4, 35000, 'banhtarttraicay.jpg', 'Bánh tart trái cây tươi mát'),
 (38, 'Kem Cà Phê', 4, 45000, 'kemcaphe.jpg', 'Kem cà phê thơm ngon'),
 (39, 'Bánh Dẻo Lá Dứa', 4, 35000, 'banhdeoladua.jpg', 'Bánh dẻo lá dứa ngon'),
-(40, 'Chè Bưởi', 4, 35000, 'chebuoi.jpg', 'Chè bưởi thơm ngon');
+(40, 'Chè Bưởi', 4, 44444, 'chebuoi.jpg', 'Chè bưởi thơm ngon');
 
 -- --------------------------------------------------------
 
@@ -232,7 +256,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `password`, `email`, `role_id`) VALUES
 (1, 'AdminUser', 'adminpassword', 'admin@example.com', 1),
 (2, 'RegularUser', '$2y$10$W7sacXbHaCaCjUIS8kP2NeRpt8rMnZOnxhvBDFNC./tdtCC70ix0e', 'user@example.com', 2),
-(3, 'qqqqqq', '$2y$10$6i8K4tt6NAsbd8BCnCk8NuwwteVhliUW58DG2FCZ1BJ6DlaJU9Zqy', 'on@gmail.com3', 2);
+(3, 'qqqqqq', '$2y$10$6i8K4tt6NAsbd8BCnCk8NuwwteVhliUW58DG2FCZ1BJ6DlaJU9Zqy', 'on@gmail.com3', 2),
+(4, 'thin123', '$2y$10$1rrdjK0KdRxkU8rLVDbQBOx/3HwtV80BeO05YxhK20EHI15SAltU6', 'on', 1);
 
 --
 -- Indexes for dumped tables
@@ -263,6 +288,12 @@ ALTER TABLE `category`
 -- Indexes for table `dv_van_chuyen`
 --
 ALTER TABLE `dv_van_chuyen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `exception`
+--
+ALTER TABLE `exception`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -308,19 +339,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cartitem`
 --
 ALTER TABLE `cartitem`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `dv_van_chuyen`
 --
 ALTER TABLE `dv_van_chuyen`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `exception`
+--
+ALTER TABLE `exception`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `hoadon`
@@ -332,7 +369,7 @@ ALTER TABLE `hoadon`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `ship`
@@ -344,7 +381,7 @@ ALTER TABLE `ship`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
