@@ -16,7 +16,12 @@ if (isset($_GET['numbers'])) {
     $numbers = $_GET['numbers'];
     $products = $productService->getProductByListId($numbers);
 } else {
-    $products = $productService->getAllProduct();
+    $so_san_pham_moi_trang = 7;
+    $tong_so_san_pham = $productService->getProductCount();
+    $tong_so_trang = ceil($tong_so_san_pham / $so_san_pham_moi_trang);
+    $trang_hien_tai = isset($_GET['page']) ? $_GET['page'] : 1;
+    $bat_dau_tu = ($trang_hien_tai - 1) * $so_san_pham_moi_trang;
+    $products = $productService->getProductsPerPage($bat_dau_tu, $so_san_pham_moi_trang);
 }
 
 $count = 1;
@@ -39,12 +44,12 @@ $count = 1;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
-    
+
     <link href="../resource/static/css/adminView.css " rel="stylesheet" type="text/css">
     <script src="../resource/static/js/hideAndShow.js" type="text/javascript"> </script>
     <script>
-  
-   
+
+
     </script>
 
 </head>
@@ -76,7 +81,10 @@ $count = 1;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($products as $product): ?>
+                        <?php 
+                        
+                        
+                        foreach ($products as $product): ?>
                         <tr>
                             <th scope="row">
                                 <?php echo $count ?>
@@ -122,6 +130,51 @@ $count = 1;
 
 
             </div>
+
+            <div class="container-fluid" style="height: 20px; text-align: center;">
+                
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="
+                            ?page=<?
+                                if(isset($_GET['page'])){
+                                    if($_GET['page']>1){
+                                        echo $_GET['page']-1;
+                                    }
+                                    else {
+                                        echo $_GET['page'];
+                                    }
+                                } 
+                            ?>                           
+                            " aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <?php for ($i = 1; $i <= $tong_so_trang; $i++) : ?>
+                        <?php 
+                        $url = "?page=$i";
+                        ?>
+                        <li class="page-item<?php if ($trang_hien_tai == $i) echo ' active';?> "><a class="page-link" href="<?= $url ?>"><?= $i ?></a></li>
+                        <?php endfor; ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?
+                                if(isset($_GET['page'])){
+                                    if($_GET['page']< $tong_so_trang){
+                                        echo $_GET['page']+1;
+                                    }
+                                    else {
+                                        echo $_GET['page'];
+                                    }
+                                } 
+                            ?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             <div class="container-fluid ">
                 <div class="add-name">
                     <span>Thêm sản phẩm</span>
@@ -160,7 +213,7 @@ $count = 1;
                     <div class="mb-3 row">
                         <input class="form-control form-control-sm col" id="file" type="file" name="file">
                         <div class="btn btn-secondary col deleteFile" onclick="clearFileChoosen()">Xóa</div>
-                        
+
                     </div>
                     <input class="btn submit-add btn-secondary" type="submit" value="Thêm sản phẩm" name="submit">
 
@@ -176,8 +229,8 @@ $count = 1;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form class="input-from" id="form-repair" action="../controllers/proChgAdCon.php" method="post"
-                                enctype="multipart/form-data">
+                            <form class="input-from" id="form-repair" action="../controllers/proChgAdCon.php"
+                                method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
 
                                     <div class="mb-3 row">
@@ -221,8 +274,7 @@ $count = 1;
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="repairProduct()">Sửa</button>
+                                    <button type="button" class="btn btn-primary" onclick="repairProduct()">Sửa</button>
                                 </div>
                             </form>
                         </div>
