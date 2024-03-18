@@ -192,9 +192,10 @@ class UserService{
 
                 return $user;
             }
-        } else {
-             return null;
-        }
+            else {
+                return null;
+           }
+        } 
         }catch (PDOException $e) {
             throw $e;
         } 

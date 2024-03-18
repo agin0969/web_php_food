@@ -27,7 +27,7 @@
                         <input type="password" id="password" name="password" class="auth-form-input" placeholder="Mật khẩu" required>
                         <input type="password" id="confirm_password" name="confirm_password" class="auth-form-input" placeholder="Xác nhận mật khẩu" required>
                         <label class="btn active">
-                            <input type="checkbox" name='email' checked>
+                        <input type="checkbox" name="agree_terms" checked>
                             <i class="fa fa-square-o"></i><i class="fa fa-check-square-o"></i> 
                             <span> Tôi đồng ý với <a href="#">Điều khoản</a> và <a href="#">Chính sách quyền riêng tư</a>.</span>
                         </label>
