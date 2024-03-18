@@ -66,7 +66,7 @@ require '../services/cartItemService.php';
                         // Người dùng đã đăng nhập                      
                         echo ' 
                             <!-- Nút kích hoạt Offcanvas -->                   
-                            <button class="btn-primary button-cart" type="button" onclick="toggleOffcanvas()"
+                            <button class="btn_primary button-cart" type="button" onclick="toggleOffcanvas()"
                             style="background: none; border:none;"
                             >
                                 <img id="cart_icon" src="../resource/static/img/shopping-cart.png">
@@ -158,7 +158,7 @@ require '../services/cartItemService.php';
                                         </li>
                                         
                                         <li id="email">'.  $sessionData['id'] .'</li>';
-                                        if($checkUser->checkSessionAdmin() ) {
+                                        if($checkUser->checkSessionAdmin() === true ) {
                                             echo '<li><a href="adminView.php">Quản lí</a></li>';
                                         }                                    
                                         echo '

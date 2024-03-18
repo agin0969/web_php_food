@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Detail</title>
@@ -80,19 +82,20 @@
         box-shadow: 0 0 0 1px #04AA6D;
     }
     </style>
-
+    
 
 </head>
 
-<body>
-    <?
-        require_once'../views/header.php';
-        ?>
 
-    <?php 
-    
-    $product = $productService->getProductById($_GET['id']);
+
+<body>
+<?require_once'../views/header.php'; ?>
+
+    <?php   
+    $product = $productService->getProductById($_GET['id']);   
 ?>
+
+
 
     <div class="container row" style="height: 900px; background-color: #a18a6f ;">
 

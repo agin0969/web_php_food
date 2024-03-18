@@ -142,7 +142,7 @@
                                     <div class="item">
                                         <div class="product-top">
                                             <a href="productDetail.php?id=<?echo $product->getid()?>" class="thump">
-                                                <img src="<?php echo $product->getImage() ?>"
+                                                <img src="../resource/static/img/<?php echo $product->getImage() ?>"
                                                     alt="san pham">
                                             </a>
                                             <?php if(!empty($sessionData)) { ?>
@@ -184,18 +184,17 @@
                                     <div class="item">
                                         <div class="product-top">
                                             <a href="" class="thump">
-                                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                            <img src="../resource/static/img/<?php echo $product->getImage() ?>"
                                                     alt="san pham">
                                             </a>
                                             <?php if(!empty($sessionData)) { ?>
                                             <form name="cartForm" id="cartForm"
                                                 action="../controllers/addToCartItemController.php" method="post">
-                                                <div class="btn cart quantity">
+                                                <div class=" cart quantity">
 
-                                                    <span class="minus">-</span>
-                                                    <input name="input_quantity" value="01" class="num"
-                                                        style="width: 30px; background:none; border:none" readonly>
-                                                    <span class="plus">+</span>
+                                                     <!-- <span class="minus">-</span> -->
+                                                     <input type="hidden" name="input_quantity" value="01" class="num">
+                                                    <!-- <span class="plus">+</span> -->
 
                                                 </div>
                                                 <input type="hidden" id="cart_id" name="cart_id"
@@ -226,18 +225,17 @@
                                     <div class="item">
                                         <div class="product-top">
                                             <a href="" class="thump">
-                                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                            <img src="../resource/static/img/<?php echo $product->getImage() ?>"
                                                     alt="san pham">
                                             </a>
                                             <?php if(!empty($sessionData)) { ?>
                                             <form name="cartForm" id="cartForm"
                                                 action="../controllers/addToCartItemController.php" method="post">
-                                                <div class="btn cart quantity">
+                                                <div class="cart quantity">
 
-                                                    <span class="minus">-</span>
-                                                    <input name="input_quantity" value="01" class="num"
-                                                        style="width: 30px; background:none; border:none" readonly>
-                                                    <span class="plus">+</span>
+                                                     <!-- <span class="minus">-</span> -->
+                                                     <input type="hidden" name="input_quantity" value="01" class="num">
+                                                    <!-- <span class="plus">+</span> -->
 
                                                 </div>
                                                 <input type="hidden" id="cart_id" name="cart_id"
@@ -258,7 +256,7 @@
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                        <!-- ăn trưa -->
+                        <!-- trang mieng -->
                         <div class="product" id="trang_mieng">
 
                             <ul class="milktea">
@@ -268,18 +266,17 @@
                                     <div class="item">
                                         <div class="product-top">
                                             <a href="" class="thump">
-                                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                            <img src="../resource/static/img/<?php echo $product->getImage() ?>"
                                                     alt="san pham">
                                             </a>
                                             <?php if(!empty($sessionData)) { ?>
                                             <form name="cartForm" id="cartForm"
                                                 action="../controllers/addToCartItemController.php" method="post">
-                                                <div class="btn cart quantity">
+                                                <div class=" cart quantity">
 
-                                                    <span class="minus">-</span>
-                                                    <input name="input_quantity" value="01" class="num"
-                                                        style="width: 30px; background:none; border:none" readonly>
-                                                    <span class="plus">+</span>
+                                                     <!-- <span class="minus">-</span> -->
+                                                     <input type="hidden" name="input_quantity" value="01" class="num">
+                                                    <!-- <span class="plus">+</span> -->
 
                                                 </div>
                                                 <input type="hidden" id="cart_id" name="cart_id"

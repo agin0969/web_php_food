@@ -44,11 +44,11 @@
 #cart_icon{
     position: absolute;
     width: 36px;
-    top: 0px;
     left: 20%px;
+    margin-top: -20px;
 }
 
-.btn-primary .button-cart{
+.button-cart{
     position: relative;
     display: inline-block;
     width: 48px !important;
@@ -56,18 +56,18 @@
     margin-left: 200px;
     padding-left: 0;
     padding-right: 33px;
-
+    margin-top: 8px;
 }
 
 .close-btn{
     color: rgb(255, 255, 255);
 }
 
-.btn-primary span{
+.btn_primary span{
     display: flex;
     width: 20px;
     height: 20px;
-    background-color: red;
+    background-color: rgb(84, 167, 97);
     justify-content: center;
     align-items: center;
     color: #ffffff;
