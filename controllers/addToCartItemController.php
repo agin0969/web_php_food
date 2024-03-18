@@ -1,11 +1,13 @@
 <?php
 require_once '../services/cartItemService.php';
 
+
 $cartItemService = new CartItemService();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Kiểm tra sự tồn tại của các dữ liệu từ form
     if (!isset($_POST['id1'], $_POST['input_quantity'], $_POST['cart_id'])) {
+        
         header("Location: ../views/404.php");
         exit;
     }

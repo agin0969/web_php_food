@@ -22,7 +22,7 @@ class RoleService{
                 }
             }
         } catch(PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
 

@@ -18,7 +18,7 @@ class CartItemService{
 
             return $result;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     public function getTotalAmountInCart($cartId) {
@@ -35,7 +35,7 @@ class CartItemService{
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return ($result) ? $result['total_amount'] : 0;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     public function getItemWithCartId($cart_id) {
@@ -61,7 +61,7 @@ class CartItemService{
                 $items = array();
             }
         }catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
         return $items;
         
@@ -78,7 +78,7 @@ class CartItemService{
             }
             else return null;
         } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
+            throw $e;
         }
     }
     public function deleteCartItemById($id) {
@@ -90,7 +90,7 @@ class CartItemService{
             return true;
         }
         catch (PDOException $e) {
-                die("Error: " . $e->getMessage());
+                throw $e;
         } 
         
     }

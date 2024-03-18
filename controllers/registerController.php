@@ -30,6 +30,10 @@ require_once '../services/cartService.php';
             }
             
         }
+        else {
+            echo "<script>alert('tài khoản đã có người sử dụng');  window.history.back();</script>";
+
+        }
     }
 
 

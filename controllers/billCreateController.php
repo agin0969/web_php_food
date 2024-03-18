@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($address !=null && $phone != null){
         $result=$billService->addToBill($cart_id,$totalPrice,$address,$phone,"Chờ xác nhận");
         if($result){
-            header('Location: ../views/adminBill.php');
+            header('Location: ../views/userCart.php');
             exit();
         } else {
             header("Location: ../views/404.php");

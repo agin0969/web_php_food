@@ -67,7 +67,9 @@ if(!$checkUser->checkSessionUser()){
 <body>
 
     <div class="container">
-        <div class="container-fluid" style="height: 100px;"></div>
+        <div class="container-fluid" style="height: 100px;">
+            <a href="index.php" style="font-size: xx-large; text-decoration:none; font-weight: 500; margin-left: -10%; margin-top: auto">WEFOOD</a>
+        </div>
 
         <div class="row">
             <div class="col g-5">
@@ -143,9 +145,10 @@ if(!$checkUser->checkSessionUser()){
             <div class="col">
 
                 <div class="col" style="padding-left: 250px;">
-                    
+
                     <div class="row">
-                        <span style="font-size: x-large; margin-bottom: 75px; margin-top:200px">Trạng thái đơn hàng </span>
+                        <span style="font-size: x-large; margin-bottom: 75px; margin-top:200px">Trạng thái đơn hàng
+                        </span>
                     </div>
                     <div style="padding-left: 50px ;">
                         <style>
