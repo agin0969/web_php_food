@@ -81,6 +81,12 @@
         color: #04AA6D;
         box-shadow: 0 0 0 1px #04AA6D;
     }
+
+    .mid_header{
+        width: auto;
+        height: 80.8px;
+        background: linear-gradient(to bottom, #4e5459, #a5adb3);;
+    }
     </style>
     
 
@@ -95,16 +101,18 @@
     $product = $productService->getProductById($_GET['id']);   
 ?>
 
+    <div class="mid_header"></div>
 
-
-    <div class="container row" style="height: 900px; background-color: #a18a6f ;">
+    <div class="container row" style="height: 900px; background-color: #ffff ;">
+        
 
         <div class="container left col" style="display: flex; align-items: center;">
 
-            <img src="../resource/static/img/ts.png" alt="Product Image" class="img-fluid" style="width: 350px; height: 350px;
+            <!-- <img src="../resource/static/img/ts.png" alt="Product Image" class="img-fluid" style="width: 350px; height: 350px;
             margin-left: auto; display: block;margin-right: 15%;
-            ">
-
+            "> -->
+            <img src="../resource/static/img/<?php echo $product->getImage(); ?>" alt="Product Image" class="img-fluid" style="width: 350px; height: 350px;
+            margin-left: auto; display: block;margin-right: 15%; object-fit: cover; border-radius: 5px;">
 
 
         </div>
