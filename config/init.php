@@ -1,6 +1,6 @@
 <?
 require_once'config.php';
- 
+
 // File: init.php
 
 /*
