@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($address !=null && $phone != null){
         $result=$billService->addToBill($cart_id,$totalPrice,$address,$phone,"Chờ xác nhận");
         if($result){
+            echo '<script>alert("Đã gửi yêu cầu mua hàng!! sẽ sớm giao đến bạn!");</script>';
             header('Location: ../views/userCart.php');
             exit();
         } else {

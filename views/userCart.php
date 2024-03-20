@@ -39,7 +39,7 @@ if(!$checkUser->checkSessionUser()){
 
 
     $billService = new BillService();
-  
+    $bills=$billService->getBillByCartId($cartInfor->getId());
     }
 
 ?>
@@ -68,7 +68,8 @@ if(!$checkUser->checkSessionUser()){
 
     <div class="container">
         <div class="container-fluid" style="height: 100px;">
-            <a href="index.php" style="font-size: xx-large; text-decoration:none; font-weight: 500; margin-left: -10%; margin-top: auto">WEFOOD</a>
+            <a href="index.php"
+                style="font-size: xx-large; text-decoration:none; font-weight: 500; margin-left: -10%; margin-top: auto">WEFOOD</a>
         </div>
 
         <div class="row">
@@ -141,102 +142,82 @@ if(!$checkUser->checkSessionUser()){
             </div>
 
 
+            <div class="container-fluid aa col g-5">
 
-            <div class="col">
+                <table class="table table-striped table-container"
+                    style="border-radius: 20px; margin-left:25%; width:700px; margin-top:20%">
+                    <thead>
+                        <tr>
 
-                <div class="col" style="padding-left: 250px;">
+                            <th scope="col">ID</th>
+                            <th scope="col">Cart ID</th>
+                            <th scope="col">Giá trị</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Thao tác</th>
 
-                    <div class="row">
-                        <span style="font-size: x-large; margin-bottom: 75px; margin-top:200px">Trạng thái đơn hàng
-                        </span>
-                    </div>
-                    <div style="padding-left: 50px ;">
-                        <style>
-                        <? $bill=$billService->getBillByCartId($cartInfor->getId());
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($bills as $bill):  ?>
+                        <tr>
 
-                        if($bill->getStatus() !="Chờ xác nhận") {
-                            echo '
-.trans {
-                                color: forestgreen;
-                            }
+                            <td>
+                                <?php echo $bill->getId() ?>
+                            </td>
+                            <td>
+                                <?php echo $bill->getCartId() ?>
+                            </td>
+                            <td>
+                                <?php echo $bill->getTotalPrice() ?>
+                            </td>
+                            <td>
+                                <?php echo $bill->getDiaChi() ?>
+                            </td>
+                            <td>
+                                <?php echo $bill->getNgayTao() ?>
+                            </td>
 
-                            .trans1 {
-                                color: forestgreen;
-                            }
+                            <td>
+                                <?php echo $bill->getStatus() ?>
+                            </td>
+                            <td>
+                                <div class="row">
 
-                            .trans2 {
-                                color: red;
-                            }
+                                    <div class="col ml-1">
+                                        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#bill-re"
+                                            onclick="comfirmBill(<?echo $bill->getId()?>)">Hủy</button>
 
-                            ';
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
 
-                        }
+                        <?php  endforeach;?>
+                    </tbody>
+                </table>
+                <form name="comfirm-Bill" id="comfirm-Bill" action="../controllers/billDeleteController.php"
+                    method="POST">
+                    <input type="hidden" name="id" id="id" value=""> 
+                </form>
 
-                        else {
-                            echo '
-.trans {
-                                color: red;
-                            }
+                <script>
+                function comfirmBill(billid) {
+                    var confirmation = confirm("Bạn có chắc muốn hủy đơn hàng có id  " + billid);
+                    if (confirmation) {
+                        document.getElementById('id').value = billid;
+                        document.getElementById('comfirm-Bill').submit();
+                    }
 
-                            .trans1 {
-                                color: red;
-                            }
+                }
+                </script>
 
-                            .trans2 {
-                                color: red;
-                            }
-
-                            ';
-
-                        }
-
-                        ?>
-                        </style>
-                        <div class="row">
-                            <span class="trans">Chờ cửa hàng xác nhận </span>
-                        </div>
-                        <div class="row">
-                            <span class="trans"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans1">Bắt đầu vận chuyển </span>
-                        </div>
-                        <div class="row">
-                            <span class="trans1"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans1"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans1"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans1"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans1"> .</span>
-                        </div>
-                        <div class="row">
-                            <span class="trans2">Đang đến... </span>
-                        </div>
-                    </div>
-
-                </div>
 
 
             </div>
+
         </div>
     </div>
 
