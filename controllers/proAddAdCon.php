@@ -29,10 +29,8 @@ if (!$checkSession->checkSessionAdmin()){
             echo "<script>window.history.back();</script>";
             exit();
         }
-    }
-        
-        
-    }else {
+    } 
+    } else {
         header("Location: ../views/404.php");
         exit();
     }
