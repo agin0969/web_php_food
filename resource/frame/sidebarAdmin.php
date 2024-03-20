@@ -45,25 +45,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="border-top my-3"></li>
-            <li class="mb-1">
-                <button type="button" class="btn btn-sm product-mn mt-3" data-bs-toggle="collapse"
-                    href="#account-collapse" role="button" aria-expanded="false" aria-controls="collapseAccount">
-                    Account
-                </button>
-                <div class="collapse account-collapse" id="account-collapse">
-                    <ul>
-                        <li><a href="#">New...</a>
-                        </li>
-                        <li><a href="#">Profile</a>
-                        </li>
-                        <li><a href="#">Settings</a>
-                        </li>
-                        <li><a href="#">Sign
-                                out</a></li>
-                    </ul>
-                </div>
-            </li>
+             
         </ul>
     </div>
 

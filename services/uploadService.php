@@ -40,12 +40,14 @@ class UploadService{
           
           $baseFileToHost = "../resource/static/img/" . $filename . '.' . $extension;
           $imgg=$filename . '.' . $extension;
+          $imgg = $filename . '.' . $extension;
           $fileToHost = $baseFileToHost;
           $i = 1;
           
           while (file_exists($fileToHost)) {
               $fileToHost = "../resource/static/img/"."$i-".$filename . '.' . $extension;
               $imgg="$i-".$filename . '.' . $extension;
+              $imgg ="$i-".$filename . '.' . $extension;
               $i++;
           }
           
