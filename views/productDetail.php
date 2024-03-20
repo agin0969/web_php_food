@@ -87,6 +87,10 @@
         height: 80.8px;
         background: linear-gradient(to bottom, #4e5459, #a5adb3);;
     }
+ul#main-menu a.active_1{
+    border-bottom: none !important;
+}
+
     </style>
     
 

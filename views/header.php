@@ -53,10 +53,10 @@ require '../services/cartItemService.php';
             <a href="../views/index.php" onclick="showFoodbox('home')" class="logo">WEFOOD</a>
             <nav>
                 <ul id="main-menu">
-                    <li id="milktea"><a href="#" onclick="showFoodbox('mon_nuoc')">Món Nước</a></li>
-                    <li><a href="#" onclick="showFoodbox('mon_kho')">Món Khô</a></li>
-                    <li><a href="#" onclick="showFoodbox('thuc_uong')">Thức Uống</a></li>
-                    <li><a href="#" onclick="showFoodbox('trang_mieng')">Tráng Miệng</a></li>
+                    <li id="milktea"><a class="link1 active_1" href="#" onclick="showFoodbox('mon_nuoc');active_menu();">Món Nước</a></li>
+                    <li><a class="link1" href="#" onclick="showFoodbox('mon_kho');active_menu();">Món Khô</a></li>
+                    <li><a class="link1" href="#" onclick="showFoodbox('thuc_uong');active_menu();">Thức Uống</a></li>
+                    <li><a class="link1" href="#" onclick="showFoodbox('trang_mieng');active_menu();">Tráng Miệng</a></li>
                 </ul>
             </nav>
 
@@ -217,6 +217,15 @@ require '../services/cartItemService.php';
             }
         });
     });
+
+    function active_menu(){
+        var link1 = document.querySelectorAll(".link1"); // Đảm bảo rằng link1 được định nghĩa
+        for (var i = 0; i < link1.length; i++) {
+            link1[i].classList.remove("active_1");
+        }
+        event.target.classList.add("active_1");
+    }
+
     </script>
 
     <!-- // JavaScript để điều khiển Offcanvas và Dropdown -->
