@@ -4571,7 +4571,7 @@
     stroke: rgb(198, 198, 198);
     text-decoration: none solid rgba(0, 0, 0, 0.8);
     text-emphasis-color: rgba(0, 0, 0, 0.8);
-    text-size-adjust: 100%;
+    text-size-adjust: 200%;
     transform-origin: 0px 0px;
     border: 0px none rgba(0, 0, 0, 0.8);
     font: 24px / 32px "Helvetica Neue", Helvetica, Arial, 文泉驛正黑, "WenQuanYi Zen Hei", "Hiragino Sans GB", "儷黑 Pro", "LiHei Pro", "Heiti TC", 微軟正黑體, "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;

@@ -4,10 +4,7 @@ require '../models/checkuser.php';
 
 $userService = new UserService();
 $sessionData = $userService->getSession();
-$checkUser = new Checkuser();
-if(!$checkUser->checkSessionUser()){
-    header('Location: login.php');
-}
+ 
 
 if (!empty($sessionData)) {
     $userId = $sessionData['id'];
@@ -155,18 +152,7 @@ if (!empty($sessionData)) {
 										</svg>
 									</div>
 								</div>
-								<input type="file" accept=".jpg,.jpeg,.png" id="INPUT_100" />
-								<button type="button" id="BUTTON_101">
-									Chọn ảnh
-								</button>
-								<div id="DIV_102">
-									<div id="DIV_103">
-										Dụng lượng file tối đa 1 MB
-									</div>
-									<div id="DIV_104">
-										Định dạng:.JPEG, .PNG
-									</div>
-								</div>
+								 
 							</div>
 						</div>
 					</div>
