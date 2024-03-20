@@ -10,7 +10,7 @@ if (!$checkSession->checkSessionAdmin()){
     $upload = new UploadService();
     $img=$upload->upload();
     if($img === null){
-        $img="../resource/static/img/nothaveimg.png";       
+        $img="nothaveimg.jpg";       
     }
     $productService = new ProductService();
     

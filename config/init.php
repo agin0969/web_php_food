@@ -1,7 +1,6 @@
 <?
 require_once'config.php';
 
-
 // File: init.php
 
 /*
@@ -22,7 +21,7 @@ function exceptionHandler($ex) {
     } else {
         $add= new ErrorService();
         $add->addError($ex->getMessage().$ex->getFile());
-        header('Location: ../views/404.php');
+        echo '<script>window.location.href = "../views/404.php";</script>';
     }
 
     exit;

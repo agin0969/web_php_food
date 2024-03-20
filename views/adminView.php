@@ -133,7 +133,7 @@ $count = 1;
 
             <div class="container-fluid" style="height: 20px; text-align: center;">
                 
-
+            <?if (!isset($_GET['numbers'])): ?>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
@@ -174,6 +174,7 @@ $count = 1;
                         </li>
                     </ul>
                 </nav>
+                <? endif; ?>
             </div>
             <div class="container-fluid ">
                 <div class="add-name">
