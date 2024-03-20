@@ -118,8 +118,7 @@ $users = $userService->getAllUsers();
                             <label for="role_id" class="col-sm-2 col-form-label ">role_id</label>
                             <div class="col">
                                 <select class="form-select" aria-label="role_id" name="role_id">
-                                    <option selected>role_id</option>
-                                    <option value="1">Admin</option>
+                                     <option value="1">Admin</option>
                                     <option value="2">User</option>
 
                                 </select>

@@ -39,11 +39,13 @@ class UploadService{
           $extension = $pathInfo['extension'];
           
           $baseFileToHost = "../resource/static/img/" . $filename . '.' . $extension;
+          $imgg = $filename . '.' . $extension;
           $fileToHost = $baseFileToHost;
           $i = 1;
           
           while (file_exists($fileToHost)) {
               $fileToHost = "../resource/static/img/"."$i-".$filename . '.' . $extension;
+              $imgg ="$i-".$filename . '.' . $extension;
               $i++;
           }
           
@@ -53,7 +55,7 @@ class UploadService{
 
           if (move_uploaded_file($fileTmp, $fileToHost)) {
             
-              return $fileToHost;
+              return $imgg;
           } 
           
       } catch (Exception $e) {
