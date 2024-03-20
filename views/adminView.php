@@ -133,7 +133,7 @@ $count = 1;
 
             <div class="container-fluid" style="height: 20px; text-align: center;">
                 
-
+                  <?      if(!isset($_GET['numbers'])):    ?>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
@@ -174,6 +174,7 @@ $count = 1;
                         </li>
                     </ul>
                 </nav>
+                <?php endif; ?>
             </div>
             <div class="container-fluid ">
                 <div class="add-name">
@@ -199,8 +200,7 @@ $count = 1;
                         <label for="category" class="col-sm-2 col-form-label ">cate_id</label>
                         <div class="col">
                             <select class="form-select" aria-label="category" name="category">
-                                <option selected>category</option>
-                                <option value="1">Món nước</option>
+                                 <option value="1">Món nước</option>
                                 <option value="2">Món khô</option>
                                 <option value="3">Thức uống</option>
                                 <option value="4">Tráng miệng</option>

@@ -10,7 +10,7 @@ if (!$checkSession->checkSessionAdmin()){
     $upload = new UploadService();
     $img=$upload->upload();
     if($img === null){
-        $img="../resource/static/img/nothaveimg.png";       
+        $img="nothaveimg.jpg";       
     }
     $productService = new ProductService();
     
@@ -29,10 +29,8 @@ if (!$checkSession->checkSessionAdmin()){
             echo "<script>window.history.back();</script>";
             exit();
         }
-    }
-        
-        
-    }else {
+    } 
+    } else {
         header("Location: ../views/404.php");
         exit();
     }

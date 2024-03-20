@@ -1,6 +1,5 @@
 <?
 require_once'config.php';
-require '../services/errorService.php';
 
 // File: init.php
 
