@@ -376,7 +376,7 @@
 
 <!-- javascript choj pagination -->
 <script>
-
+    let sotrang = <?php echo $tong_so_trang; ?>;
     let link = document.getElementsByClassName("link");
     let currentValue = 1;
     let productsPerPage = 4;
@@ -401,7 +401,7 @@
     }
 
     function nextBtn(){
-        if(currentValue < $tong_so_trang){
+        if(currentValue < sotrang){
             for(l of link){
                 l.classList.remove("active");           
             }

@@ -84,7 +84,7 @@ require '../services/cartItemService.php';
                                         foreach ($cartItems as $cartItem) {
                                             echo'
                                                 <div class="cart_item">
-                                                    <img src="'.$productService->getProductById($cartItem->getProductId())->getImage().'" alt="">
+                                                    <img src="../resource/static/img/'.$productService->getProductById($cartItem->getProductId())->getImage().'" alt="">
                                                     <div class="cart_name">'.$productService->getProductById($cartItem->getProductId())->getName().'</div>   
                                                     <div class="mid_quan_pri"> 
                                                         <div class="quantity"> 
