@@ -24,7 +24,7 @@ $count = 1;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Admin Bill</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -48,11 +48,11 @@ $count = 1;
         <? include "../resource/frame/sidebarAdmin.php" ?>
         <div class="body-content container-fluid">
             <div class="container-fluid content-header">
-                <span>Danh sách Bill Chưa Xác Nhận</span>
+                <span>Danh sách hóa đơn Chưa Xác Nhận</span>
                 <form class="d-flex search-box" role="search" action="../controllers/proSeaAdCon.php" method="get">
                     <input class="form-control me-2" type="search" id="search" name="search"
                         placeholder="Search product name" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" type="submit">Tìm</button>
                 </form>
             </div>
             <div class="container-fluid aa">
@@ -62,7 +62,7 @@ $count = 1;
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">ID</th>
-                            <th scope="col">Cart ID</th>
+                            <th scope="col">ID Giỏ </th>
                             <th scope="col">Giá trị</th>
                             <th scope="col">Địa chỉ</th>
                             <th scope="col">Ngày tạo</th>
@@ -72,7 +72,7 @@ $count = 1;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($bills as $bill): if($bill->getStatus()==="Chờ xác nhận"){ ?>
+                        <?php foreach ($bills as $bill):  ?>
                         <tr>
                             <th scope="row">
                                 <?php echo $count ?>
@@ -108,7 +108,7 @@ $count = 1;
                             </td>
                         </tr>
                        
-                        <?php } endforeach;?>
+                        <?php  endforeach;?>
                     </tbody>
                 </table>
 
@@ -167,7 +167,7 @@ $count = 1;
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 <button type="button" class="btn btn-primary" onclick="comfirmBill()">Xác nhận</button>
                             </div>
                         </form>

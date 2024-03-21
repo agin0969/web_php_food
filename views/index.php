@@ -157,7 +157,7 @@
                                                     value="<?php echo $cartInfor->getId(); ?>">
                                                 <input type="hidden" id="id1" name="id1" value="">
                                                 <button class="btn buy" type="button" name="add_cart" value="Add cart"
-                                                    onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                                    onclick="getid(<?php echo $product->getId(); ?>)">Thêm</button>
                                             </form>
                                             <?php } ?>
                                         </div>
@@ -201,7 +201,7 @@
                                                     value="<?php echo $cartInfor->getId(); ?>">
                                                 <input type="hidden" id="id1" name="id1" value="">
                                                 <button class="btn buy" type="button" name="add_cart" value="Add cart"
-                                                    onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                                    onclick="getid(<?php echo $product->getId(); ?>)">Thêm</button>
                                             </form>
                                             <?php } ?>
                                         </div>
@@ -242,7 +242,7 @@
                                                     value="<?php echo $cartInfor->getId(); ?>">
                                                 <input type="hidden" id="id1" name="id1" value="">
                                                 <button class="btn buy" type="button" name="add_cart" value="Add cart"
-                                                    onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                                    onclick="getid(<?php echo $product->getId(); ?>)">Thêm</button>
                                             </form>
                                             <?php } ?>
                                         </div>
@@ -283,7 +283,7 @@
                                                     value="<?php echo $cartInfor->getId(); ?>">
                                                 <input type="hidden" id="id1" name="id1" value="">
                                                 <button class="btn buy" type="button" name="add_cart" value="Add cart"
-                                                    onclick="getid(<?php echo $product->getId(); ?>)">Add cart</button>
+                                                    onclick="getid(<?php echo $product->getId(); ?>)">Thêm</button>
                                             </form>
                                             <?php } ?>
                                         </div>

@@ -7,11 +7,12 @@ if (!$checkSession->checkSessionAdmin()){
     header("Location: ../views/login.php");
     exit;
 }
-    $upload = new UploadService();
+    $upload = new UploadService();//xu ly up load anh
     $img=$upload->upload();
     if($img === null){
         $img="nothaveimg.jpg";       
     }
+    
     $productService = new ProductService();
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,9 +21,9 @@ if (!$checkSession->checkSessionAdmin()){
         } else {
         
             $name = $_POST['name'];
-        $category_id =$_POST['category'];
-        $price=$_POST['price'];
-        $description=$_POST['descrip'];
+            $category_id =$_POST['category'];
+            $price=$_POST['price'];
+            $description=$_POST['descrip'];
         
         $result=$productService->addProductToDb($name, $category_id, $price, $img, $description);   
         if($result){

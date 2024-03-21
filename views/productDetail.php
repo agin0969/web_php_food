@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?
 
+require '../models/checkuser.php';
+$checkUser = new Checkuser();
+if(!$checkUser->checkSessionUser()){
+    header('Location: login.php');
+}
+?>
 
 <head>
 
@@ -123,8 +130,8 @@ ul#main-menu a.active_1{
         <div class="container col">
             <div class="product-info" style="margin-top: 25%; ">
                 <h2 class="my-4"><?php echo $product->getName(); ?></h2>
-                <p class="lead">Price: $<?php echo $product->getPrice(); ?></p>
-                <p>Description: <?php echo $product->getDescription(); ?></p>
+                <p class="lead">Giá: <?php echo $product->getPrice(); ?></p>
+                <p>Mô tả: <?php echo $product->getDescription(); ?></p>
                 <form name="cartForm" id="cartForm" action="../controllers/addToCartItemController.php" method="POST">
                 <div class="form-group quantity-control">
                     <label for="quantity">Số lượng:</label>
@@ -138,7 +145,7 @@ ul#main-menu a.active_1{
                 <input type="hidden" id="id1" name="id1" value="<?=$product->getId()?>">
                 </form>
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                    <button class="btn btn-primary" onclick="addToCart()">Thêm vào giỏ</button>
                 </div>
             </div>
         </div>

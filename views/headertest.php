@@ -50,10 +50,10 @@ require '../services/cartItemService.php';
             <a href="../views/test.php" class="logo">WEFOOD</a>
             <nav>
                 <ul id="main-menu">
-                    <li id="milktea"><a href="#" onclick="">Món Nước</a></li>
-                    <li><a href="../views/test.php?categoryShow=1">Món Khô</a></li>
-                    <li><a href="#" onclick="">Thức Uống</a></li>
-                    <li><a href="#" onclick="">Tráng Miệng</a></li>
+                    <li id="milktea"><a href="../views/test.php?categoryShow=1" onclick="">Món Nước</a></li>
+                    <li><a href="../views/test.php?categoryShow=2">Món Khô</a></li>
+                    <li><a href="../views/test.php?categoryShow=3" onclick="">Thức Uống</a></li>
+                    <li><a href="../views/test.php?categoryShow=4" onclick="">Tráng Miệng</a></li>
                 </ul>
             </nav>
 

@@ -1,6 +1,7 @@
 <? 
 require_once '../config/init.php';
 require_once'../services/productService.php';
+require_once'../services/errorService.php';
 require_once'../models/checkuser.php';
 $checkSession= new Checkuser();
 if (!$checkSession->checkSessionAdmin()){
@@ -35,7 +36,7 @@ $count = 1;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Admin View</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -63,7 +64,7 @@ $count = 1;
                 <form class="d-flex search-box" role="search" action="../controllers/proSeaAdCon.php" method="get">
                     <input class="form-control me-2" type="search" id="search" name="search"
                         placeholder="Search product name" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" type="submit">Tìm</button>
                 </form>
             </div>
             <div class="container-fluid aa">
@@ -73,10 +74,10 @@ $count = 1;
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">CategoryId</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Img</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Loại</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Ảnh</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
@@ -185,19 +186,19 @@ $count = 1;
                 <form class="input-from" action="../controllers/proAddAdCon.php" method="post"
                     enctype="multipart/form-data">
                     <div class="mb-3 row">
-                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <label for="name" class="col-sm-2 col-form-label">Tên</label>
                         <input type="text" id="name" name="name" class="form-control col" placeholder="product name">
                     </div>
                     <div class="mb-3 row">
-                        <label for="price" class="col-sm-2 col-form-label">Price</label>
+                        <label for="price" class="col-sm-2 col-form-label">Giá</label>
                         <input type="text" id="price" name="price" class="form-control col" placeholder="price">
                     </div>
                     <div class="mb-3 row">
-                        <label for="descrip" class="col-sm-2 col-form-label">descrip</label>
+                        <label for="descrip" class="col-sm-2 col-form-label">Mô tả</label>
                         <input type="text" id="descrip" name="descrip" class="form-control col" placeholder="descrip">
                     </div>
                     <div class="mb-3 row">
-                        <label for="category" class="col-sm-2 col-form-label ">cate_id</label>
+                        <label for="category" class="col-sm-2 col-form-label ">Loại</label>
                         <div class="col">
                             <select class="form-select" aria-label="category" name="category">
                                  <option value="1">Món nước</option>
@@ -234,22 +235,22 @@ $count = 1;
                                 <div class="modal-body">
 
                                     <div class="mb-3 row">
-                                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                        <label for="name" class="col-sm-2 col-form-label">Tên</label>
                                         <input type="text" id="name" name="name" class="form-control col"
                                             placeholder="product name">
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="price" class="col-sm-2 col-form-label">Price</label>
+                                        <label for="price" class="col-sm-2 col-form-label">Giá</label>
                                         <input type="text" id="price" name="price" class="form-control col"
                                             placeholder="price">
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="descrip" class="col-sm-2 col-form-label">descrip</label>
+                                        <label for="descrip" class="col-sm-2 col-form-label">Mô tả</label>
                                         <input type="text" id="descrip" name="descrip" class="form-control col"
                                             placeholder="descrip">
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="category" class="col-sm-2 col-form-label ">cate_id</label>
+                                        <label for="category" class="col-sm-2 col-form-label ">Loại</label>
                                         <div class="col">
                                             <select class="form-select" aria-label="category" name="category">
                                                
@@ -273,7 +274,7 @@ $count = 1;
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                                        data-bs-dismiss="modal">Đóng</button>
                                     <button type="button" class="btn btn-primary" onclick="repairProduct()">Sửa</button>
                                 </div>
                             </form>

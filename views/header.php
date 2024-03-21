@@ -157,7 +157,7 @@ require '../services/cartItemService.php';
                                             </ul>
                                         </li>
                                         
-                                        <li id="email">'.  $sessionData['id'] .'</li>';
+                                        <li id="email">'.'</li>';
                                         if($checkUser->checkSessionAdmin() === true ) {
                                             echo '<li><a href="adminView.php">Quản lí</a></li>';
                                         }                                    

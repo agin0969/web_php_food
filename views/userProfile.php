@@ -57,7 +57,7 @@ if (!empty($sessionData)) {
 								<tr id="TR_19">
 										<td id="TD_20">
 											<label id="LABEL_21">
-												User ID
+												 ID
 											</label>
 										</td>
 										<td id="TD_22">

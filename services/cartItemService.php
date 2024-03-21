@@ -94,5 +94,17 @@ class CartItemService{
         } 
         
     }
+    public function checkProductInCart($product_id) {
+        try {
+            $sql = "SELECT COUNT(*) FROM cartitem WHERE product_id = :product_id ";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':product_id', $product_id);
+            $stmt->execute();
+            $count = $stmt->fetchColumn();
+            return ($count > 0);
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
     
 }

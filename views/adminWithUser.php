@@ -19,7 +19,7 @@ $users = $userService->getAllUsers();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Admin User</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -47,10 +47,10 @@ $users = $userService->getAllUsers();
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Password</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Mật khẩu</th>
                             <th scope="col">Email</th>
-                            <th scope="col">RoleID</th>
+                            <th scope="col">Vai trò</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
@@ -105,7 +105,7 @@ $users = $userService->getAllUsers();
 
                         </div>
                         <div class="mb-3 row">
-                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                            <label for="password" class="col-sm-2 col-form-label">Mật khẩu</label>
                             <input type="text" id="password" name="password" class="form-control col"
                                 placeholder=" nhập pass">
                         </div>
@@ -115,7 +115,7 @@ $users = $userService->getAllUsers();
                                 placeholder=" nhập email">
                         </div>
                         <div class="mb-3 row">
-                            <label for="role_id" class="col-sm-2 col-form-label ">role_id</label>
+                            <label for="role_id" class="col-sm-2 col-form-label ">vai trò</label>
                             <div class="col">
                                 <select class="form-select" aria-label="role_id" name="role_id">
                                      <option value="1">Admin</option>

@@ -206,7 +206,7 @@
                                     <div class="item">
                                         <div class="product-top">
                                             <a href="productDetail.php?id=<?= $product->getId() ?>" class="thump">
-                                                <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png"
+                                                <img src="../resource/static/img/<?php echo $product->getImage() ?>"
                                                     alt="san pham">
                                             </a>
                                             <?php if (!empty($sessionData)) { ?>
