@@ -2,11 +2,9 @@
 <html lang="en">
 <?
 
-require '../models/checkuser.php';
-$checkUser = new Checkuser();
-if(!$checkUser->checkSessionUser()){
-    header('Location: login.php');
-}
+
+
+
 ?>
 
 <head>
