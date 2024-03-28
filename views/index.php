@@ -331,6 +331,98 @@
          
             
         </div>
+  <!-- thanh hien thi mat hang best -->
+        <div class="best_seller_box">
+            <div class="text-bestseler">
+                <span>B</span>
+                <span>e</span>
+                <span>s</span>
+                <span>t</span>
+                <span>s</span>
+                <span>e</span>
+                <span>l</span>
+                <span>l</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+
+
+            <div class="products_bestseller">
+                <ul class="products_list">
+                        
+
+
+                    <li>
+                            <div class="item">
+                            <div class="product-top">
+                                <a href="" class="thump">
+                                    <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
+                                </a>
+                                <button class="btn buy">Mua ngay</button>
+                            </div>
+                            
+                            <div class="product-info">
+                                    <a href="" class="product-name">Trà Sửa</a>
+                                    <div class="product-price">17 k</div>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li>
+                            <div class="item">
+                            <div class="product-top">
+                                <a href="" class="thump">
+                                    <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
+                                </a>
+                                <button class="btn buy">Mua ngay</button>
+                            </div>
+                            
+                            <div class="product-info">
+                                    <a href="" class="product-name">Trà Sửa</a>
+                                    <div class="product-price">17 k</div>
+                            </div>
+                        </div>
+                    </li>
+
+
+
+                    <li>
+                            <div class="item">
+                            <div class="product-top">
+                                <a href="" class="thump">
+                                    <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
+                                </a>
+                                <button class="btn buy">Mua ngay</button>
+                            </div>
+                            
+                            <div class="product-info">
+                                    <a href="" class="product-name">Trà Sửa</a>
+                                    <div class="product-price">17 k</div>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li>
+                            <div class="item">
+                            <div class="product-top">
+                                <a href="" class="thump">
+                                    <img src="https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/uong_nhieu_tra_sua_co_gay_ung_thu_khong_1_f8f43641f7.png" alt="san pham">
+                                </a>
+                                <button class="btn buy">Mua ngay</button>
+                            </div>
+                            
+                            <div class="product-info">
+                                    <a href="" class="product-name">Trà Sửa</a>
+                                    <div class="product-price">17 k</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
 
         <!-- phần chân giới thiệu trang web -->
         <div class="introduce_web">

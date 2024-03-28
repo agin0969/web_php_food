@@ -662,7 +662,7 @@ ul.milktea li{
 .introduce_web{
     color: #000;
     height: auto;
-    margin: 300px 270px;
+    margin: 150px 270px;
     padding: 0 30px;
     margin-bottom: 100px;
 }
@@ -726,6 +726,76 @@ ul.milktea li{
 ul#main-menu a.active_1{
     border-bottom: 3px solid #00BA51;
 }
+
+
+.best_seller_box {
+    height: auto;
+    min-height: 200px;
+    width: auto; 
+    margin: 0 100px;
+    margin-top: 250px;
+    background-color: none;
+ 
+}
+
+/* .text-bestseler{
+    justify-content: center;
+    line-height: 60px;
+    height: 60px;
+    padding-left: 43px;
+    background-color: #00ba51;
+    color: #ffff;
+    font-size: 26px;
+    font-weight: 900;
+    font-family: "Roboto", sans-serif;
+    
+} */
+
+.text-bestseler{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+.text-bestseler:hover{
+    background-color: #03d25d;
+    font-size: 28px;
+}
+
+
+ul.products_list{
+    display: flex !important;
+    flex-wrap: wrap;
+    padding: 0px 25px;
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border:20px solid #c49d9d5e;
+    border-top: none;
+}
+
+ul.products_list li {
+    flex: 0 0 calc(24% - 5px) !important; 
+    box-sizing: border-box;
+    height: auto !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    background-color: #00BA51;
+    margin: 5px 5px;
+    width: 10%;
+}
+
+ul.products_list li img{
+    size: 50%;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;  
+}
+
+
 
 
 
