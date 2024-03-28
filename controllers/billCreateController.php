@@ -17,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../views/404.php");
             exit();
         }
+    }else {
+        echo '<script>alert("Bạn cần điền đầy đủ thông tin");window.history.back();</script>';
+        exit();
     }
 } else {
     header("Location: ../views/404.php");

@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `id` int NOT NULL,
-  `user_id` int DEFAULT NULL
+  `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -385,8 +385,7 @@ ALTER TABLE `user`
 
 --
 -- Constraints for dumped tables
---
-
+-- 
 --
 -- Constraints for table `cartitem`
 --
