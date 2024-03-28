@@ -4,22 +4,22 @@ require '../models/checkuser.php';
 
 $userService = new UserService();
 $sessionData = $userService->getSession();
- 
+
 
 if (!empty($sessionData)) {
-    $userId = $sessionData['id'];
+	$userId = $sessionData['id'];
 
-     
-    // Lấy thông tin người dùng sau khi đã cập nhật (hoặc không)
-    $user = $userService->getUserById($userId);
 
-    if ($user) {
+	// Lấy thông tin người dùng sau khi đã cập nhật (hoặc không)
+	$user = $userService->getUserById($userId);
+
+	if ($user) {
 		$userId = $user->getId();
-        $userName = $user->getUsername();
-        $email = $user->getEmail();
-        $password = $user->getPassword();
+		$userName = $user->getUsername();
+		$email = $user->getEmail();
+		$password = $user->getPassword();
 		$role_id = $user->getRoleId();
-    }
+	}
 }
 ?>
 
@@ -52,22 +52,12 @@ if (!empty($sessionData)) {
 					</div>
 					<div id="DIV_8">
 						<div id="DIV_9">
-						<form action="../controllers/userChgCon.php" method="post"enctype="multipart/form-data" id= "FORM_10">
+							<form action="../controllers/userChgCon.php" method="post" enctype="multipart/form-data" id="FORM_10">
 								<table id="TABLE_11">
-								<tr id="TR_19">
-										<td id="TD_20">
-											<label id="LABEL_21">
-												 ID
-											</label>
-										</td>
-										<td id="TD_22">
-											<div id="DIV_23">
-												<div id="DIV_24">
-													<input type="text" value="<?php echo $userId; ?>" name ="id1" id="INPUT_25" readonly />
-												</div>
-											</div>
-										</td>
-									</tr>
+
+									<input type="hidden" value="<?php echo $userId; ?>" name="id1">
+									<input type="hidden" value="<?php echo $role_id; ?>" name="role_id" >
+
 									<tr id="TR_19">
 										<td id="TD_20">
 											<label id="LABEL_21">
@@ -99,7 +89,7 @@ if (!empty($sessionData)) {
 									<tr id="TR_33">
 										<td id="TD_34">
 											<label id="LABEL_35">
-												Pass Word
+												Mật Khẩu
 											</label>
 										</td>
 										<td id="TD_22">
@@ -110,31 +100,19 @@ if (!empty($sessionData)) {
 											</div>
 										</td>
 									</tr>
-									<tr id="TR_19">
-										<td id="TD_20">
-											<label id="LABEL_21">
-												ROLE
+									 
+ 											 
+									<tr id="TR_87">
+										<td id="TD_88">
+											<label id="LABEL_89">
 											</label>
 										</td>
-										<td id="TD_22">
-											<div id="DIV_23">
-												<div id="DIV_24">
-													<input type="text" value="<?php echo $role_id; ?>" name="role_id" id="INPUT_25" readonly />
-												</div>
-											</div>
+										<td id="TD_90">
+											<button type="submit" id="BUTTON_91">
+												Lưu
+											</button>
 										</td>
 									</tr>
-									<tr id="TR_87">
-									<td id="TD_88">
-										<label id="LABEL_89">
-										</label>
-									</td>
-									<td id="TD_90">
-										<button type="submit" id="BUTTON_91">
-											Lưu
-										</button>
-									</td>
-								</tr>
 								</table>
 							</form>
 						</div>
@@ -152,7 +130,7 @@ if (!empty($sessionData)) {
 										</svg>
 									</div>
 								</div>
-								 
+
 							</div>
 						</div>
 					</div>
