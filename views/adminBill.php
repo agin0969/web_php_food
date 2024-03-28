@@ -101,7 +101,7 @@ $count = 1;
                                     
                                     <div class="col ml-1">
                                         <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#bill-re" onclick="comfirm(<?echo $bill->getId()?>)">Xác Nhận</button>
+                                            data-bs-target="#bill-re" onclick="comfirm(<?echo $bill->getId()?>,<?echo $bill->getCartId()?>)">Xác Nhận</button>
 
                                     </div>
                                 </div>
@@ -114,8 +114,9 @@ $count = 1;
 
 
                 <script>
-                function comfirm(billid) {
+                function comfirm(billid,cart_id) {
                     document.getElementById('id1').value = billid;
+                    document.getElementById('cart_id').value = cart_id;
 
                 }
 
@@ -160,6 +161,7 @@ $count = 1;
                                 </div>
                                 <input type="hidden" id="id1" name="id1">
                                 <input type="hidden" id="bill_id" name="bill_id">
+                                <input type="hidden" id="cart_id" name="cart_id">
 
 
 

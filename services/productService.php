@@ -285,7 +285,46 @@ class ProductService{
             throw $e;
         }
     }
-   
+    
+    // Hàm lấy thông tin của các mặt hàng trong giỏ hàng khi hóa đơn được xác nhận
+    public function getCartItem($cart_id)
+    {
+              
+
+            // Câu truy vấn để lấy thông tin các sản phẩm trong giỏ hàng
+            $query = "SELECT * FROM cartitem WHERE cart_id = :cart_id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':cart_id', $cart_id);
+            $stmt->execute();
+
+            $cartItems = array();
+
+            // Lặp qua các dòng kết quả và tạo đối tượng CartItem từ mỗi dòng
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $cartItem = new CartItem($row['id'], $row['product_id'], $row['quantity'], $row['cart_id']);
+                $cartItems[] = $cartItem;
+            }
+
+            return $cartItems;
+        
+    }
+    // Hàm cập nhật số lượng đã bán (sold quantity) của sản phẩm
+    public function updateSoldQuantity($productId, $soldQuantity)
+    {
+        try {
+            $query = "UPDATE product_sale SET sold_quantity = sold_quantity + :soldQuantity WHERE product_id = :productId";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':productId', $productId);
+            $stmt->bindParam(':soldQuantity', $soldQuantity);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     public function getProductsPerPage($start, $limit) {
         try {
             $sql = "SELECT * FROM `product` LIMIT ?, ?";
